@@ -4,8 +4,12 @@ import re
 import csv
 from datetime import datetime
 import time
+import random
 import ast
+from tqdm import tqdm
+import copy
 import os 
+from utils import preprocess_df,create_directory
 
 ## csv --> sft 工具
 def convert_api_raw2sft(api: str) -> list:
@@ -54,14 +58,14 @@ def convert_assistant_raw2sft(assistant:str, relevant_label:str) -> list:
     if assistant is None:
         raise ValueError("assistant 为空")  # 抛出一个异常类的实例
     assistant_content = []
-    if '<br>' in assistant:
+    if '<|br|>' in assistant:
         # 使用splitlines保留换行符
-        ass_ls = assistant.split('<br>')
+        ass_ls = assistant.split('<|br|>')
         for i, ass in enumerate(ass_ls):
             # 添加处理过的段落和换行符
             assistant_content.append(ass)
             if i < len(ass_ls) - 1:  # 如果不是最后一个元素，添加token
-                assistant_content.append({"token":"<br>"})
+                assistant_content.append({"token":"<|br|>"})
     else:
         assistant_content = [assistant]
         
@@ -248,6 +252,26 @@ def gen_multi_turn(prev_paths: list[str], curr_path: str, output_path: str, outp
             out_file.write(json.dumps(curr_info, ensure_ascii=False) + '\n')
             
             
+def gen_multi_sft_data(output_load_folder,output_paths,category,output_num):
+    # 同类同域拼多轮
+    for i in range(len(output_paths)):
+        multi_related_prev_paths = [output_paths[i]]
+        multi_related_curr_path = output_paths[i]
+        domain = output_paths[i].split('/')[-1].split('-')[0]
+        create_directory(output_load_folder + '{}/multi/'.format(category))
+        multi_related_output_path = output_load_folder + '{}/multi/{}-self-multi.jsonl'.format(category,domain)
+        gen_multi_turn(multi_related_prev_paths, multi_related_curr_path, multi_related_output_path, 
+                       output_num = output_num, min_turn_num = 2, max_turn_num = 7)
+
+    # 同类不同域拼多轮
+    for i in range(len(output_paths)):
+        multi_related_prev_paths = output_paths
+        multi_related_curr_path = output_paths[i]
+        domain = output_paths[i].split('/')[-1].split('-')[0]
+        multi_related_output_path = output_load_folder + '{}/multi/{}-sameCate-multi.jsonl'.format(category,domain)
+        gen_multi_turn(multi_related_prev_paths, multi_related_curr_path, multi_related_output_path, 
+                       output_num = output_num, min_turn_num = 2, max_turn_num = 15)
+        
 ## sft --> csv 工具
 def convert_observation_sft2raw(observation_content: list) -> list:
     """
@@ -413,6 +437,3 @@ def generate_format_assistant(x):
     }
     df = pd.DataFrame(data)
     sft_df = convert_csv_to_sft(df.copy(),api_flag=True)
-    sft_df
-    
-    # jsonl 转 csv
