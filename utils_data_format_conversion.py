@@ -51,7 +51,7 @@ def convert_observation_raw2sft(observation: str) -> list:
     return observation_content
 
 
-def convert_assistant_raw2sft(assistant:str, relevant_label:str) -> list:
+def convert_assistant_raw2sft(assistant: str, relevant_label:str) -> list:
     """
     将str型的assistant，转为sft需要的list数据
     """
@@ -59,18 +59,20 @@ def convert_assistant_raw2sft(assistant:str, relevant_label:str) -> list:
         raise ValueError("assistant 为空")  # 抛出一个异常类的实例
     assistant_content = []
     if '<|br|>' in assistant:
-        # 使用splitlines保留换行符
+        # 使用split保留换行符
         ass_ls = assistant.split('<|br|>')
         for i, ass in enumerate(ass_ls):
-            # 添加处理过的段落和换行符
-            assistant_content.append(ass)
+            # 检查是否为空字符串（即使包含换行符）
+            if ass.strip() or '\n' in ass:
+                assistant_content.append(ass)
             if i < len(ass_ls) - 1:  # 如果不是最后一个元素，添加token
-                assistant_content.append({"token":"<|br|>"})
+                assistant_content.append({"token": "<|br|>"})
     else:
         assistant_content = [assistant]
         
     if relevant_label == '不相关':
         assistant_content = [{"token": "<|irrelevant|>"}] + assistant_content
+        
     return assistant_content
 
 
@@ -314,7 +316,7 @@ def convert_sft_to_df(df:pd.DataFrame) -> pd.DataFrame:
     return:
         new_df: add new columns [id, turn_id, source, user, thought, api, observation, assistant]
     """
-    user_ls,thought_ls,api_ls,observation_ls,assistant_ls = [],[],[],[],[],[],[],[]
+    user_ls,thought_ls,api_ls,observation_ls,assistant_ls = [],[],[],[],[]
     source_ls = []
     id_ls = []
     turn_id_ls = []
@@ -437,3 +439,6 @@ def generate_format_assistant(x):
     }
     df = pd.DataFrame(data)
     sft_df = convert_csv_to_sft(df.copy(),api_flag=True)
+    sft_df
+    
+    # jsonl 转 csv

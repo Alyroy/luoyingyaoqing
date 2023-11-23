@@ -96,6 +96,11 @@ def check_illegal_data(df):
                         # print(src)
                         if not any(source in src for source in source_ls):
                             return "###不合法人设!###"
+                        
+                    # 检查 <|br|> <|irrelevant|>组合是否正确
+                    if "<|br|>" in j or "<|irrelevant|>" in j:
+                        return '##回复里有特殊token##'
+        
         
         return "合格"
     
