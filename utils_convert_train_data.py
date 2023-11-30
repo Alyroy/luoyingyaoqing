@@ -1,32 +1,24 @@
-import json
-import copy
-from tqdm import tqdm
-import random
-import pandas as pd
-from typing import List, Tuple, Union, Dict, Any
-import re
 import os
-from utils import create_directory
+import re
+import sys
+import json
+import pandas as pd
 
-# 加载数据
-def load_data(folder_path:str)->pd.DataFrame:
+def load_data(input_folder):
     full_path=[]
-    for root, dirs, files in os.walk(folder_path):
+    for root, dirs, files in os.walk(input_folder):
             for file in files:
+                #print(os.path.join(root, file))
                 if file != "sft_100w_20230614-without-conflict_single.jsonl" and file != "sft_100w_20230614-without-conflict_multi.jsonl":
+                # if file != "cross_domain_unrelated_20230901_multi_turns.jsonl":
                     part_path = os.path.join(root, file)
                     full_path.append(part_path)
 
     dl=[]
     for i in full_path:
-        tmp  = pd.read_json(i,lines=True)
-        tmp["owner"] = i.split("/")[7]
-        tmp["folder"] = i.split("/")[8]
-        tmp["dataset"] = i.split("/")[-1]
-        dl.append(tmp)
+        dl.append(pd.read_json(i,lines=True))
 
-    df = pd.concat(dl)
-    print('数据总行数：',len(df))
+    df =pd.concat(dl)
     return df
 
 
@@ -35,9 +27,10 @@ def check_illegal_data(df):
     roles = ['user', 'thought', 'api', 'observation', 'assistant']
 
     keywords = ["moss", "chatbot", "chatgpt", "openai", "belle", "chatglm", "llama", "alpaca", "小智", "文心一言","ChatGLM2-6B",
-            "gpt-4","gpt-3","chatgpt-3.5","gpt-3.5","AI助手","文本生成模型","文本模型","AI机器人","文本AI模型","人工智能语言模型",
-            "ai公司", "复旦大学自然语言实验室", "上海人工智能实验室", "上海人工智能实验室", "复旦大学","2023年2月7日", "2021年9月","160亿",
-            "8张A100","知识截止日期","截止到2021年","知识更新到2021年","知识更新（2021年）","截至2021年","截至到2021年","2021年","2022年1月","Mikhail","薇塔"]
+                "gpt-4","gpt-3","chatgpt-3.5","gpt-3.5","AI助手",
+                "ai公司", "复旦大学自然语言实验室", "上海人工智能实验室", "上海人工智能实验室", "复旦大学",
+                "2023年2月7日", "2021年9月","160亿","8张A100","知识截止日期","截止到2021年","知识更新到2021年","知识更新（2021年）","截至2021年","截至到2021年","2021年"
+                   ]
     pattern1 = re.compile("|".join(keywords),re.IGNORECASE)
     pattern2 = re.compile(
                     r"(我[，是叫]|我的名字[是叫]|我(?:只)?是一[台种个位名款](?:中立的)?|作为|作为一[台种个位名款](?:中立的)?)"
@@ -47,20 +40,11 @@ def check_illegal_data(df):
                     re.IGNORECASE)
     pattern3 = re.compile(r'(我作为老师，|我作为一[一-龥]+老师，|我作为教师，|我作为一[一-龥]+教师，|作为老师|作为一[一-龥]+老师，|作为教师|作为一[一-龥]+教师)', re.IGNORECASE)
 
-    source_ls = ['通用问答-', '汽车问答-', '出游灵感-', '不能删的人设', '无API回复-']
-
+    pattern4 = re.compile(r'(作为一个.*程序|我是一个.*程序|文本生成模型|机器学习模型|文本模型|负责任的汽车制造商|基于文本的模型|AI机器人|语言模型|人工智能语言模型|计算机程序|文本AI模型)', re.IGNORECASE)
+    
     def detect_unlegal_data(x):
         text= x["messages"]
-        if not pd.isnull(x["source"]):
-            src = x["source"]
-        else:
-            src = "Unknown"
-        owner = x["owner"]
-        
-        #检测数据角色数量，是不是都是5的倍数
-        if not isinstance(text, list):
-            return "###messages 格式不正确！###"
-        
+        src = x["source"]
         #检测数据角色数量，是不是都是5的倍数
         if len(text)%5 != 0:
             return "###数据role 数量不正确！###"
@@ -71,7 +55,7 @@ def check_illegal_data(df):
             if sorted_roles[i:i+5] != roles:
                 # if sorted_roles[i:i+5] != roles2:
                 return "###数据role 顺序不正确！###"
-            
+
         #检测每个role的content格式是否合法
         for i in text:
             if not isinstance(i["content"], list):
@@ -83,53 +67,36 @@ def check_illegal_data(df):
 
         #检测assitant的内容是否有脏数据
         for i in text:
-            if "assistant" == i["role"]:
-                if len(i["content"])<1:
-                    return "###数据assistant的content里的内回复为 空 数据！###"
-                for j in i["content"]:
-                    if not j:
-                        return "###数据assistant的content里的内为 空字符串 数据！###"
-                    if len(j) <100 and owner == "lisunzhu_general_sft":
-                        return "###数据assistant的content里的内为 短数据！###"
-                    #检测不合法人设
-                    if pattern1.search(str(j)) or pattern2.search(str(j)) or pattern3.search(str(j)):
-                        # print(src)
-                        if not any(source in src for source in source_ls):
-                            return "###不合法人设!###"
-                        
-                    # 检查 <|br|> <|irrelevant|>组合是否正确
-                    if "<|br|>" in j or "<|irrelevant|>" in j:
-                        return '##回复里有特殊token##'
+            for j in i["content"]:
+                if "[unused" in j:
+                    return "###数据assistant的content里的内为 脏数据！###" 
+
+        #不合法人设删除
+        # if pattern1.search(str(text)) or pattern2.search(str(text)) or pattern3.search(str(text)):
+        #     if src != "不能删的人设":
+        #         return "###不合法人设!###"
         
-        
+        source_ls = ['通用问答-', '汽车问答-', '出游灵感-', '不能删的人设', '无API回复-']
+        if pattern1.search(str(text)) or pattern2.search(str(text)) or pattern3.search(str(text)) or pattern4.search(str(text)):
+            try:
+                if not any(source in src for source in source_ls):
+                    return "###不合法人设!###"
+            except:
+                return "异常数据"
+
         return "合格"
     
     df["vertify_messages"] = df.apply(detect_unlegal_data,axis=1)
     return df
 
-    
-def get_legal_data(input_file: str, output_file: str = None):
-    df = pd.read_json(input_file,lines=True)
-    df["vertify_messages"] = df.apply(detect_illegal_data,axis=1)
-    illegal_num = len(df[df["vertify_messages"]!="合格"])
-    if illegal_num > 0:
-        print('不合格数据量：',illegal_num)
-        df = df[df["vertify_messages"]=="合格"]
-        if output_file:
-            df.to_json(output_file, orient='records', lines=True)
-    else:
-        print('全部合格')
-    
-    return df[df["vertify_messages"]!="合格"]
-
 
 #convert_to_chatml_data
 def convert_to_chatml_single_data(x):
-    signs = {"<|lc_start|>":"[unused0]","<|lc_end|>":"[unused1]","<|kvs|>":"[unused2]","<|kve|>":"[unused3]","<|api_start|>":"[unused4]","<|api_end|>":"[unused5]","<|eoa|>":"[unused6]","=>":"[unused7]","<|br|>":"[unused8]","<|irrelevant|>":"[unused9]"}
+    signs = {"<|lc_start|>":"[unused0]","<|lc_end|>":"[unused1]","<|kvs|>":"[unused2]","<|kve|>":"[unused3]","<|api_start|>":"[unused4]","<|api_end|>":"[unused5]","<|eoa|>":"[unused6]","=>":"[unused7]","<|br|>":"[unused8]", "<|irrelevant|>":"[unused9]"}
     l = x["messages"]
     text=[]
     for i in l:
-        if i["role"] in ["user","thought","api","assistant","observation"]:
+        if i["role"] in ["user","thought","api","assistant","observation","observation "]:
             #print(i["role"])
             if len(i["content"])==0: #没内容的角色
                 item = signs["<|lc_start|>"]+i["role"].rstrip()+"\n<None>"+signs["<|lc_end|>"]
@@ -154,8 +121,7 @@ def convert_to_chatml_single_data(x):
     res = [text[i:i+5] for i in range(0, len(text), 5)]
     return res
 
-
-def convert_to_chatml_data(df: pd.DataFrame)->pd.DataFrame:
+def convert_to_chatml_data(df):
     df["chatML_data"] = df.apply(convert_to_chatml_single_data,axis=1)
     df2 = df[df["chatML_data"]!="###worng data"]
     text_list= df2["chatML_data"].to_list()
@@ -183,11 +149,12 @@ def convert_to_chatml_data(df: pd.DataFrame)->pd.DataFrame:
 
     df_all = pd.DataFrame(l)
     df_all= df_all.dropna()
-    # df_all = df_all.sample(frac=1) # shuffle数据
+    df_all = df_all.sample(frac=1)
     return df_all
 
 
 def clean_data(df_all):
+
     def add_user(x):
         input_text =x
         return input_text
@@ -195,7 +162,6 @@ def clean_data(df_all):
     def norm_output(x):
         norm_output  = x
         norm_output = norm_output.replace("您", "你") # 人设要求不能说您
-
         return norm_output
 
     df_all["norm_input"] =  df_all[0].apply(lambda x: add_user(x))
@@ -204,10 +170,7 @@ def clean_data(df_all):
     return df_all
 
 
-def gen_trian_data(df_all :pd.DataFrame, output_folder: str):
-    create_dir(output_folder)
-    
-    df_all = clean_data(df_all)
+def gen_trian_data(df_all,output_folder):
     # 假设数据框是df，将其分成8个块，尽量多分点，多少块就对应多少个线程
     chunk_size = len(df_all) // 8
     chunks = [df_all[i:i+chunk_size] for i in range(0, len(df_all), chunk_size)]
@@ -219,23 +182,38 @@ def gen_trian_data(df_all :pd.DataFrame, output_folder: str):
         for i in train:
             data = {"instruction": i[0], "input":"","output":i[1] }
             l.append(data)
-        file_out=output_folder+f"{j}.json"
+        file_out=output_folder + "/" +f"{j}.json"
         with open(file_out, 'w', encoding='utf-8') as out:
             json.dump(l, out, indent=4, ensure_ascii=False)
     print('finished!')
-
     
-if __name__ == '__main__':
+    
+def main(input_folder,output_folder):
+    df = load_data(input_folder)
+    print('原始加载数据量：',len(df))
+    df = check_illegal_data(df)
+    df = df[df["vertify_messages"]=="合格"]
+    print('合格数据量：',len(df))
+    df_all = convert_to_chatml_data(df)
+    df_all = clean_data(df_all)
+    print('训练数据量：',len(df_all))
+    gen_trian_data(df_all,output_folder)
+    
+if __name__ == "__main__":
     # 校验数据合法性
     folder_path = "/mnt/pfs-ssai-nlu/renhuimin/pro_qa/data/sft_data/v20231109/renhuimin_assistant_sft/"
     df = load_data(folder_path)
+    print('原始加载数据量：',len(df))
     df = check_illegal_data(df)
+    print('合格数据量：',len(df))
     print(df[df['vertify_messages'] == '不合格'])
     
     # 生成训练数据
-    illegal_df = get_legal_data(input_file=folder_path)
-    df_all = convert_to_chatml_data(illegal_df)
+    df_all = convert_to_chatml_data(df)
+    df_all = clean_data(df_all)
+    print('训练数据量：',len(df_all))
     
     # 切分训练数据
-    output_folder = '/mnt/pfs-ssai-nlu/renhuimin/pro_qa/data/sft_data/v20231109/train_data/'
+    output_folder = '/mnt/pfs-ssai-nlu/renhuimin/pro_qa/data/sft_data/v20231109/train_data_test/'
     gen_trian_data(df_all,output_folder)
+
