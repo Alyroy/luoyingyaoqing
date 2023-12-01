@@ -389,6 +389,26 @@ def convert_api_sft2raw(api_content: list) -> [list,list,list,list]:
     return api_names,categorys,api_querys,api_tags
 
 
+def extract_api_contents(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    提取 api中需要的元素，方便调取搜索
+    """
+    api_names_ls,api_categorys_ls,api_querys_ls,api_tags_ls = [],[],[],[]
+    for api_content in df['API'].to_list():
+        api_ls = convert_api_raw2sft(api_content)
+        api_names,api_categorys,api_querys,api_tags = convert_api_sft2raw(api_ls)
+        api_names_ls.append(api_names)
+        api_categorys_ls.append(api_categorys)
+        api_querys_ls.append(api_querys)
+        api_tags_ls.append(api_tags)
+    
+    df['API-NAME'] = api_names_ls
+    df['API-CATEGORY'] = api_categorys_ls
+    df['API-QUERY'] = api_querys_ls
+    df['API-TAG'] = api_tags_ls
+    
+    return df
+
 ## 其他数据转换的工具
 def add_token_assistant(ori_lst):
     """ 给句子增加
