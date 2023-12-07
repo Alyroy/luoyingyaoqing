@@ -7,7 +7,7 @@ import random
 import copy
 import ast
 
-from utils_data_format_conversion import convert_api_raw2sft
+from utils_data_format_conversion import convert_api_raw2sft,convert_api_str2dict,convert_api_sft2raw
 
 
 def gen_api(category: str, query: str) -> [str, str]:
@@ -45,24 +45,24 @@ def gen_api(category: str, query: str) -> [str, str]:
     return thought, api
     
 
-def convert_api_sft2raw(api_content: list) -> [list,list,list,list]:
-    """
-    从sft api数据格式中提取单一元素
-    """
+# def convert_api_sft2raw(api_content: list) -> [list,list,list,list]:
+#     """
+#     从sft api数据格式中提取单一元素
+#     """
     
-    api_names,categorys,api_querys,api_tags = [],[],[],[]
+#     api_names,categorys,api_querys,api_tags = [],[],[],[]
 
-    for i in range(len(api_content)):
-        if api_content[i] == 'APINAME':
-            api_names.append(api_content[i+2])
-        elif api_content[i] == 'CATEGORY':
-            categorys.append(api_content[i+2])
-        elif api_content[i] == 'QUERY':
-            api_querys.append(api_content[i+2])
-        elif api_content[i] == 'TAG':
-            api_tags.append(api_content[i+2])
+#     for i in range(len(api_content)):
+#         if api_content[i] == 'APINAME':
+#             api_names.append(api_content[i+2])
+#         elif api_content[i] == 'CATEGORY':
+#             categorys.append(api_content[i+2])
+#         elif api_content[i] == 'QUERY':
+#             api_querys.append(api_content[i+2])
+#         elif api_content[i] == 'TAG':
+#             api_tags.append(api_content[i+2])
 
-    return api_names,categorys,api_querys,api_tags
+#     return api_names,categorys,api_querys,api_tags
 
 
 def get_api_df(df: pd.DataFrame, category: str) -> pd.DataFrame:
@@ -75,8 +75,12 @@ def get_api_df(df: pd.DataFrame, category: str) -> pd.DataFrame:
         thought, api_content = gen_api(category,query)
         apis_ls.append(api_content)
         thought_ls.append(thought)
-        api_ls = convert_api_raw2sft(api_content)
-        api_names,api_categorys,api_querys,api_tags = convert_api_sft2raw(api_ls)
+        try:
+            api_ls = convert_api_raw2sft(api_content)
+            api_names,api_categorys,api_querys,api_tags = convert_api_sft2raw(api_ls)
+        except Exception as e:
+            print(e)
+            api_names,api_categorys,api_querys,api_tags
         api_names_ls.append(api_names)
         api_categorys_ls.append(api_categorys)
         api_querys_ls.append(api_querys)
@@ -125,42 +129,48 @@ def search_bing(query: str,top_k : int = 3) -> list:
 
     return observation[:top_k][::-1]
 
-
-def postmansearch_single_api(user_query, api_query, tag, category, top_k=3) -> list:
+def postmansearch_single_api(user_query, api_query, tag, category, top_k=3, env='dev') -> list:
     """
     内部搜索接口
     """
-    url = "http://ks-dev-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/search"
+    if env == 'dev':
+        url = "http://ks-dev-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/search"
+    elif env == 'arch':
+        url = 'http://ks-arch-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/search'
+    else:
+        raise '目前只支持 dev arch环境'
     payload = json.dumps({
         "metadata": {
         "request_info": {
             "msgId": "postman-kgsearch-rhm"
         },
-        "vehicle_info": {
-            "vin": "LW433B126P1037555",
-            "vehicle_config_code": "11,64,9,81,0,255,255,73,253,31,95,255,2,0,227,255,255",
-            "hu_ota_version": "4.1.2-1.5.119",
-            "hu_version": "4.1.12006",
-            "spu": "",
-            "user_manual_version": "3",
-            "help_app_version": "1009000",
-            "vehicle_model": "VEHICLE_MODEL_X01"
+      "vehicle_info": {
+      "vin": "LW433B126P1037555",
+      "vehicle_config_code": "1,64,2,0,34,63,255,0,253,255,159,255,0,31,227,255,255",
+      "hu_ota_version": "4.5.1-1.12.101",
+      "hu_version": "4.1.12006",
+      "spu": "",
+      "user_manual_version": "7",
+      "help_app_version": "2003000",
+      "voice_version": "5.0.0.0",
+      "vehicle_model": "VEHICLE_MODEL_X01"
         },
         "dynamic_info": {
-            "speaker_seat": "RIGHT_SEAT_OF_SECOND_ROW",
-            "night_mode": 0,
-            "position": {
-                 "coordinate": "wgs84",
-                 "latitude": 34.567455,
-                 "longitude": 112.378811,
-                 "country": "",
-                 "city": "北京市"
-            }
+          "speaker_seat": "RIGHT_SEAT_OF_SECOND_ROW",
+          "night_mode": 2,
+          "position": {
+            "coordinate": "wgs84",
+            "latitude": 22.993279,
+            "longitude": 113.702286,
+            "country": "",
+            "city": ""
+          }
         }
       },
       "orig_query": user_query,
       "search_query": api_query,
       "search_category": [category],
+      "source": "Source_INNER",
       "search_slots": {
           "tag": tag
       },
@@ -207,7 +217,7 @@ def get_media_slots(query: str) -> dict:
     return slots
 
 
-def get_media_observation(query: str, slots: dict) -> list:
+def get_media_observation(query: str, slots: dict, top_k :int = 10) -> list:
     """
     通过query和slots返回 影视推荐相关内容
     """
@@ -238,15 +248,44 @@ def get_media_observation(query: str, slots: dict) -> list:
         print('media search error:')
         print(query, e)
 
-    return random.sample(observations, min(5,len(observations)))  
+    return observations[:top_k][::-1]
+    # return random.sample(observations, min(10,len(observations)))  
 
 
-def get_all_observation(df: pd.DataFrame, top_k: int = 3, max_retries: int = 1) -> pd.DataFrame:
+def get_media_obs_df(df: pd.DataFrame, top_k: int = 10) -> pd.DataFrame:
+    """
+    通过解析1B的API，提取slots，利用mediaSearch接口调取obs
+    默认返回10个obs
+    """
+    api_ls = df['API'].to_list()
+    slots_ls = []
+    obs_ls = []
+    for api in api_ls:
+        slots = convert_api_str2dict(api)
+        obs = []
+        slots_copy = copy.deepcopy(slots)
+        for slot in slots_copy:
+            query = slot['QUERY']
+            slot.pop('APINAME',None)
+            slot.pop('QUERY',None)
+            single_obs = get_media_observation(query,slot,top_k)
+            obs.append(single_obs)
+        slots_ls.append(slots)
+        obs_ls.append(obs)
+
+    df['slots'] = slots_ls
+    df['observation'] = obs_ls
+    
+    return df
+
+
+def get_all_observation(df: pd.DataFrame, top_k: int = 3, max_retries: int = 1, random_k_flag: bool = False, bing_flag: bool = False, env: str = 'dev') -> pd.DataFrame:
     """
     如果有多个api，则返回多个observation
     df: necessary columns = [API-QUERY,API-TAG,API-CATEGORY]，每个值由list呈现，例如“['人物']”
     return: df add new columns = ['observation']
     """
+    print('env',env)
     observation_ls = []
     for i in tqdm(range(len(df))):
         if df.iloc[i]['API-QUERY'] == "[]":
@@ -261,15 +300,17 @@ def get_all_observation(df: pd.DataFrame, top_k: int = 3, max_retries: int = 1) 
             observations = []
             for k in range(len(api_querys)):
                 retries = 0  # 重置重试计数器 
+                if random_k_flag:
+                    top_k = random.choice([2,3,4,5])
                 while retries < max_retries:  # 最大重试次数限制
                     try:
-                        if categorys[k] == '汽车':
-                            observation = postmansearch_single_api(user_query, api_querys[k], tags[k], categorys[k], top_k)
-                        elif categorys[k] == '影视推荐': # 单独走影视推荐的搜索接口
-                            slots = get_media_slots(user_query)
-                            observation = get_media_observation(user_query,slots)
+                        if bing_flag:
+                            observation = search_bing(user_query, top_k)
                         else:
-                            observation = postmansearch_single_api(api_querys[k], api_querys[k], tags[k], categorys[k], top_k)
+                            if categorys[k] == '汽车':
+                                observation = postmansearch_single_api(user_query, api_querys[k], tags[k], categorys[k], top_k, env)
+                            else:
+                                observation = postmansearch_single_api(api_querys[k], api_querys[k], tags[k], categorys[k], top_k, env)
                         break  # 如果成功，就跳出while循环
                     except Exception as e:
                         print('第{}个 search api 调用异常：{}'.format(i, e))

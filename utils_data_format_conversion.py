@@ -12,6 +12,22 @@ import os
 from utils import preprocess_df,create_directory
 
 ## csv --> sft 工具
+def convert_api_str2dict(api: str) -> list:
+    api_content = []
+    apis = re.findall("<\|api_start\|>([\s\S]*?)<\|api_end\|>", api)
+    for a in apis:
+        kvs = re.findall("<\|kvs\|>([\s\S]*?)<\|kve\|>", a)
+        api_dict = dict()
+        for kv in kvs:
+            try:
+                api_dict[kv.split("=>")[0]] = kv.split("=>")[1]
+            except:
+                continue
+        api_content.append(api_dict)
+    return api_content
+
+
+
 def convert_api_raw2sft(api: str) -> list:
     """
     把api字符串，转为sft数据输入格式
