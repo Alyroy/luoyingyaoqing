@@ -129,7 +129,7 @@ def search_bing(query: str,top_k : int = 3) -> list:
 
     return observation[:top_k][::-1]
 
-def postmansearch_single_api(user_query, api_query, tag, category, top_k=3, env='dev') -> list:
+def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:str, top_k=3, env='dev') -> list:
     """
     内部搜索接口
     """
@@ -193,35 +193,40 @@ def postmansearch_single_api(user_query, api_query, tag, category, top_k=3, env=
     return observation[::-1] # 逆序
 
 
-def get_media_slots(query: str) -> dict:
-    url = "http://nlu-testone-lids-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/lids/nlu_engine/parse_v2"
+# def get_media_slots(query: str) -> dict:
+#     url = "http://nlu-testone-lids-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/lids/nlu_engine/parse_v2"
 
-    payload = json.dumps({
-      "input": {
-        "text": query
-      }
-    })
+#     payload = json.dumps({
+#       "input": {
+#         "text": query
+#       }
+#     })
 
-    headers = {
-      'Content-Type': 'application/json'
-    }
+#     headers = {
+#       'Content-Type': 'application/json'
+#     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
-    res_json = json.loads(response.text)
+#     response = requests.request("POST", url, headers=headers, data=payload)
+#     res_json = json.loads(response.text)
 
-    try:
-        slots = res_json['dialog_acts'][0]['dass'][0]['slots']
-    except:
-        slots = ''
+#     try:
+#         slots = res_json['dialog_acts'][0]['dass'][0]['slots']
+#     except:
+#         slots = ''
         
-    return slots
+#     return slots
 
 
-def get_media_observation(query: str, slots: dict, top_k :int = 10) -> list:
+def get_media_observation(query: str, slots: dict, top_k :int = 10, env='testtwo') -> list:
     """
     通过query和slots返回 影视推荐相关内容
     """
-    url = "http://ks-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/media-search"
+    if env == 'testtwo':
+        url = "http://ks-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/media-search"
+    elif env =='faq':
+        url = "http://ks-faq-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/media-search"
+    else:
+        raise '目前只支持 testtwo faq环境'
 
     payload = json.dumps({
       "metadata": {
@@ -248,11 +253,12 @@ def get_media_observation(query: str, slots: dict, top_k :int = 10) -> list:
         print('media search error:')
         print(query, e)
 
-    return observations[:top_k][::-1]
+    # return observations[:top_k][::-1]
+    return random.sample(observations[:top_k],min(len(observations),top_k)) # 随机打乱obs返回顺序
     # return random.sample(observations, min(10,len(observations)))  
 
 
-def get_media_obs_df(df: pd.DataFrame, top_k: int = 10) -> pd.DataFrame:
+def get_media_obs_df(df: pd.DataFrame, top_k: int = 10, env: str = 'testtwo') -> pd.DataFrame:
     """
     通过解析1B的API，提取slots，利用mediaSearch接口调取obs
     默认返回10个obs
@@ -268,7 +274,7 @@ def get_media_obs_df(df: pd.DataFrame, top_k: int = 10) -> pd.DataFrame:
             query = slot['QUERY']
             slot.pop('APINAME',None)
             slot.pop('QUERY',None)
-            single_obs = get_media_observation(query,slot,top_k)
+            single_obs = get_media_observation(query,slot,top_k,env)
             obs.append(single_obs)
         slots_ls.append(slots)
         obs_ls.append(obs)
