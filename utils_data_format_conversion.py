@@ -11,7 +11,30 @@ import copy
 import os 
 from utils import preprocess_df,create_directory
 
+
 ## csv --> sft 工具
+def convert_api_list2str(apis: str) -> str:
+    """
+    把api字符串，转为sft数据输入格式,[{"APINAME":"MEDIASearch", "QUERY":"推荐一部张艺谋"}]
+    Args:
+        apis:str 可以转为list
+    Return:
+        api_content: str
+    """
+    apis = eval(apis)
+    api_content = ''
+    for api in apis:
+        api_content += "<|api_start|>"
+        for k,v in api.items():
+            api_content += "<|kvs|>"
+            api_content += k
+            api_content += "=>"
+            api_content += v
+            api_content += "<|kve|>"
+        api_content += "<|api_end|>"
+    return api_content
+
+
 def convert_api_str2dict(api: str) -> list:
     api_content = []
     apis = re.findall("<\|api_start\|>([\s\S]*?)<\|api_end\|>", api)
@@ -25,7 +48,6 @@ def convert_api_str2dict(api: str) -> list:
                 continue
         api_content.append(api_dict)
     return api_content
-
 
 
 def convert_api_raw2sft(api: str) -> list:
@@ -92,7 +114,7 @@ def convert_assistant_raw2sft(assistant: str, relevant_label:str) -> list:
     return assistant_content
 
 
-def convert_csv_to_sft(df:pd.DataFrame, api_flag=True) -> pd.DataFrame:
+def convert_csv_to_sft(df:pd.DataFrame, api_flag=True, prompt='', prompt_ratio=0) -> pd.DataFrame:
     """
     从csv df生成sft_messages df格式数据
     df:['id', 'source', 'user-query', 'Thought', 'API', 'observation', 'assistant', 'relevant_label',
@@ -109,6 +131,10 @@ def convert_csv_to_sft(df:pd.DataFrame, api_flag=True) -> pd.DataFrame:
             user = ast.literal_eval(item['user-query'])
         else:
             user = [item['user-query']]
+        
+        if random.random() < prompt_ratio:
+            user = [user[0] + prompt]
+        
         messages.append({"role": "user", "content": user})
 
         if not api_flag:
@@ -138,7 +164,7 @@ def convert_csv_to_sft(df:pd.DataFrame, api_flag=True) -> pd.DataFrame:
                 json_observation = {ob_types[k]+'Results':ast.literal_eval(item['observation'])[k]}
             except Exception as e:
                 print(e)
-                print(item)
+                print(ite3/m)
                 break
             observaion_ = "<|kvs|>{}<|kve|>".format(json.dumps(json_observation, ensure_ascii=False))
             observations.append(observaion_)
@@ -169,7 +195,7 @@ def convert_csv_to_sft(df:pd.DataFrame, api_flag=True) -> pd.DataFrame:
     
     # 添加df中存在的可选列
     optional_columns = ['produce_source', 'create_time', 'update_time',
-        'create_user', 'update_user', 'task_name', 'is_reviewed','update_content']
+        'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system']
 
     # 使用for循环和条件检查将可选列添加到字典中
     for col in optional_columns:
@@ -203,7 +229,7 @@ def merge_multi_sft_data(df:pd.DataFrame) -> pd.DataFrame:
     })).reset_index()
     
     optional_columns = ['produce_source', 'create_time', 'update_time',
-        'create_user', 'update_user', 'task_name', 'is_reviewed','update_content']
+        'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system']
 
     # 使用for循环和条件检查将可选列添加到字典中
     for col in optional_columns:
@@ -214,13 +240,30 @@ def merge_multi_sft_data(df:pd.DataFrame) -> pd.DataFrame:
     return new_df
 
 
-def gen_sft_data(input_path: str, output_path: str, api_flag: bool = True, multi_flag: bool = False):
+def user_prompt2query(row):
+    """Combine 'user-query' with 'user_prompt' if 'user_prompt' is not null or empty."""
+    user_query = row['user-query']
+    user_prompt = row.get('user_prompt', None)  # 使用 get 以安全处理不存在的列
+    
+    # 检查 'user_prompt' 是否存在且不为空
+    if pd.notna(user_prompt) and user_prompt.strip():
+        return f"{user_query}\n{user_prompt.strip()}"
+    return user_query
+
+
+def gen_sft_data(input_path: str, output_path: str, api_flag: bool = True, multi_flag: bool = False, prompt='', prompt_ratio=0):
     """
     api_flag: True = 生成API assistant；False = 生成个无API assistant
     multi_flag: 是否按照ID 合并session
     """
     df = preprocess_df(input_path)
-    sft_df = convert_csv_to_sft(df.copy(),api_flag)
+
+    # 增加prompt
+    if 'user_prompt' in df.columns:
+        # 如果存在，则根据 'user_prompt' 更新 'user-query'
+        df['user-query'] = df.apply(user_prompt2query, axis=1)
+
+    sft_df = convert_csv_to_sft(df.copy(),api_flag, prompt, prompt_ratio)
     if multi_flag:
         sft_df = merge_multi_sft_data(sft_df)
     print('sft 数量：',len(sft_df))
@@ -389,7 +432,6 @@ def convert_api_sft2raw(api_content: list) -> [list,list,list,list]:
     """
     从sft api数据格式中提取单一元素
     """
-    
     api_names,categorys,api_querys,api_tags = [],[],[],[]
 
     for i in range(len(api_content)):
@@ -411,12 +453,20 @@ def extract_api_contents(df: pd.DataFrame) -> pd.DataFrame:
     """
     api_names_ls,api_categorys_ls,api_querys_ls,api_tags_ls = [],[],[],[]
     for api_content in df['API'].to_list():
-        api_ls = convert_api_raw2sft(api_content)
-        api_names,api_categorys,api_querys,api_tags = convert_api_sft2raw(api_ls)
-        api_names_ls.append(api_names)
-        api_categorys_ls.append(api_categorys)
-        api_querys_ls.append(api_querys)
-        api_tags_ls.append(api_tags)
+        try:
+            api_ls = convert_api_raw2sft(api_content)
+            api_names,api_categorys,api_querys,api_tags = convert_api_sft2raw(api_ls)
+            api_names_ls.append(api_names)
+            api_categorys_ls.append(api_categorys)
+            api_querys_ls.append(api_querys)
+            api_tags_ls.append(api_tags)
+        except Exception as e:
+            print(e)
+            # print(api_ls)
+            api_names_ls.append([])
+            api_categorys_ls.append([])
+            api_querys_ls.append([])
+            api_tags_ls.append([])
     
     df['API-NAME'] = api_names_ls
     df['API-CATEGORY'] = api_categorys_ls
@@ -425,9 +475,32 @@ def extract_api_contents(df: pd.DataFrame) -> pd.DataFrame:
     
     return df
 
+
 ## 其他数据转换的工具
+def judge_zongfen(text):
+    """ 判断回复是否总分模版类型
+    """
+    pattern = re.compile(r'(：\n* *\n+1.)', re.IGNORECASE)
+    flag = pattern.search(str(text))
+    return flag
+
+# 对某一列处理
+def add_zongfen_flag(row):
+    """ 基于assistant内容判断回复类型
+    """
+    flag = 0
+    pattern = re.compile(r'(\d{4}年)')
+    text = row['assistant']
+    # 判断text是否包含"：\n\n1."
+    if judge_zongfen(text) and text.find(" = ") == -1 and text.find("import") == -1 \
+        and text.find("###") == -1 and (not pattern.search(str(text))):
+        flag = 1
+            
+    return flag
+
+
 def add_token_assistant(ori_lst):
-    """ 给句子增加
+    """ 给句子增加 br
     """
     new_lst = []
     for i in range(0, len(ori_lst)):
@@ -460,7 +533,71 @@ def generate_format_assistant(x):
   
 # zongfen_df["assistant"] = zongfen_df.apply(generate_format_assistant, axis=1)
 
-# if __name__ == '__main__':
+def get_structured_data(df,thought_tail='该问题请使用总分类模板回复。'):
+    """
+    总分类：该问题请使用总分类模板回复。
+    描述类：该问题请使用描述类模板回复。
+    比较类：该问题请使用比较类模板回复。
+    时间线：该问题请使用时间线模板回复。
+    服务专家：该问题涉及服务专家，请使用相应模板回复。
+    """
+    df['Thought'] = df['Thought'].apply(lambda x: x+thought_tail)
+    if '总分' in thought_tail:
+        df['assistant2'] = df['assistant'].apply(
+        lambda x: '\n'.join([line + '<|br|>' if line.strip() != '' else line for line in str(x).split('\n+\d+.')]))
+
+    df = df.astype(str)
+    return df
+
+
+# Applying the transformation
+def flatten_and_number(lst):
+    lst = eval(lst)
+    counter = 1
+    result = []
+    for sublist in lst:
+        for item in sublist:
+            result.append(f'obs{counter} {item}')
+            counter += 1
+    return '\n\n'.join(result)
+
+# df['observation2'] = df['observation'].apply(flatten_and_number)
+
+
+# 日志数据转训练格式数据
+def convert_format(df):
+    def safe_literal_eval(s):
+        try:
+            return ast.literal_eval(s)
+        except:
+            return None
+
+    def process_thought(thought_raw):
+        try:
+            return safe_literal_eval(thought_raw)[0]['thought']
+        except (TypeError, IndexError, KeyError):
+            return None
+
+    def process_api(api_raw):
+        try:
+            return convert_api_list2str(api_raw)
+        except:
+            return None
+
+    def process_observation(observation):
+        try:
+            return [list(item.values())[0] for item in safe_literal_eval(observation)]
+        except:
+            return None
+
+    df['Thought'] = df['Thought_raw'].apply(process_thought)
+    df['API'] = df['API_raw'].apply(process_api)
+    df['observation'] = df['Observation'].apply(process_observation)
+    df.drop(columns=['Thought_raw', 'API_raw', 'Observation'], inplace=True)
+    return df
+
+
+if __name__ == '__main__':
     # csv 转 jsonl
     data = {
     'id':['test-1'],
