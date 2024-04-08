@@ -31,7 +31,7 @@ class RateLimiter:
             await asyncio.sleep(1)
             
             
-def make_chat_request_entry(messages, message_type=''):
+def make_chat_request_entry(messages, message_type='', temperature=0.9):
     """
     示例：
     单轮 system prompt
@@ -49,26 +49,27 @@ def make_chat_request_entry(messages, message_type=''):
     if message_type == "system":
         # 单轮 system prompt
         data_entry = {
-            "messages": [{"role": ["system", "user"][i % 2], "content": messages[i]} for i in range(len(messages))]
+            "messages": [{"role": ["system", "user"][i % 2], "content": messages[i]} for i in range(len(messages))],
+            "temperature":temperature
         }
     else:
         # 单轮/多轮 user/assistant prompt
         data_entry = {
-            "messages": [{"role": ["user", "assistant"][i % 2], "content": messages[i]} for i in range(len(messages))]
+            "messages": [{"role": ["user", "assistant"][i % 2], "content": messages[i]} for i in range(len(messages))],
+            "temperature":temperature
         }
 
     return data_entry
 
 
-
-async def request_chat_async(rate_limiter, semaphore, session, messages, message_type='', max_retries=10, url = ""):
+async def request_chat_async(rate_limiter, semaphore, session, messages, message_type='', max_retries=10, url = "", temperature=0.9):
     """
     Async version of the request_chat function
     """
     if not isinstance(messages, list):
-        return request_chat_async(rate_limiter, semaphore, session, [messages], message_type, max_retries, url)
+        return request_chat_async(rate_limiter, semaphore, session, [messages], message_type, max_retries, url, temperature)
     
-    data_entry = make_chat_request_entry(messages,message_type)
+    data_entry = make_chat_request_entry(messages,message_type,temperature)
     # url = "https://gpt4-example.fc.chj.cloud/gpt4/conversation" # 示例
     headers = {'Content-Type': 'application/json'}
     
@@ -92,15 +93,15 @@ async def request_chat_async(rate_limiter, semaphore, session, messages, message
     return {"error": "Maximum retry attempts reached, returning error"}
 
 
-async def process_prompts_chunk_async(rate_limiter, semaphore, session, prompts, message_type='', max_retries=10, url = ""):
+async def process_prompts_chunk_async(rate_limiter, semaphore, session, prompts, message_type='', max_retries=10, url = "", temperature=0.9):
     """
     Async version of the process_prompts_chunk function
     """
-    response = await request_chat_async(rate_limiter, semaphore, session, prompts, message_type, max_retries, url)
+    response = await request_chat_async(rate_limiter, semaphore, session, prompts, message_type, max_retries, url, temperature)
     return [prompts, response]
 
 
-async def gen_assistant_async(prompts_ls, message_type='', max_retries=10, qps=2, max_concurrent=20, output_assistant_path="", url = ""):
+async def gen_assistant_async(prompts_ls, message_type='', max_retries=10, qps=2, max_concurrent=20, output_assistant_path="", url = "", temperature=0.9):
     """
     qps 最大为5，建议设置小于5
     max_concurrent 为并发数限制，文档没有要求，但是RateLimiter在异步时有时无法控制好qps，因此加此限制，具体数值可根据自身需要调整
@@ -109,15 +110,9 @@ async def gen_assistant_async(prompts_ls, message_type='', max_retries=10, qps=2
     semaphore = Semaphore(max_concurrent)  # 限制最大并发数为 max_concurrent，暂时无限制，可以根据自身需求调整大小
 
     async with aiohttp.ClientSession() as session:
-        tasks = [process_prompts_chunk_async(rate_limiter, semaphore, session, prompts, message_type, max_retries, url) for prompts in prompts_ls]
+        tasks = [process_prompts_chunk_async(rate_limiter, semaphore, session, prompts, message_type, max_retries, url, temperature) for prompts in prompts_ls]
         responses = []
 
-        # with open(output_assistant_path, 'a', encoding='utf-8') as f:
-        #     for prompt, future in tqdm(zip(prompts_ls, asyncio.as_completed(tasks)), total=len(tasks)):
-        #         response = await future
-        #         f.write(json.dumps([prompt, response], ensure_ascii=False) + "\n")
-        #         f.flush()  # ensure the data is written to disk after each iteration
-        #         responses.append(response)
         for future in tqdm(asyncio.as_completed(tasks), total=len(tasks)):
             response = await future
             responses.append(response)
@@ -125,7 +120,7 @@ async def gen_assistant_async(prompts_ls, message_type='', max_retries=10, qps=2
     return responses
 
 ### 单条数据
-def request_chat(messages, message_type='', max_retries=10, url = ""):
+def request_chat(messages, message_type='', max_retries=10, url = "", temperature=0.9):
     """
     单条调用gpt4
     max_retries: 报错时，最多重复调用次数
@@ -134,10 +129,10 @@ def request_chat(messages, message_type='', max_retries=10, url = ""):
         return []
     
     if not isinstance(messages, list):
-        return request_chat([messages], message_type, max_retries, url)
+        return request_chat([messages], message_type, max_retries, url, temperature)
     
     # prepare data
-    data_entry = make_chat_request_entry(messages, message_type)
+    data_entry = make_chat_request_entry(messages, message_type, temperature)
 
     headers = {'Content-Type': 'application/json'}
     retries = 0  # 重置重试计数器
@@ -157,15 +152,15 @@ def request_chat(messages, message_type='', max_retries=10, url = ""):
     return response_data
 
 
-def process_prompts_chunk(prompts, message_type='', max_retries=10, url = ""):
+def process_prompts_chunk(prompts, message_type='', max_retries=10, url = "", temperature=0.9):
     """
     Process a chunk of prompts and handle retries
     """
-    response = request_chat(prompts, message_type, max_retries, url)
+    response = request_chat(prompts, message_type, max_retries, url, temperature)
     return [prompts, response]  # 返回prompts，支持后处理
             
             
-def gen_assistant_threaded(prompts_ls, message_type='', max_retries=10, max_threads=2, url = ""):
+def gen_assistant_threaded(prompts_ls, message_type='', max_retries=10, max_threads=2, url = "", temperature=0.9):
     """
     多线程获取gpt结果
     df:需要包含prompts（带system prompt 和 user query）
@@ -173,7 +168,7 @@ def gen_assistant_threaded(prompts_ls, message_type='', max_retries=10, max_thre
     max_threads: Maximum number of threads to use. gpt4 最大3，gpt3 最大20
     """
     with ThreadPoolExecutor(max_threads) as executor:
-        futures = [executor.submit(process_prompts_chunk, prompts, message_type, max_retries, url) for prompts in prompts_ls]
+        futures = [executor.submit(process_prompts_chunk, prompts, message_type, max_retries, url, temperature) for prompts in prompts_ls]
         response_ls = [future.result() for future in tqdm(futures)]
 
     return response_ls
@@ -205,7 +200,7 @@ def parser_gpt_response_async(response_ls):
     return assistant_df
 
 
-def get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, max_concurrent=5, asyncio_flag=True, url=""):
+def get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, max_concurrent=5, asyncio_flag=True, url="", temperature=0.9):
     """
     max_request_times: 最多重复请求多少次gpt；gpt调用如果有问题，重复调用多少次
     qps: 最大为20，建议设置小于10
@@ -224,9 +219,10 @@ def get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, 
         timestamp = int(time.time())
         if asyncio_flag:
             loop = asyncio.get_event_loop()
-            response_ls = loop.run_until_complete(gen_assistant_async(prompts_ls, max_request_times, qps, max_concurrent, output_assistant_path=f"asyncio_response_{max_request_times}_{timestamp}.json",url=url))
+            response_ls = loop.run_until_complete(gen_assistant_async(prompts_ls, max_request_times, qps, max_concurrent, output_assistant_path=f"asyncio_response_{max_request_times}_{timestamp}.json",url=url, temperature=temperature))
         else:
-            response_ls = gen_assistant_threaded(prompts_ls, message_type=message_type, max_retries=max_request_times, max_threads=qps, url=url)
+            response_ls = gen_assistant_threaded(prompts_ls, message_type=message_type, max_retries=max_request_times, 
+                                                 max_threads=qps, url=url, temperature=temperature)
 
         assistant_df = parser_gpt_response_async(response_ls)
         final_reward_list.append(assistant_df[assistant_df['assistant']!='<|wrong data|>']) # 提取有效gpt生成内容
@@ -264,56 +260,56 @@ def get_prompts_df(df: pd.DataFrame, oneshot_prompt: str) -> pd.DataFrame:
     return df
 
 
-if __name__ == "__main__":
-    data = {
-        "prompts": [
-            ["你是理想同学", '你是谁'],
-            ["天津的地标性建筑有天津之眼和瓷房子，美食有煎饼和狗不理包子", "去天津玩2天，怎么规划行程"]
-        ],
-        "single": [
-            ['你是谁'],
-            ["解释一下杜鹃花"],
-            ["去天津玩2天，怎么规划行程"]
-        ],
-        "context": [
-            ["刘德华的代表作是什么", "周杰伦的代表作有很多，其中最为人所知的可能是《青花瓷》、《七里香》、《不能说的秘密》等。", "我问的是刘德华"],
-            ["周杰伦的代表作是什么", "周杰伦的代表作有很多，其中最为人所知的可能是《青花瓷》、《七里香》、《不能说的秘密》等。", "他是哪一年出道的"],
-        ],
-    }
+# if __name__ == "__main__":
+#     data = {
+#         "prompts": [
+#             ["你是理想同学", '你是谁'],
+#             ["天津的地标性建筑有天津之眼和瓷房子，美食有煎饼和狗不理包子", "去天津玩2天，怎么规划行程"]
+#         ],
+#         "single": [
+#             ['你是谁'],
+#             ["解释一下杜鹃花"],
+#             ["去天津玩2天，怎么规划行程"]
+#         ],
+#         "context": [
+#             ["刘德华的代表作是什么", "周杰伦的代表作有很多，其中最为人所知的可能是《青花瓷》、《七里香》、《不能说的秘密》等。", "我问的是刘德华"],
+#             ["周杰伦的代表作是什么", "周杰伦的代表作有很多，其中最为人所知的可能是《青花瓷》、《七里香》、《不能说的秘密》等。", "他是哪一年出道的"],
+#         ],
+#     }
 
-    # prompt 调用方法
-    # prompt_df = data['prompts']
-    # message_type = "prompts"
+#     # prompt 调用方法
+#     # prompt_df = data['prompts']
+#     # message_type = "prompts"
 
-    # 单轮 调用方法
-    prompts_ls = data['single']
-    message_type = ""
+#     # 单轮 调用方法
+#     prompts_ls = data['single']
+#     message_type = ""
     
-    # 多轮 调用方法
-    # prompt_df = data['context']
-    # message_type = ""
+#     # 多轮 调用方法
+#     # prompt_df = data['context']
+#     # message_type = ""
     
-    response_ls = gen_assistant_threaded(prompts_ls, message_type='', max_retries=1, max_threads=2)
-    assistant_df = parser_gpt_response_async(response_ls)
-    print(assistant_df)
-    
-    
-    loop = asyncio.get_event_loop()
-    response_ls = loop.run_until_complete(gen_assistant_async(prompts_ls, message_type='', max_retries=1, qps=2, max_concurrent=20, output_assistant_path="asyncio_out.json"))
-    assistant_df = parser_gpt_response_async(response_ls)
-    print(assistant_df)
+#     response_ls = gen_assistant_threaded(prompts_ls, message_type='', max_retries=1, max_threads=2)
+#     assistant_df = parser_gpt_response_async(response_ls)
+#     print(assistant_df)
     
     
+#     loop = asyncio.get_event_loop()
+#     response_ls = loop.run_until_complete(gen_assistant_async(prompts_ls, message_type='', max_retries=1, qps=2, max_concurrent=20, output_assistant_path="asyncio_out.json"))
+#     assistant_df = parser_gpt_response_async(response_ls)
+#     print(assistant_df)
     
-    folder = '/mnt/pfs-ssai-nlu/renhuimin/pro_qa/data/car/to_be_labeled_data/v20231011/'
-    obs_sales_df = pd.read_csv(folder+'售后问答obs_title.csv').rename(columns={'assistant':'raw_assistant'})
-    with open('prompt_conf/car_gen_prompt.txt', 'r') as file:
-        car_prompt = file.read()
+    
+    
+#     folder = '/mnt/pfs-ssai-nlu/renhuimin/pro_qa/data/car/to_be_labeled_data/v20231011/'
+#     obs_sales_df = pd.read_csv(folder+'售后问答obs_title.csv').rename(columns={'assistant':'raw_assistant'})
+#     with open('prompt_conf/car_gen_prompt.txt', 'r') as file:
+#         car_prompt = file.read()
 
-    init_prompt_df = get_prompts_df(obs_sales_df,car_prompt)[:3]
-    merged_df = get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, max_concurrent=20, asyncio_flag=False)
-    print(merged_df['assitant'])
+#     init_prompt_df = get_prompts_df(obs_sales_df,car_prompt)[:3]
+#     merged_df = get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, max_concurrent=20, asyncio_flag=False)
+#     print(merged_df['assitant'])
     
-    init_prompt_df = get_prompts_df(obs_sales_df,car_prompt)[:3]
-    merged_df = get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, max_concurrent=20, asyncio_flag=True)
-    print(merged_df['assitant'])
+#     init_prompt_df = get_prompts_df(obs_sales_df,car_prompt)[:3]
+#     merged_df = get_gpt4api_df(init_prompt_df, message_type='', max_request_times=1, qps=2, max_concurrent=20, asyncio_flag=True)
+#     print(merged_df['assitant'])
