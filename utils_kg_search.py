@@ -23,7 +23,7 @@ def gen_api(category: str, query: str) -> [str, str]:
     """
     # url = "http://172.21.194.26:8018/ligpt_with_api/search"
     # url = "http://172.21.194.26:16666/ligpt_with_api/search"
-    url = "http://172.21.194.26:20315/ligpt_with_api/search"
+    url = "http://172.21.194.26:20425/ligpt_with_api/search" # 动态变化，使用时需替换最新url，最新找1B咨询
 
     payload = json.dumps({
       "prompt_id": category,
@@ -83,7 +83,7 @@ def get_api_df(df: pd.DataFrame, category: str) -> pd.DataFrame:
     return df
 
 
-def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:str, top_k=3, env='dev', reverse_flag=True) -> list:
+def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:str, top_k=3, env='dev', reverse_flag=True, train_flag=True) -> list:
     """
     内部搜索接口
     """
@@ -91,11 +91,14 @@ def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:s
         url = "http://ks-dev-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/search"
     elif env == 'arch':
         url = 'http://ks-arch-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/search'
+    elif env == 'testtwo':
+        url = ' http://ks-engine-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/kg/knowledge-search-engine/search'
     else:
-        raise '目前只支持 dev arch环境'
+        raise '目前只支持 dev arch testtwo环境'
     unique_id = str(uuid.uuid4().int)[:8]
 
     payload = json.dumps({
+        "limit":10,
         "metadata": {
         "request_info": {
             "msgId": "postman-kgsearch-" + str(unique_id)
@@ -103,6 +106,7 @@ def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:s
       "vehicle_info": {
       "vin": "LW433B126P1037555",
       "vehicle_config_code": "1,64,2,0,34,63,255,0,253,255,159,255,0,31,227,255,255",
+      # "vehicle_config_code": "7,64,9,32,48,255,255,9,77,3,67,3,2,3,3,255,255", # 24款L9 ultra
       "hu_ota_version": "4.5.1-1.12.101",
       "hu_version": "4.1.12006",
       "spu": "",
@@ -135,13 +139,22 @@ def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:s
     headers = { 'Content-Type': 'application/json'}
 
     response = requests.request("POST", url, headers=headers, data=payload)
-
     JsonResponse = json.loads(response.text)
 
     observation = []
+    print('返回检索数量',len(JsonResponse['data'][0]['bot_data']))
     try:
         for i in range(top_k):
-            observation += [JsonResponse['data'][0]['bot_data'][i]['content']]
+            if train_flag == True:
+                observation += [JsonResponse['data'][0]['bot_data'][i]['content']]
+            else:
+                score = JsonResponse['data'][0]['bot_data'][i]['rel_score']
+                try:
+                    rank = JsonResponse['data'][0]['bot_data'][i]['rank']
+                except:
+                    rank = 0
+                content = JsonResponse['data'][0]['bot_data'][i]['content']
+                observation += [f'<该知识置信度为{score}>\n<该知识置信排序为{rank}>\n'+content]
     except Exception as e:
         print('search_single_api error: ')
         print(user_query, e)
@@ -149,7 +162,8 @@ def postmansearch_single_api(user_query:str, api_query:str, tag:list, category:s
     if reverse_flag:
         return observation[::-1] # 逆序
     else:
-        return observation
+        return random.shuffle(observation)
+
 
 # def get_media_slots(query: str) -> dict:
 #     url = "http://nlu-testone-lids-server-inference.ssai-apis-staging.chj.cloud:80/cloud/inner/nlp/lids/nlu_engine/parse_v2"
@@ -243,17 +257,11 @@ def get_media_obs_df(df: pd.DataFrame, top_k: int = 10, env: str = 'testtwo') ->
     return df
 
 
-def get_all_observation(df: pd.DataFrame, top_k: int = 3, random_k_flag: bool = False, max_retries: int = 1, env: str = 'dev', reverse_flag: bool = True) -> pd.DataFrame:
+def get_all_observation(df: pd.DataFrame, top_k: int = 3, max_retries: int = 1, random_k_flag: bool = False, env: str = 'dev', reverse_flag: bool = True, train_flag=True) -> pd.DataFrame:
     """
     如果有多个api，则返回多个observation
-    Param：
-        df: necessary columns = [API-QUERY,API-TAG,API-CATEGORY]，每个值由list呈现，例如“['人物']”
-        top_k：返回前k个检索结果
-        random_k_flag：True=随机获取2到5个检索结果
-        max_retries：调取检索接口最大重试次数
-        env：检索环境，包括dev(稳定环境) 和 arch(测试环境)
-    Returns: 
-        df add new columns = ['observation']
+    df: necessary columns = [API-QUERY,API-TAG,API-CATEGORY]，每个值由list呈现，例如“['人物']”
+    return: df add new columns = ['observation']
     """
     print('env',env)
     observation_ls = []
@@ -274,11 +282,10 @@ def get_all_observation(df: pd.DataFrame, top_k: int = 3, random_k_flag: bool = 
                     top_k = random.choice([2,3,4,5])
                 while retries < max_retries:  # 最大重试次数限制
                     try:
-                        
                         if categorys[k] == '汽车':
-                            observation = postmansearch_single_api(user_query, api_querys[k], tags[k], categorys[k], top_k, env, reverse_flag)
+                            observation = postmansearch_single_api(user_query, api_querys[k], tags[k], categorys[k], top_k, env, reverse_flag,train_flag)
                         else:
-                            observation = postmansearch_single_api(api_querys[k], api_querys[k], tags[k], categorys[k], top_k, env, reverse_flag)
+                            observation = postmansearch_single_api(api_querys[k], api_querys[k], tags[k], categorys[k], top_k, env, reverse_flag,train_flag)
                         break  # 如果成功，就跳出while循环
                     except Exception as e:
                         print('第{}个 search api 调用异常：{}'.format(i, e))
@@ -290,9 +297,7 @@ def get_all_observation(df: pd.DataFrame, top_k: int = 3, random_k_flag: bool = 
                     observation = []
                 observations.append(observation)
             observation_ls.append(observations)
-            
     df['observation'] = observation_ls
-
     return df
 
 
