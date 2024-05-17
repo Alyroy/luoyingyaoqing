@@ -86,6 +86,8 @@ def convert_observation_raw2sft(observation: str) -> list:
         observation_content.append(o)
         observation_content.append({"token": "<|kve|>"})
 
+    if observation_content == []:
+        raise "observation 解析为空"
     return observation_content
 
 
@@ -159,16 +161,18 @@ def convert_csv_to_sft(df:pd.DataFrame, api_flag=True, prompt='', prompt_ratio=0
         obs_tmp_ls = ast.literal_eval(item['observation'])
         ob_types = re.findall(r'APINAME=>(.*?)(?=<|kve|>)', body["api"]) 
 
-        for k in range(min(len(ob_types),len(obs_tmp_ls))):
-            try:
+        # 处理API生成错误的问题
+        if ob_types == []:
+            for k in range(len(obs_tmp_ls)):
+                json_observation = {'Results':ast.literal_eval(item['observation'])[k]}
+                observaion_ = "<|kvs|>{}<|kve|>".format(json.dumps(json_observation, ensure_ascii=False))
+                observations.append(observaion_)
+        else:
+            for k in range(min(len(ob_types),len(obs_tmp_ls))):
                 json_observation = {ob_types[k]+'Results':ast.literal_eval(item['observation'])[k]}
-            except Exception as e:
-                print(e)
-                print(ite3/m)
-                break
-            observaion_ = "<|kvs|>{}<|kve|>".format(json.dumps(json_observation, ensure_ascii=False))
-            observations.append(observaion_)
-
+                observaion_ = "<|kvs|>{}<|kve|>".format(json.dumps(json_observation, ensure_ascii=False))
+                observations.append(observaion_)
+                
         body["observation"] = ''.join(observations)
         if not api_flag:
             observation_content = []
@@ -208,6 +212,41 @@ def convert_csv_to_sft(df:pd.DataFrame, api_flag=True, prompt='', prompt_ratio=0
     return new_df
 
 
+def convert_csv_to_sft_tmp(df:pd.DataFrame, api_flag=True, prompt='', prompt_ratio=0) -> pd.DataFrame:
+    messages_ls = []
+    for i in range(len(df)):
+        item = df.iloc[i]
+        messages = []
+    
+        if item['user-query'][0:2] == "['" and item['user-query'][-2:] == "']":
+            user = ast.literal_eval(item['user-query'])
+        else:
+            user = [f"已知检索结果为：{item['observation']}\n用户问题是：{item['user-query']}"] 
+        
+        if random.random() < prompt_ratio:
+            user = [user[0] + prompt]
+        
+        messages.append({"role": "user", "content": user})
+        messages.append({"role": "thought", "content": []})
+        messages.append({"role": "api", "content": []})
+        messages.append({"role": "observation", "content": []})
+        assistant = item['assistant']
+        messages.append({"role": "assistant", "content": assistant})
+        
+        messages_ls.append(messages)
+    
+    # 初始化要创建的新DataFrame的字典
+    new_df_data = {
+        'id': df['id'].astype(str),  # 转换id列为字符串格式
+        'source':df['source'],
+        'messages':messages_ls
+    }
+    
+    # 使用字典来创建新的DataFrame
+    new_df = pd.DataFrame(new_df_data)
+    
+    return new_df
+    
 def merge_multi_sft_data(df:pd.DataFrame) -> pd.DataFrame:
     """
     从df格式生成sft jsonl格式，包含单轮及多轮数据，按照id group by 合并messages后保存
@@ -257,8 +296,15 @@ def gen_sft_data(input_path: str, output_path: str, api_flag: bool = True, multi
     multi_flag: 是否按照ID 合并session
     """
     df = preprocess_df(input_path)
+    df = df[~df['observation'].isin(['[]','[[]]'])] # 去掉obs为空的
+    # df = df[df['update_time']!='2024/4/24']
 
-    # 增加prompt
+    if 'source' not in df.columns:
+        df['source'] = '无'
+    if 'id' not in df.columns:
+        df['id'] = '0'
+        
+    # 增加user-prompt
     if 'user_prompt' in df.columns:
         # 如果存在，则根据 'user_prompt' 更新 'user-query'
         df['user-query'] = df.apply(user_prompt2query, axis=1)
