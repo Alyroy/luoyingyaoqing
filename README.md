@@ -1,20 +1,95 @@
-# api_assistant_tool
+# RAG
+RAG数据构造流程参考src/auto_llm_distillation/example.ipynb
+### 代码结构
+```commandline
+├── common                     通用代码
+├── conf                       参数设置/常用prompt
+├── src                        封装工具
+│   ├── tool_kg_search         			搜索接口
+│   ├── tool_llm_response         		智能云/vllm大模型调用接口
+│   ├── tool_rag_generation         	数据格式定义及转换
+│   ├── auto_evaluation         	    评估
+│   ├── auto_filter         	        自动化筛选蒸馏数据
+│   ├── auto_redhighlight         	    回复及检索结果相似标红
+...
+```
+## 搜索接口tool_kg_search
+### 1. 代码结构
+```commandline
+├── debug.ipynb                		1B API 及搜索调用示例
+├── get_1b_output.py                1B API 调用接口
+├── kgsearch_llm_obs.py             大模型搜索调用接口
+├── search_http_tool.py             搜索通用接口
+└── utils.py                  		搜索utils
+```
+### 2. 运行方式
+```commandline
+参考debug.ipynb 或 kgsearch_llm_obs.py
+```
+### 3. 1B API 输入输出数据格式
+```commandline
+输入：url:str, query:str, cateogry:str
+输出：dict. function call 形式，包含thought及API各参数
+```
+### 4. 搜索 输入输出数据格式
+```commandline
+输入：search_env:str(环境), query:str, api:dict
+输出：list[dict] 搜索返回内容
+```
+## 智能云/vllm大模型调用接口tool_llm_response
 
-## 简介
+### 1. 代码结构
+```commandline
+├── debug.ipynb                		各类大模型调用示例
+├── call_llm_with_zny.py            智能云大模型调用接口
+├── call_llm_with_vllm.py           vllm部署大模型调用接口
+└── model_deployment                vllm模型部署脚本
 ```
-基于API回复的SFT数据构造
+### 2. 运行方式
+```commandline
+参考debug.ipynb
 ```
+### 3. 输入输出数据格式
+```commandline
+输入：df:pd.DataFrame,包含大模型的input列
+输出：df:pd.DataFrame,新增大模型的response列
+```
+### 4. 智能云脚本输入参数
+```commandline
+url # 智能云GPT api
+model_name # 目前支持['gpt4'o,'gpt4','wenxin']
+temperature # llm输出温度，一半设置为0-1，1表示随机 0表示greedy search
+smax_retries # 调用gpt报错后最多重试 max_retries 次
+qps # 多线程 qps数量，与各账号设置有关，一般不超过10
+max_concurrent # 异步多线程参数，一般10或者20，太大会接口超过qps
+asyncio_flag # False=普通多线程，Jupyter或者python均可
+query_column_name # llm模型输入列名
+response_column_name # llm模型输出列名
+...
+```
+### 5. vllm脚本输入参数
+```commandline
+model # 模型名称，与部署vllm有关, 例如qwen
+url # 模型 api
+temperature # 模型temperature值
+top_p # 模型top_p值
+max_tokens # 最大输出长度
+chunk_num # chunk块数，一般不超过10
+thread_num # 线程数，一般不超过20
+query_column_name # llm模型输入列名
+response_column_name # llm模型输出列名
+...
 
-## 功能模块
+使用vllm蒸馏或评估数据时，需要先部署模型，model_deployment内整理常用的开源模型，以qwen为主
 ```
-1. 调取API接口，生成Thought API
-2. 调取搜索接口，生成observation
-3. 调用GPT4接口额，生成回复
-4. csv格式转训练数据格式
-```
+## 数据格式定义及转换tool_rag_generation
 
-## 示例
+### 1. 代码结构
+```commandline
+├── debug.ipynb                		数据格式转换示例
+├── data_format.py           		定义数据类型及数据格式转换
 ```
-具体可参考[example](example.ipynb)
-[基于API回复的SFT数据格式说明](https://li.feishu.cn/docx/Egz3d5FAgodl8fxM2DOc2QLbn7e)
+### 2. 运行方式
+```commandline
+参考debug.ipynb
 ```
