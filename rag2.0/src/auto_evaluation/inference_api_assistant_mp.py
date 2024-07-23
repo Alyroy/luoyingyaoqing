@@ -11,7 +11,7 @@ import json
 import torch.multiprocessing as mp
 import numpy as np
 
-sys.path.append("/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/rag2.0/src") 
+sys.path.append("../") 
 from tool_rag_generation.data_format import DataFormat
 
 sys.path.append("../../") 
@@ -99,8 +99,8 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
     tokenizer.padding_side = "left"
     # model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)
     if int(hf_version[1]) > 28: 
-        # model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map=("cuda:"+str(gpu_no)), use_cache=True)
-        model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map="auto", use_cache=True)
+        model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map=("cuda:"+str(gpu_no)), use_cache=True)
+        # model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map="auto", use_cache=True)
     else:
         model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)
 
