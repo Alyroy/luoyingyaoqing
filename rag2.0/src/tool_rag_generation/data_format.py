@@ -9,7 +9,7 @@ from datetime import datetime
 import pandas as pd
 
 import sys 
-sys.path.append("../../") 
+sys.path.append("/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/rag2.0") 
 from common import utils,utils_log
 
 SYSTEM_PROMPT = '[unused0]system\n你是一个名字叫做理想同学的AI数字生命体。\n理想同学是一个可靠的智能家庭助手，由理想汽车智能空间部门创造。\n理想同学能够理解人类的指令和意图，并且给出合理的、切合问题的、没有歧视、中立的、安全的回复。\n\n请根据以下文本写一个合适的回复。[unused1]\n'

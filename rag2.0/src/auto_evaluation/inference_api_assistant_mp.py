@@ -5,6 +5,7 @@ import sys, os, re
 import pandas as pd
 import time
 import argparse
+import random
 from transformers import LlamaTokenizer, LlamaForCausalLM, GenerationConfig, AutoModelForCausalLM, AutoTokenizer
 import json
 import torch.multiprocessing as mp
@@ -42,7 +43,10 @@ parser.add_argument('--no_dosample_flag', dest='dosample_flag', action='store_fa
 parser.add_argument('--api_flag', dest='api_flag', action='store_true', help='Enable API flag')
 parser.add_argument('--no_api_flag', dest='api_flag', action='store_false', help='Disable API flag')
 parser.add_argument('--temperature', dest='temperature', type=float, default=0.9, help='temperature')
+parser.add_argument('--top_k', dest='top_k', type=float, default=50, help='temperature')
+parser.add_argument('--top_p', dest='top_p', type=float, default=0.95, help='temperature')
 parser.add_argument('--repetition', dest='repetition', type=float, default=1, help='repetition penalty')
+parser.add_argument('--num_beams', dest='num_beams', type=float, default=1, help='repetition penalty')
 parser.add_argument('--eval_col', dest='eval_col', type=str, default="xx", help='column to be infered')
 parser.set_defaults(dosample_flag=True)
 parser.set_defaults(api_flag=True)  # 默认为True
@@ -50,7 +54,7 @@ args = parser.parse_args()
 print(args)
 
 # 定义设置随机种子的函数
-def seed_everything(seed=1029):
+def seed_everything(seed=9987):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     np.random.seed(seed)
@@ -60,7 +64,7 @@ def seed_everything(seed=1029):
     torch.backends.cudnn.deterministic = True
 
 # 设置种子
-# seed_everything()
+seed_everything()
 
 def get_version_transformers():
     import pkg_resources  
@@ -95,7 +99,8 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
     tokenizer.padding_side = "left"
     # model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)
     if int(hf_version[1]) > 28: 
-        model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map=("cuda:"+str(total_gpus[gpu_no])), use_cache=True)
+        model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map=("cuda:"+str(gpu_no)), use_cache=True)
+        # model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.float16, device_map="auto", use_cache=True)
     else:
         model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)
 
@@ -127,7 +132,7 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
             dev_data.append(input_dict)
     else:
         dataformat_obj = DataFormat(api_flag,multi_flag=False)
-        dev_data = dataformat_obj.gen_sft_data(df,flag_16b_inputs=True)
+        dev_data = dataformat_obj.gen_sft_data(df, flag_16b_inputs=True)
         
     count = 0
     for _ in range(loop):
@@ -155,8 +160,8 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
             #input_ids = tok_input['input_ids'].to('cuda')
             #attention_mask = tok_input['attention_mask'].to('cuda')
             if int(hf_version[1]) > 28:
-                input_ids = tok_input['input_ids'].to('cuda:'+str(total_gpus[gpu_no]))
-                attention_mask = tok_input['attention_mask'].to('cuda:'+str(total_gpus[gpu_no]))
+                input_ids = tok_input['input_ids'].to('cuda:'+str(gpu_no))
+                attention_mask = tok_input['attention_mask'].to('cuda:'+str(gpu_no))
             else:
                 input_ids = tok_input['input_ids'].to('cuda')
                 attention_mask = tok_input['attention_mask'].to('cuda')
@@ -166,9 +171,11 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                     # max_length是input最大截断长度
                     output = model.generate(input_ids=input_ids, attention_mask=attention_mask, 
                                             max_length=6000,temperature=params.temperature, 
-                                            top_k=50, top_p=0.95, 
+                                            top_k=params.top_k,
+                                            top_p=params.top_p, 
                                             do_sample=params.dosample_flag,
-                                            num_beams=1,repetition_penalty=params.repetition, 
+                                            num_beams=params.num_beams,
+                                            repetition_penalty=params.repetition, 
                                             eos_token_id=tokenizer.eos_token_id)
                     # 解码生成的文本输出
                     output_text_list = tokenizer.batch_decode(output, skip_special_tokens=True)
@@ -225,7 +232,10 @@ def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="13b"
     output_pt = directory + "/" + result_file_prefix
 
     n_process = len(args.gpus.split(','))
-    mp.spawn(do_func_api_single, nprocs=n_process, args=(params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(',')))
+    if n_process == 1:
+        do_func_api_single(0, params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(','))
+    else:
+        mp.spawn(do_func_api_single, nprocs=n_process, args=(params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(',')))
 
     # merge files
     df = pd.concat([pd.read_csv(output_pt + '_' + str(i) + '.csv') for i in range(n_process)], ignore_index=True)
