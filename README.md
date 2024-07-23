@@ -57,7 +57,7 @@ RAG数据构造流程参考src/auto_llm_distillation/example.ipynb
 ### 4. 智能云脚本输入参数
 ```commandline
 url # 智能云GPT api
-model_name # 目前支持['gpt4'o,'gpt4','wenxin']
+model_name # 目前支持['gpt4o','gpt4','wenxin']
 temperature # llm输出温度，一半设置为0-1，1表示随机 0表示greedy search
 smax_retries # 调用gpt报错后最多重试 max_retries 次
 qps # 多线程 qps数量，与各账号设置有关，一般不超过10
