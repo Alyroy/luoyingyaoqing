@@ -11,7 +11,7 @@ import json
 import torch.multiprocessing as mp
 import numpy as np
 
-sys.path.append("/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/rag2.0/src/") 
+sys.path.append("../") 
 from tool_rag_generation.data_format import DataFormat
 
 sys.path.append("../../") 
