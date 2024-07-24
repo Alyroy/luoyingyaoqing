@@ -11,11 +11,11 @@ import json
 import torch.multiprocessing as mp
 import numpy as np
 
-sys.path.append("../") 
+sys.path.append("/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/rag2.0/src/") 
 from tool_rag_generation.data_format import DataFormat
 
 sys.path.append("../../") 
-from common import utils_log,utils
+from common import utils_log, utils
 """
 signs = {
     "<|lc_start|>": "[unused0]",

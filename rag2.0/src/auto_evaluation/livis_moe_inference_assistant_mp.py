@@ -34,7 +34,7 @@ empty_str = "[unused0]thought\n<None>[unused1]\n[unused0]api\n<None>[unused1]\n[
 parser = argparse.ArgumentParser(description='information')
 parser.add_argument('--gpus', dest='gpus', default="0,1,2,3,4,5,6,7", type=str, help='model path')
 parser.add_argument('--model', dest='model', type=str, help='model path')
-parser.add_argument('--tiktoken_path', dest='tiktoken_path', type=str, default="/mnt/pfs-guan-ssai/nlu/base/models/MindGPT2.0/MindGPT2.0-Pro/mm_tiktoken/tokenizer.model", help='litiktoken path')
+parser.add_argument('--tiktoken_path', dest='tiktoken_path', type=str, default=None, help='litiktoken path')
 parser.add_argument('--input_file', dest='input_file', type=str, help='input file path')
 parser.add_argument('--batch_size', dest='batch_size', type=int, help='inference batch size')
 parser.add_argument('--try_num', dest='try_num', type=int, default=1, help='repeated nums')
@@ -93,15 +93,16 @@ def format_input_api(input_text):
     return input_text
 
 def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5, mode="moe", checkpoint='', output_pt='', total_gpus=[0], tiktoken_model_path=None):
-    parallel_size = 8
-    hf_version = get_version_transformers().split('.')
+    parallel_size = torch.cuda.device_count()
+
+    # hf_version = get_version_transformers().split('.')
     # os.environ["CUDA_VISIBLE_DEVICES"] = "{}".format(total_gpus[gpu_no])
     # print('current gpu no is', total_gpus[gpu_no])
     
     # 按照以下方式导入模型和分词器
     if mode == "moe":
         print("MOE model")
-        if tiktoken_model_path is not None:
+        if tiktoken_model_path  != 'none':
             tokenizer = Tokenizer(tiktoken_model_path)
         model = LLM(model=checkpoint, tokenizer=checkpoint, dtype=torch.float16, tensor_parallel_size=parallel_size)
         model.llm_engine.tokenizer.padding_side = "left"
@@ -121,9 +122,10 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
             )
         else:
             sampling_params = SamplingParams(
-                temperature=0, 
-                top_p=0.95, 
-                top_k=0, 
+                temperature=params.temperature, 
+                top_p=params.top_p, 
+                top_k=params.top_k, 
+                repetition_penalty=params.repetition, 
                 max_tokens=6000, #注意：这是生成的最大长度，不是输入的最大长度
                 # stop=["<|endoftext|>", "<|im_end|>"]
                 stop=["</s>"],
@@ -133,9 +135,9 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
         
     elif mode == "dense":
         print("Dense model")
-        llm = LLM(model=checkpoint, tokenizer=checkpoint, tensor_parallel_size=parallel_size)
+        model = LLM(model=checkpoint, tokenizer=checkpoint, tensor_parallel_size=parallel_size)
         # 设置pending为left
-        llm.llm_engine.tokenizer.padding_side = "left"
+        model.llm_engine.tokenizer.padding_side = "left"
 
         unused_tokens = []
         for i in range(100):
@@ -158,9 +160,10 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
         else:
             print("汽车问答关采样")
             sampling_params = SamplingParams(
-                temperature=0.0, 
-                top_p=0.95, 
-                top_k=0, 
+                temperature=params.temperature, 
+                top_p=params.top_p, 
+                top_k=params.top_k, 
+                repetition_penalty=params.repetition, 
                 max_tokens=2048, #注意：这是生成的最大长度，不是输入的最大长度
                 # stop=["<|endoftext|>", "<|im_end|>"]
                 stop=["</s>"],
@@ -235,10 +238,10 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                         print(e)
                         continue
             else:
-                #############################dense vllm #############################
+                ############################# dense vllm #############################
                 for try_idx in range(10):
                     try:
-                        raw_outputs = llm.generate(input_text_list, sampling_params)
+                        raw_outputs = model.generate(input_text_list, sampling_params)
                         break
 
                     except Exception as e:
@@ -283,7 +286,7 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
     pd.DataFrame(df).to_csv(output_pt + '_' + str(gpu_no) + ".csv", index=None)
 
 
-def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="13b", tiktoken_path=None):
+def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="moe", tiktoken_path=None):
     test_dataset_file = args.input_file.strip('/').split('/')[-1].strip()
     result_file_prefix = test_dataset_file + "." + args.time_stamp
     directory = os.path.join(args.output_path, args.time_stamp)
