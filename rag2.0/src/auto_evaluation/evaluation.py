@@ -89,7 +89,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
 
 parser  =  argparse.ArgumentParser(description = 'information')
 parser.add_argument("--model_list", nargs = '+', type = str, 
-                    default = ["autoj", "deepseek", "qwen"], help = "eval model list")
+                    default = ["gpt4o", "wenxin"], help = "eval model list")
 parser.add_argument("--url_list", nargs = '+', type = str, 
                     default = ["http://172.24.136.32:8008/v1", "http://172.24.136.254:8001/v1", "http://172.24.136.254:8000/v1"], help = "model url list")
 parser.add_argument("--eval_column_list", nargs = 3, type = str,

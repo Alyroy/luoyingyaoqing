@@ -96,9 +96,9 @@ class RelevanceEval(BaseModelEval):
         try:
             eval_data = re.findall("【(.*?)】",eval_res.replace("\n","").strip())
             eval_score = [int(float(x)) for x in eval_data]
-            print(eval_score)
+            # print(eval_score)
             eval_result = [False if x!=5 else True for x in eval_score]
-            print(eval_result)
+            # print(eval_result)
             if False in eval_result:
                 return 0
             else:
