@@ -11,7 +11,7 @@ import json
 import torch.multiprocessing as mp
 import numpy as np
 
-sys.path.append("/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/rag2.0/src/") 
+sys.path.append("/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/rag2.0/src/") 
 from tool_rag_generation.data_format import DataFormat
 
 sys.path.append("../../") 
@@ -151,9 +151,6 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                 break
             for input_ in dev_data[idx: idx + bsize]:
                 input_text = input_['instruction']
-                # sys_prompt = "[unused0]system\n你是一个名字叫做理想同学的AI机器人.\n理想同学是一个可靠的大语言模型，由理想汽车智能空间部门创造。\n理想同学能够理解人类的指令和意图，并且给出合理的、切合问题的、没有歧视、中立的、安全的回复。\n\n请根据以下文本写一个合适的回复。[unused1]\n"
-                # sys_prompt = "[unused0]system\n你是一个名字叫做理想同学的AI数字生命体。\n理想同学是一个可靠的智能家庭助手，由理想汽车智能空间部门创造。\n理想同学能够理解人类的指令和意图，并且给出合理的、切合问题的、没有歧视、中立的、安全的回复。\n\n请根据以下文本写一个合适的回复。[unused1]\n"
-                # input_text_list.append(sys_prompt + input_text + "[unused0]assistant\n")
                 input_text_list.append(input_text)
                 
             tok_input = tokenizer.batch_encode_plus(input_text_list, padding=True, truncation=True, return_tensors='pt')
@@ -170,7 +167,7 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                 try:
                     # max_length是input最大截断长度
                     output = model.generate(input_ids=input_ids, attention_mask=attention_mask, 
-                                            max_length=6000,temperature=params.temperature, 
+                                            max_length=32000,temperature=params.temperature, 
                                             top_k=params.top_k,
                                             top_p=params.top_p, 
                                             do_sample=params.dosample_flag,

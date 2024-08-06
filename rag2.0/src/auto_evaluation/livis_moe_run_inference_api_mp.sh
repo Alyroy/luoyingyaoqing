@@ -8,51 +8,35 @@ pip install blobfile
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 cd $CURRENT_DIR
 
-# model="/mnt/pfs-guan-ssai/nlu/data/lisunzhu/checkpoints/mindgpt_20240124_166w_v4base_seq6144_mode_1/checkpoint-6600/13b_generator_mindgpt_20240124_166w_v4base_seq6144_mode_1"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/mindgpt_20240131_167w_v4base_seq6144_model_2/checkpoint-7800/13b_generator_mindgpt_20240131_167w_v4base_seq6144_model_2"
-# model="/mnt/pfs-guan-ssai/nlu/data/lisunzhu/checkpoints/mindgpt_20240228_150w_reason_v2_seq6144_mode_1/checkpoint-8000/13b_generator_mindgpt_20240228_150w_reason_v2_seq6144_mode_1"
-# model="/mnt/pfs-guan-ssai/nlu/data/16B-generator-sft-model/16b_sft_generator_mindgpt_20240320_170w_v6base50p_model_1"
-# model="/mnt/pfs-guan-ssai/nlu/data/13B-generator-sft-model/13b_generator_mindgpt_20240327_170w_v4base_seq6144_mode_1"
-# t_stamp="obs_rel_16B_v6_0320"
-# model="/mnt/pfs-guan-ssai/nlu/data/16B-generator-sft-model/16b_sft_generator_mindgpt_20240410_170w_v6base_b176c4q5_model_1"
-# model="/mnt/pfs-guan-ssai/nlu/data/wangheqing/v6_16b_scripts_new/lisft/model/16b_generator_mindgpt_20240424_140w_v6base_model_1/checkpoint-4500"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_mindgpt_20240504_11w_v6base_model_carcomparision_1/checkpoint-2722"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_mindgpt_20240502_140w_v6base_model_ragskill_all_1/checkpoint-9000"
-# model="/mnt/pfs-guan-ssai/nlu/data/16B-generator-sft-model/16b_sft_generator_mindgpt_20240424_140w_v6base_model_1"
-# model="/mnt/pfs-guan-ssai/nlu/data/wangheqing/v6_16b_scripts_new/lisft/model/16b_generator_mindgpt_20240511_140w_v632k_model_1/checkpoint-21873"
-# model="/mnt/pfs-guan-ssai/nlu/data/wangheqing/v6_16b_scripts_new/lisft/model/16b_generator_mindgpt_20240524_140w_v632k_model_1/checkpoint-26208"
-# model="/mnt/pfs-guan-ssai/nlu/data/16B-generator-sft-model/16b_sft_generator_mindgpt_20240607_140w_v632k_model_1"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_mindgpt_20240614_7k_v6_32k_model_2/checkpoint-702"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_mindgpt_20240614_7k_v6_32k_model_2/checkpoint-1212"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_rag_new_20240626_64k_v6_32k_model_1/checkpoint-3024"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_rag_new_20240627_66k_v6_32k_model_1/checkpoint-3132"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_mindgpt_20240625_33k_v6_32k_model_1/checkpoint-6336"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_rag_full_nofollow_20240625_11w_v6_32k_model_1/checkpoint-5628"
-# model="/mnt/pfs-guan-ssai/nlu/data/renhuimin/checkpoints/16b_generator_rag_cft_multi_20240705_11w_v6_32k_model_1/checkpoint-10416"
+# EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240725_155w_v7moe_32k_liptm_model_2/checkpoint-9333/hf_model"
+# EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/luhengtong/li-safe-rlhf/output/sft-mind-gpt-v7moe-0725_dpo_dpo-0727_2560_n12b3e2_0728-seed42/ckpt-2910/"
+# EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240801_160w_v7moe_32k_liptm_model_1/checkpoint-4902/hf_model"
+EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/luhengtong/li-safe-rlhf/output/sft-mind-gpt-v7moe-0801_dpo_dpo-v7-0802_2560_n16b3e2_0804-seed42/ckpt-2166"
+tiktoken_model_path="none"
+# tiktoken_model_path=/mnt/pfs-guan-ssai/nlu/lvjianwei/models/MindGPT-2.0-32K/tokenizer.model
 
-# model="/mnt/pfs-guan-ssai/nlu/data/16B-generator-sft-model/16b_sft_generator_mindgpt_20240607_140w_v632k_model_1"
-model="/mnt/pfs-guan-ssai/nlu/liumengge/character/vllm/16b_sft_generator_mindgpt_dpo_20240709_0"
-t_stamp="moe_0724"
+# if [ ! -f ${EVAL_MODEL}/tokenizer_config.json ]; then
+#     if [[ "${tiktoken_model_path}" != "none" ]]; then
+#         cp config/tokenizer_config.json ${EVAL_MODEL}
+#     fi
+# fi
 
-input_dir="/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/data/input_data"
-output_dir="/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/data/output_data"
+# if [ ! -f ${EVAL_MODEL}/tokenizer.json ]; then
+#     if [[ "${tiktoken_model_path}" != "none" ]]; then
+#         cp config/tokenizer.json ${EVAL_MODEL}
+#     fi
+# fi
 
-declare -a file_array=("手机app_必过集_自动化标注_2024-07-16T14_57_49.876_GPT4turbo.csv" "手机app_泛化集_自动化标注_2024-07-16T14_28_55.980_结果集.csv") 
-declare -a temperature_array=(0.2 0.5 0.8)
-declare -a topK_array=(10 30 50)
-declare -a topP_array=(0.2 0.6 0.95)
+
+t_stamp="moe_dpo_0802"
+
+input_dir="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/rag2.0/data/test_data/v20240804/input"
+output_dir="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/rag2.0/data/test_data/v20240804/"
+
 # readarray -t file_array < <(find "$input_dir" -type f -not -path "*/.ipynb_checkpoints/*" -exec basename {} \;)
+declare -a file_array=("手机APP_泛化集_人工_2024-07-30.csv") 
 
 for fs in "${file_array[@]}"
 do
-    for temperature in "${temperature_array[@]}"
-    do
-        for topK in "${topK_array[@]}"
-        do
-            for topP in "${topP_array[@]}"
-            do
-                python livis_moe_inference_assistant_mp.py --input_file ${input_dir}/${fs} --output_path ${output_dir} --model ${model} --tiktoken_path ${tokenizer_path} --time_stamp ${t_stamp}_${temperature}_${topK}_${topP} --batch_size 2 --turn_mode moe --eval_col resp中间结果
-            done
-        done
-    done
+    python livis_moe_inference_assistant_mp.py --input_file ${input_dir}/${fs} --output_path ${output_dir} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${t_stamp} --batch_size 2 --turn_mode moe --eval_col resp中间结果
 done

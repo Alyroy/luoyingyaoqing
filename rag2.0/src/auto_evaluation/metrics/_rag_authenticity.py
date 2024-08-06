@@ -1,9 +1,9 @@
 # -*-coding:utf-8-*-
+from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
 import re
 import sys
 sys.path.append('../')
 from base.base_eval import BaseModelEval
-
 sys.path.append('../../')
 from tool_llm_response.call_llm_with_zny import CallLLMByZny,ZnyConfig
 from tool_llm_response.call_llm_with_vllm import CallLLMByVllm,VllmConfig
@@ -30,6 +30,34 @@ class AuthenticityEval(BaseModelEval):
         df['llm_prompts'] = df.apply(lambda row: f"{self.prompt}\n问题：{row[query]}\n参考资料：{row[obs]}\n生成内容：{row[ans]}\n{instruction}", axis=1)
         return df
 
+
+    def add_log_prompt(self, df, eval_column_list, prompt_path):
+        '''
+        解析log to date_time, location, context(user), observation, assistant
+        1. 提取各个元素
+        2. 拼接prompt
+        '''
+        self.read_prompt(prompt_path)
+        log_input_col, ans_col, _ = eval_column_list
+        prompts_ls = []
+        for i in range(len(df)):
+            request = df.iloc[i][log_input_col]
+            date_info = parser_date(request) # 提取时间
+            address_info = parser_loc(request) # 提取地点
+            common_prompt_info = self.prompt.replace("$$$date$$$",date_info).replace("$$$pos$$$",address_info) # 替换时间地点
+            context,query = parser_context_query(request)
+            obs = parser_obs(request)
+            response = df.iloc[i][ans_col]
+            instruction = "以上就是模型生成的内容，请你根据给出的问题和参资料，将其切分为多个最小粒度的原子信息并按照相关性划分等级然后进行准确性评估。"
+            if len(context)>0:
+                # prompt = "\n".join([common_prompt_info + "\n", "历史对话：",context, "问题：", query, '参考资料：', obs, '生成内容：', response.strip(), instruction])
+                prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n参考资料：{obs}\n生成内容：{response.strip()}\n{instruction}"
+            else:
+                prompt = f"{common_prompt_info}\n问题：{query}\n参考资料：{obs}\n生成内容：{response.strip()}\n{instruction}"
+            prompts_ls.append(prompt)
+        df['llm_prompts'] = prompts_ls
+        return df
+        
 
     def result_parse(self,response):
         """
@@ -84,18 +112,23 @@ class AuthenticityEval(BaseModelEval):
         return response_sorted_list
 
     
-    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, concat_prompt_flag:bool = True):
+    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
         '''
         主评估函数
         '''
         try:
-            if concat_prompt_flag:
+            if eval_mode=='user_obs_ans_concat':
                 # 读取待评估文件并与prompt进行拼接
-                df_with_prompts = self.concat_prompt(df = df, eval_column_list = eval_column_list, prompt_path = prompt_path)
+                df_with_prompts = self.concat_prompt(df, eval_column_list, prompt_path)
                 query_column_name = "llm_prompts"
-            else:
+            elif eval_mode=='with_prompt':
                 df_with_prompts = df
                 query_column_name = eval_column_list[0] # 如果不拼已有的prompt默认取第一个做eval
+            elif eval_mode=='model_13b_log':
+                df_with_prompts = self.add_log_prompt(df, eval_column_list, prompt_path)
+                query_column_name = "llm_prompts"
+            else:
+                raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
                 
             
             if(model in ["gpt4","gpt4o","wenxin"]):
