@@ -2,7 +2,7 @@ pip install git+https://github.com/huggingface/accelerate
 pip install https://test-space-internal-cache.s3.bj.bcebos.com/cache/ssai-training/litiktoken/litiktoken-0.0.1-py3-none-any.whl
 pip install aiohttp
 pip install pyltp
-pip install vllm
+pip install vllm==0.5.3.post1
 pip install blobfile
 
 CURRENT_DIR=$(cd $(dirname $0); pwd)
