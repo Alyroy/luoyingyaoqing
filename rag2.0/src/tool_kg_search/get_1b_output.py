@@ -2,6 +2,61 @@ import json
 import requests
 import ast
 
+class LinluResult(object):
+    def __init__(self,query:str,url:str='http://nlu-lids-server-50-inference.ssai-apis-staging.chj.cloud/cloud/inner/nlp/lids/nlu_engine/parse_v2') -> None:
+        """
+        输入query，可输出落域分类
+        """
+        self.query = query
+        self.url = url
+
+    def gen_domain(self) -> dict:
+        """
+        获取linlu服务内容
+        """
+        payload = json.dumps({
+          "input": {
+            "text": self.query
+          },
+          "metadata": {
+            "voiceVersion": "5.0.0.0"
+          },
+          "sessionContextsV2": [
+            {
+              "inputText": "",
+              "actResults": [],
+              "messageIds": [],
+              "thoughtChains": [],
+              "structDisplayDatas": []
+            }
+          ],
+          "debugInfo": {},
+          "latestConversationLogs": [],
+          "sessionContexts": [],
+          "staticsCarData": {},
+          "signalInfos": [],
+          "nluClarifies": []
+        })
+        headers = {
+          'Content-Type': 'application/json'
+        }
+        
+        response = requests.request("POST", self.url, headers=headers, data=payload)
+        res_json = json.loads(response.text)
+        return res_json
+        
+
+    def get_api_name(self) -> str:
+        """
+        解析api_name
+        """
+        res_json = self.gen_domain()
+        raw_domain = res_json['dialog_acts'][0]['dass'][0]['domain']
+        domain_dict = {'qa':'QASearch','autoqa':'AUTOSearch','mediaqa':'MEDIASearch'}
+        domain_value = domain_dict.get(raw_domain, 'QASearch')
+        return domain_value
+
+
 class ApiResult(object):
     def __init__(self, category: str, query: str, url: str = "http://172.24.139.95:16073/ligpt_with_api/search") -> None:
         """
@@ -35,11 +90,16 @@ class ApiResult(object):
         return res_json
 
 
-def get_thought_api(query, category, url):
+def get_thought_api(query, url):
     """
     解析1b接口
     """
     try:
+        # 获取apiname
+        linlu_tool = LinluResult(query)
+        category = linlu_tool.get_api_name()
+
+        # 获取1b结果
         api_tool = ApiResult(category, query, url)
         response = api_tool.gen_api()
         parser_result = response.get('first_response', {}).get('assistant', None)
@@ -60,4 +120,3 @@ def get_thought_api(query, category, url):
     except Exception as e:
         print(f"Error occurred: {e}")
         return [], []
-    

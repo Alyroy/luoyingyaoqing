@@ -70,29 +70,29 @@ class SearchByHttpTool(object):
         fix_format_docs = []
         origi_docs_llm = [] #给大模型用，原样的doc返回
 
-        # try:
-        res_json = json.loads(response.text)
-        for doc in res_json['data']:
-            origi_docs_llm.append(doc)
+        try:
+            res_json = json.loads(response.text)
+            for doc in res_json['data']:
+                origi_docs_llm.append(doc)
 
-            id = del_in_ch(get_v_4dict_by_keys(doc, ['id'], ''))
-            title = del_in_ch(get_v_4dict_by_keys(doc, ['title'], ''))
-            content =  del_in_ch(get_v_4dict_by_keys(doc, ['content','snippet'], ''))
-            url = del_in_ch(get_v_4dict_by_keys(doc, ['source_link','url'], ''))
-            if 'media_resources' in doc:
-                url = get_dict_value_bykey(doc['media_resources'], 'play_url') 
-            source = del_in_ch(get_v_4dict_by_keys(doc, ['source'], ''))
-            extend_data = get_v_4dict_by_keys(doc, ['extend_data'], '') # extend_data is dict
-            fix_format_docs.append({
-                                'id': id, 
-                                'title': title, 
-                                'content': content,
-                                'url': url,
-                                'source': source,
-                                'extend_data': extend_data,
-                                })
-        # except Exception as e:
-        #     print('exception:%s, parse search results:%s' % (str(e), response.text)) 
+                id = del_in_ch(get_v_4dict_by_keys(doc, ['id'], ''))
+                title = del_in_ch(get_v_4dict_by_keys(doc, ['title'], ''))
+                content =  del_in_ch(get_v_4dict_by_keys(doc, ['content','snippet'], ''))
+                url = del_in_ch(get_v_4dict_by_keys(doc, ['source_link','url'], ''))
+                if 'media_resources' in doc:
+                    url = get_dict_value_bykey(doc['media_resources'], 'play_url') 
+                source = del_in_ch(get_v_4dict_by_keys(doc, ['source'], ''))
+                extend_data = get_v_4dict_by_keys(doc, ['extend_data'], '') # extend_data is dict
+                fix_format_docs.append({
+                                    'id': id, 
+                                    'title': title, 
+                                    'content': content,
+                                    'url': url,
+                                    'source': source,
+                                    'extend_data': extend_data,
+                                    })
+        except Exception as e:
+            print('exception:%s, parse search results:%s' % (str(e), response.text)) 
         return fix_format_docs,origi_docs_llm
 
     # qasearch
