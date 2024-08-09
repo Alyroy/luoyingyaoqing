@@ -1,4 +1,5 @@
 # -*-coding:utf-8-*-
+from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
 import re
 import sys
 sys.path.append('../')
@@ -26,6 +27,31 @@ class RelevanceEval(BaseModelEval):
         
         # 使用apply函数拼接prompt，并存入prompts列
         df['llm_prompts'] = df.apply(lambda row: f"{self.prompt}【数据输入】\n【query】\n{row[query]}\n【response】\n{row[ans]}\n【结果输出】", axis=1)
+        return df
+
+    def add_log_prompt(self, df, eval_column_list, prompt_path):
+        '''
+        解析log to date_time, location, context(user), assistant
+        1. 提取各个元素
+        2. 拼接prompt
+        '''
+        self.read_prompt(prompt_path)
+        log_input_col, ans_col, _ = eval_column_list
+        prompts_ls = []
+        for i in range(len(df)):
+            request = df.iloc[i][log_input_col]
+            date_info = parser_date(request) # 提取时间
+            address_info = parser_loc(request) # 提取地点
+            common_prompt_info = self.prompt.replace("$$$date$$$",date_info).replace("$$$pos$$$",address_info) # 替换时间地点
+            context,query = parser_context_query(request)
+            response = df.iloc[i][ans_col]
+            instruction = "请对以上的用户问题和大模型答案进行相关性分析，并输出相关性评估结果。"
+            if len(context)>0:
+                prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
+            else:
+                prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
+            prompts_ls.append(prompt)
+        df['llm_prompts'] = prompts_ls
         return df
 
     def result_parse(self,response):
@@ -63,6 +89,23 @@ class RelevanceEval(BaseModelEval):
         return result
         
 
+    def log_relevance_parse(self, eval_res):
+        """
+        解析log评估，评估的角度必须全部为5
+        """
+        try:
+            eval_data = re.findall("【(.*?)】",eval_res.replace("\n","").strip())
+            eval_score = [int(float(x)) for x in eval_data]
+            # print(eval_score)
+            eval_result = [False if x!=5 else True for x in eval_score]
+            # print(eval_result)
+            if False in eval_result:
+                return 0
+            else:
+                return 1
+        except:
+            return -1
+    
     def result_sorted(self, input_with_prompt, responses):
         try:
             prompt_index = {v: k for k, v in enumerate(input_with_prompt)}
@@ -76,18 +119,23 @@ class RelevanceEval(BaseModelEval):
             self.logger.error("error while result sorted:",e)
         return response_sorted_list
 
-    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, concat_prompt_flag:bool = True):
+    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
         '''
         主评估函数
         '''
         try:
-            if concat_prompt_flag:
+            if eval_mode=='user_obs_ans_concat':
                 # 读取待评估文件并与prompt进行拼接
-                df_with_prompts = self.concat_prompt(df = df, eval_column_list = eval_column_list, prompt_path = prompt_path)
+                df_with_prompts = self.concat_prompt(df, eval_column_list, prompt_path)
                 query_column_name = "llm_prompts"
-            else:
+            elif eval_mode=='with_prompt':
                 df_with_prompts = df
                 query_column_name = eval_column_list[0] # 如果不拼已有的prompt默认取第一个做eval
+            elif eval_mode=='model_13b_log':
+                df_with_prompts = self.add_log_prompt(df, eval_column_list, prompt_path)
+                query_column_name = "llm_prompts"
+            else:
+                raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
                 
             if(model in ["gpt4","gpt4o","wenxin"]):
                 config = ZnyConfig(
@@ -126,10 +174,14 @@ class RelevanceEval(BaseModelEval):
             # rel_result = [self.result_parse(resp) for resp in response_sorted_list]
             rel_result = []
             for resp in response_sorted_list:
-                rel_score = self.result_parse(resp) # 解析模型回复
-                rel_backup = self.parse_backup(resp) # 兜底回复均为0
-                rel_result_tmp = 0 if rel_score == 0 or rel_backup==1 else 1
-                rel_result.append(rel_result_tmp)
+                if eval_mode!='model_13b_log':
+                    rel_score = self.result_parse(resp) # 解析模型回复
+                    rel_backup = self.parse_backup(resp) # 兜底回复均为0
+                    rel_result_tmp = 0 if rel_score == 0 or rel_backup==1 else 1
+                    rel_result.append(rel_result_tmp)
+                else:
+                    rel_result_tmp = self.log_relevance_parse(resp) # 针对log评估的解析方法
+                    rel_result.append(rel_result_tmp)
             rel_reason = response_sorted_list
         except Exception as e:
             rel_result = [-1 for _ in range(len(df))]

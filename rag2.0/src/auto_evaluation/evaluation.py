@@ -33,7 +33,8 @@ METRIC_DICT = {
 }
 
 
-def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, concat_prompt_flag:bool=True):
+def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str='user_obs_ans_concat'):
+    
     df = utils.get_df(input_file)
     df = df[~df[eval_column_list[-1]].isna()] # 回复为空不评估
     result_list = []
@@ -55,7 +56,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
             thread_num = thread_num, 
             chunk_num = chunk_num, 
             temperature = temperature,
-            concat_prompt_flag = concat_prompt_flag
+            eval_mode = eval_mode
         )
         assert len(result) == len(df), "result length is wrong!"
         
@@ -88,7 +89,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
 
 parser  =  argparse.ArgumentParser(description = 'information')
 parser.add_argument("--model_list", nargs = '+', type = str, 
-                    default = ["autoj", "deepseek", "qwen"], help = "eval model list")
+                    default = ["gpt4o", "wenxin"], help = "eval model list")
 parser.add_argument("--url_list", nargs = '+', type = str, 
                     default = ["http://172.24.136.32:8008/v1", "http://172.24.136.254:8001/v1", "http://172.24.136.254:8000/v1"], help = "model url list")
 parser.add_argument("--eval_column_list", nargs = 3, type = str,
@@ -106,6 +107,8 @@ parser.add_argument("--prompt_path", type = str,
 parser.add_argument("--thread_num", type = int, default = 10, help = "thread num")
 parser.add_argument("--chunk_num", type = int, default = 2, help = "chunk num")
 parser.add_argument("--temperature", type = float, default = 0.7, help = "temperature")
+parser.add_argument("--eval_mode", type = str, 
+                    default = "user_obs_ans_concat", help = "user_obs_ans_concat,model_13b_log,with_prompt")
 args  =  parser.parse_args()
 print(args)
 
@@ -113,45 +116,44 @@ print(args)
 if __name__ == "__main__":
     file = args.input_dir
     # 如果是文件夹
-    try:
-        if os.path.isdir(file):
-            for root, dirs, files in os.walk(file):
-                for f in files:
-                    input_file = os.path.join(root, f)
-                    print("--------------------------------------------\n正在评估 ", input_file, "\n--------------------------------------------")
-                    results, final_scores = evaluate(
-                        model_list = args.model_list,
-                        url_list = args.url_list,
-                        metric = args.metric,
-                        eval_column_list = args.eval_column_list,
-                        save_column = args.save_column,
-                        input_file = input_file,
-                        output_dir = args.output_dir,
-                        prompt_path = args.prompt_path,
-                        thread_num = args.thread_num,
-                        chunk_num = args.chunk_num,
-                        temperature = args.temperature,
-                    )
-                    print("--------------------------------------------\n", input_file, "评估完毕\n--------------------------------------------")
-    
-        # 如果是文件
-        else:
-            print("--------------------------------------------\n正在评估", file, "\n--------------------------------------------")
+    # try:
+    if os.path.isdir(file):
+        files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f]
+        for input_file in files:
+            print("--------------------------------------------\n正在评估 ", input_file, "\n--------------------------------------------")
             results, final_scores = evaluate(
                 model_list = args.model_list,
                 url_list = args.url_list,
                 metric = args.metric,
                 eval_column_list = args.eval_column_list,
                 save_column = args.save_column,
-                input_file = file,
+                input_file = input_file,
                 output_dir = args.output_dir,
                 prompt_path = args.prompt_path,
                 thread_num = args.thread_num,
                 chunk_num = args.chunk_num,
                 temperature = args.temperature,
+                eval_mode = args.eval_mode
             )
-            print("-------------------------------------\n", file, "文件评估完毕\n-------------------------------------") 
-   # print(results)
-   # print("多模型评估结果为：\n", final_scores)
-    except Exception as e:
-        print(e)
+            print("--------------------------------------------\n", input_file, "评估完毕\n--------------------------------------------")
+
+    # 如果是文件
+    else:
+        print("--------------------------------------------\n正在评估", file, "\n--------------------------------------------")
+        results, final_scores = evaluate(
+            model_list = args.model_list,
+            url_list = args.url_list,
+            metric = args.metric,
+            eval_column_list = args.eval_column_list,
+            save_column = args.save_column,
+            input_file = file,
+            output_dir = args.output_dir,
+            prompt_path = args.prompt_path,
+            thread_num = args.thread_num,
+            chunk_num = args.chunk_num,
+            temperature = args.temperature,
+            eval_mode = args.eval_mode
+        )
+        print("-------------------------------------\n", file, "文件评估完毕\n-------------------------------------") 
+    # except Exception as e:
+    #     print(e)

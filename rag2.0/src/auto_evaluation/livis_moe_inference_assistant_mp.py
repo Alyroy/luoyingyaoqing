@@ -34,11 +34,11 @@ empty_str = "[unused0]thought\n<None>[unused1]\n[unused0]api\n<None>[unused1]\n[
 parser = argparse.ArgumentParser(description='information')
 parser.add_argument('--gpus', dest='gpus', default="0,1,2,3,4,5,6,7", type=str, help='model path')
 parser.add_argument('--model', dest='model', type=str, help='model path')
-parser.add_argument('--tiktoken_path', dest='tiktoken_path', type=str, default=None, help='litiktoken path')
+parser.add_argument('--tiktoken_path', dest='tiktoken_path', type=str, default="none", help='litiktoken path')
 parser.add_argument('--input_file', dest='input_file', type=str, help='input file path')
 parser.add_argument('--batch_size', dest='batch_size', type=int, help='inference batch size')
 parser.add_argument('--try_num', dest='try_num', type=int, default=1, help='repeated nums')
-parser.add_argument('--turn_mode', dest='turn_mode', type=str, default="13b", help='single or multi')
+parser.add_argument('--turn_mode', dest='turn_mode', type=str, default="moe", help='single or multi')
 parser.add_argument('--time_stamp', dest='time_stamp', type=str, help='time stamp')
 parser.add_argument('--output_path', dest='output_path', default="./infer_output/", type=str, help='output_path')
 parser.add_argument('--dosample_flag', dest='dosample_flag', action='store_true', help='do sample true')
@@ -46,7 +46,7 @@ parser.add_argument('--no_dosample_flag', dest='dosample_flag', action='store_fa
 parser.add_argument('--api_flag', dest='api_flag', action='store_true', help='Enable API flag')
 parser.add_argument('--no_api_flag', dest='api_flag', action='store_false', help='Disable API flag')
 parser.add_argument('--temperature', dest='temperature', type=float, default=0.9, help='temperature')
-parser.add_argument('--top_k', dest='top_k', type=float, default=50, help='temperature')
+parser.add_argument('--top_k', dest='top_k', type=int, default=50, help='temperature')
 parser.add_argument('--top_p', dest='top_p', type=float, default=0.95, help='temperature')
 parser.add_argument('--repetition', dest='repetition', type=float, default=1, help='repetition penalty')
 parser.add_argument('--num_beams', dest='num_beams', type=float, default=1, help='repetition penalty')
@@ -181,10 +181,8 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
         df = df[~df[params.eval_col].isna()]
     total_rows = df.shape[0]
     print('total rows is:', total_rows)
-    print('chunk size is', int(total_rows / 1))
-    assert int(total_rows / len(total_gpus)) > 2
     chunks = np.array_split(range(total_rows), 1)
-    current_chunk = chunks[0].tolist()
+    current_chunk = chunks[gpu_no].tolist()
     print('current chunk is', gpu_no, 'with the range of: ', current_chunk[0], current_chunk[-1])
     df = df[current_chunk[0]:(current_chunk[-1] + 1)]
     #dev_data = df["input"].values.tolist()
@@ -260,14 +258,9 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                     full_output.append(input_text_list[i])
                     continue
 
-                print("input_text:", input_text_list[i])
-                print("output_text:", output_text)
-                print("\n")
-
                 output_assist = output_text.split(input_text_list[i].strip())[-1]  # 生成的输出内容
                 assistant = output_assist.split("[unused1]")[0].strip()
                 print("assistant:", assistant)
-                print("\n")
 
                 predict_text.append(assistant)
                 # predict_api.append(api)
@@ -295,10 +288,11 @@ def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="moe"
 
     output_pt = directory + "/" + result_file_prefix
 
-    n_process = len(args.gpus.split(','))
-    do_func_api_single(0, params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(','), tiktoken_path)
-    # mp.spawn(do_func_api_single, nprocs=n_process, args=(params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(','), tiktoken_path))
-
+    # n_process = len(args.gpus.split(','))
+    n_process = 1
+    # do_func_api_single(0, params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(','), tiktoken_path)
+    mp.spawn(do_func_api_single, nprocs=n_process, args=(params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(','), tiktoken_path))
+    
     # merge files
     df = pd.concat([pd.read_csv(output_pt + '_' + str(i) + '.csv') for i in range(n_process)], ignore_index=True)
     [os.remove(output_pt + '_' + str(i) + '.csv') for i in range(n_process)]
