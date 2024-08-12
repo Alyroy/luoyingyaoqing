@@ -1,21 +1,14 @@
 #!/bin/bash
-CURRENT_DIR=$(cd $(dirname $0); pwd)
-cd $CURRENT_DIR
 
-# 参数化输入和输出路径
-input_dir=$1
-output_dir=$2
-model_list_str=$3
-url_list_str=$4
-
-# 将字符串转换为数组
-IFS=',' read -r -a model_list <<< "$model_list_str"
-IFS=',' read -r -a url_list <<< "$url_list_str"
+# 模型名称与url，需一一对应，以空格间隔
+# 模型可以为 ['qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4', 'mindgpt','wenxin']
+model_list=("qwen" "gpt4o")
+url_list=("http://172.24.136.6:7000/v1" "https://rhm-gpt4.fc.chj.cloud/gpt4o")
 
 # 每个chunk处理的线程数
 thread_num=20
 # chunk数
-chunk_num=2
+chunk_num=5
 # 模型的temperature值
 temperature=0.1
 
@@ -26,6 +19,11 @@ save_column=多模型筛选回复结果
 # 指标和prompt地址，二者需要同时修改
 metric=correct_ans_filter
 prompt_path=/workspace/renhuimin/pro_rag/conf/filter_prompts/filter_correct.txt
+
+# 输入路径，可以是目录也可以是文件
+input_dir=/workspace/renhuimin/pro_rag/data/distillation_data/v20240723/app_obs_gpt4蒸馏数据/第二批/
+# 输出路径
+output_dir=/workspace/renhuimin/pro_rag/data/distillation_data/v20240723/correct_filter_output_app_obs/
 
 python multi_filter_assistant.py  \
     --model_list "${model_list[@]}" \
@@ -39,4 +37,4 @@ python multi_filter_assistant.py  \
     --thread_num $thread_num \
     --chunk_num $chunk_num \
     --temperature $temperature \
-    --concat_prompt_flag #默认进入代码后拼接prompt，若提前拼好，此处可设置为 --no_concat_prompt_flag; 提前拼好后默认取eval_column_list[0]为eval_col，如果是qwen打分，会把eval_col改成llm_prompts
+    --concat_prompt_flag

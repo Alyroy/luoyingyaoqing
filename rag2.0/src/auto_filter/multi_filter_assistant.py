@@ -1,6 +1,8 @@
 import sys
 import os
 import argparse
+import os
+import concurrent.futures
 from utils.consistency_strategy import consistency_strategy
 from base.base_eval import BaseModelEval
 from metrics import (
@@ -23,70 +25,91 @@ METRIC_DICT = {
     }
 }
 
+def eval_model(model, url, metric, eval_column_list, df, output_dir, prompt_path, thread_num, chunk_num, temperature, concat_prompt_flag):
+    assert model in ['llama3_70b','qwen','qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
+    print(f"---------------------------------\n正在使用 {model} 进行评估\n---------------------------------")
+    assert metric in METRIC_DICT, "metric name is not right!!!"
+    func = METRIC_DICT[metric]['function']
+    assert isinstance(func, BaseModelEval), "func type is wrong!!!"
+    result, reason = func.main_eval(
+        model=model,
+        url=url,
+        eval_column_list=eval_column_list,
+        df=df,
+        output_dir=output_dir,
+        prompt_path=prompt_path,
+        thread_num=thread_num,
+        chunk_num=chunk_num,
+        temperature=temperature,
+        concat_prompt_flag=concat_prompt_flag
+    )
+    assert len(result) == len(df), "result length is wrong!"
 
-def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, concat_prompt_flag:bool=True):
+    print(f"---------------------------------\n {model} 评估完毕\n---------------------------------")
+    return model, result, reason
+
+
+def evaluate(model_list, url_list, metric, eval_column_list, save_column, input_file, output_dir, prompt_path, thread_num, chunk_num, temperature, concat_prompt_flag=True):
     df = utils.get_df(input_file)
-    result_list = []
-    for i in range(len(model_list)):
-        model = model_list[i]
-        assert model in ['qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
-        print("---------------------------------\n正在使用", model, "进行评估\n---------------------------------")
-        url = url_list[i]
-        assert metric in METRIC_DICT, "metric name is not right!!!"
-        func = METRIC_DICT[metric]['function']
-        assert isinstance(func, BaseModelEval), "func type is wrong!!!"
-        result, reason = func.main_eval(
-            model = model,
-            url = url, 
-            eval_column_list = eval_column_list, 
-            df = df, 
-            output_dir = output_dir, 
-            prompt_path = prompt_path, 
-            thread_num = thread_num, 
-            chunk_num = chunk_num, 
-            temperature = temperature,
-            concat_prompt_flag = concat_prompt_flag
-        )
-        assert len(result) == len(df), "result length is wrong!"
-        
-        # 将每个模型的输出分数和打分原因存入df
-        df[model + '_eval_response'] = reason
-        df[model + '_' + metric] = result
-        
-        show_dic = {}
-        show_dic['model'] = model
-        show_dic['task_name'] = metric
-        show_dic['result'] = result
-        show_dic['reason'] = reason
-        result_list.append(show_dic)
-        print("---------------------------------\n", model, "评估完毕\n---------------------------------")
     
-    # 对多模型评估结果进行投票打分，如果所有模型打分均为1，则该条
-    final_scores = consistency_strategy(df, result_list)
-    # cnt_1 = final_scores.count(1)
-    # print(cnt_1, len(df), '真实性占比：', cnt_1/len(df))
-    # 最终评估结果存入自定义列
+    results = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(model_list)) as executor:
+        future_to_model = {
+            executor.submit(
+                eval_model,
+                model,
+                url_list[i],
+                metric,
+                eval_column_list,
+                df,
+                output_dir,
+                prompt_path,
+                thread_num,
+                chunk_num,
+                temperature,
+                concat_prompt_flag
+            ): model for i, model in enumerate(model_list)
+        }
+        
+        for future in concurrent.futures.as_completed(future_to_model):
+            model = future_to_model[future]
+            try:
+                model, result, reason = future.result()
+                df[model + '_eval_response'] = reason
+                df[model + '_' + metric] = result
+
+                results.append({
+                    'model': model,
+                    'task_name': metric,
+                    'result': result,
+                    'reason': reason
+                })
+            except Exception as exc:
+                print(f"{model} generated an exception: {exc}")
+
+    # Consistency strategy to aggregate the results
+    final_scores = consistency_strategy(df, results)
+
     df[save_column] = final_scores
-    
-    # 存储结果
-    # 根据final_scores分割数据
+
+    # Save the results
     df_1 = df[df[save_column] == 1]
     df_0 = df[df[save_column] == 0]
     df_minus_1 = df[df[save_column] == -1]
 
-    # 存储结果
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     filename, _ = os.path.splitext(os.path.basename(input_file))
-    df.to_csv(output_dir+f'/{filename}_{metric}.csv',index=False)
-    
+    df.to_csv(os.path.join(output_dir, f'{filename}_{metric}.csv'), index=False)
     df_1.to_csv(os.path.join(output_dir, f'{filename}_{metric}_保留.csv'), index=False)
     df_0.to_csv(os.path.join(output_dir, f'{filename}_{metric}_废弃.csv'), index=False)
     df_minus_1.to_csv(os.path.join(output_dir, f'{filename}_{metric}_送标.csv'), index=False)
-    print_output = f"{metric} 原始数据量：{len(df)},保留量：{len(df_1)},废弃量：{len(df_0)},送标量：{len(df_minus_1)}，送标比例：{len(df_minus_1)}/{len(df)}={len(df_minus_1)/len(df):4f}"
+
+    print_output = f"{metric} 原始数据量：{len(df)},保留量：{len(df_1)},废弃量：{len(df_0)},送标量：{len(df_minus_1)}，送标比例：{len(df_minus_1)}/{len(df)}={len(df_minus_1)/len(df):.4f}"
     print(print_output)
 
-    return result_list, final_scores
+    return results, final_scores
+
 
 parser  =  argparse.ArgumentParser(description = 'information')
 parser.add_argument("--model_list", nargs = '+', type = str, 
@@ -118,31 +141,34 @@ print(args)
 if __name__ == "__main__":
     file = args.input_dir
     # 如果是文件夹
-    try:
-        if os.path.isdir(file):
-            for root, dirs, files in os.walk(file):
-                for f in files:
-                    input_file = os.path.join(root, f)
-                    print("--------------------------------------------\n正在评估 ", input_file, "\n--------------------------------------------")
-                    results, final_scores = evaluate(
-                        model_list = args.model_list,
-                        url_list = args.url_list,
-                        metric = args.metric,
-                        eval_column_list = args.eval_column_list,
-                        save_column = args.save_column,
-                        input_file = input_file,
-                        output_dir = args.output_dir,
-                        prompt_path = args.prompt_path,
-                        thread_num = args.thread_num,
-                        chunk_num = args.chunk_num,
-                        temperature = args.temperature,
-                        concat_prompt_flag = args.concat_prompt_flag
-                    )
-                    print("--------------------------------------------\n", input_file, "评估完毕\n--------------------------------------------")
-    
-        # 如果是文件
-        else:
-            print("--------------------------------------------\n正在评估", file, "\n--------------------------------------------")
+    if os.path.isdir(file):
+        files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f]
+        for input_file in files:
+            try:
+                print("------------------------\n正在评估 ", input_file, "\n---------------------------------------")
+                results, final_scores = evaluate(
+                    model_list = args.model_list,
+                    url_list = args.url_list,
+                    metric = args.metric,
+                    eval_column_list = args.eval_column_list,
+                    save_column = args.save_column,
+                    input_file = input_file,
+                    output_dir = args.output_dir,
+                    prompt_path = args.prompt_path,
+                    thread_num = args.thread_num,
+                    chunk_num = args.chunk_num,
+                    temperature = args.temperature,
+                    concat_prompt_flag = args.concat_prompt_flag
+                )
+                print("---------------------------------\n", input_file, "评估完毕\n-----------------------------------")
+            except Exception as e:
+                print(e)
+                continue
+
+    # 如果是文件
+    else:
+        print("---------------------------------------\n正在评估", file, "\n--------------------------------------------")
+        try:
             results, final_scores = evaluate(
                 model_list = args.model_list,
                 url_list = args.url_list,
@@ -158,5 +184,5 @@ if __name__ == "__main__":
                 concat_prompt_flag = args.concat_prompt_flag
             )
             print("-------------------------------------\n", file, "文件评估完毕\n-------------------------------------") 
-    except Exception as e:
-        print(e)
+        except Exception as e:
+            print(e)

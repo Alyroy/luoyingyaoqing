@@ -10,9 +10,9 @@ cd $CURRENT_DIR
 #     # 可以在这里添加更多的文件路径
 # )
 
-folder="/mnt/pfs-guan-ssai/nlu/data/renhuimin/pro_rag/data/distillation_data/v20240714/"
+folder="/workspace/renhuimin/pro_rag/data/distillation_data/v20240808/"
 # 定义初始文件夹
-initial_folder=${folder}"gpt4数据蒸馏/"
+initial_folder=${folder}"gpt4_data/"
 # 查找初始文件夹中的所有数据文件，并将其添加到初始输入文件列表中
 readarray -t initial_inputs < <(find "$initial_folder" -type f -name "*.csv" -not -path "*/.ipynb_checkpoints/*" | sort)
 
@@ -20,8 +20,8 @@ style_filter_output_base_dir=${folder}"style_filter_output"
 correct_filter_output_base_dir=${folder}"correct_filter_output"
 
 # 定义模型列表和 URL 列表
-model_list=("qwen2_72b" "gpt4o")
-url_list=("http://172.24.136.14:8000/v1" "https://rhm-gpt4.fc.chj.cloud/gpt4o")
+model_list=("gpt4o")
+url_list=("https://rhm-gpt4.fc.chj.cloud/gpt4o")
 
 # 将模型列表和 URL 列表转换为字符串以便传递
 model_list_str=$(IFS=","; echo "${model_list[*]}")

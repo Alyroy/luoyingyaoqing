@@ -22,17 +22,17 @@ IFS=',' read -r -a url_list <<< "$url_list_str"
 # 每个chunk处理的线程数
 thread_num=20
 # chunk数
-chunk_num=10
+chunk_num=2
 # 模型的temperature值
 temperature=0.5
 
 # 评估列表，即query obs ans的自定义列名
-eval_column_list=("user-query" "observation" "assistant")
+eval_column_list=("user-query" "observation" "parser_gpt4")
 save_column=多模型筛选话术结果
 
 # 指标和prompt地址，二者需要同时修改
 metric=speech_style_filter
-prompt_path=/mnt/pfs-guan-ssai/nlu/data/renhuimin/pro_rag/conf/filter_prompts/filter_speech_style.txt
+prompt_path=/workspace/renhuimin/pro_rag/conf/filter_prompts/filter_speech_style.txt
 
 python multi_filter_assistant.py  \
     --model_list "${model_list[@]}" \
