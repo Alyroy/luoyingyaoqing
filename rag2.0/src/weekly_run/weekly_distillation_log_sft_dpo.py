@@ -105,7 +105,7 @@ def get_distillation_data(date):
 
 
 config = ZnyConfig(
-    url = 'https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', # 智能云GPT api
+    url = 'https://rhm-gpt4.fc.chj.cloud/gpt4o', # 智能云GPT api
     model_name = 'gpt4o',
     temperature = 0.5, # llm输出温度，zny下的gpt4基本无效，因为是全球节点，还是会有随机性
     max_retries = 5, # 调用gpt报错后最多重试 max_retries 次
