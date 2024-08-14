@@ -2,6 +2,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import AgglomerativeClustering
 from sentence_transformers import SentenceTransformer
 
+import argparse
 import pandas as pd
 import numpy as np
 import os
@@ -101,8 +102,9 @@ def get_distillation_data(date,api_url):
     df_api = get_api_df(query_df, col_query='user-query',
                         output_file=outfolder+'api.csv', url=api_url)
     
-    df_api = df_api[df_api['API']!='[]']
+    df_api = df_api[df_api['api']!='[]']
     df_obs = get_obs_df(df_api, length_limit=20000, output_path=outfolder+f'{date}_obs.csv')
+    df_obs = pd.read_csv(outfolder+f'{date}_obs.csv')
     
     # # 每500条，split files 保证gpt4正常生产
     df_obs = df_obs[~df_obs['observation'].isin(['[[]]','[]'])]
@@ -125,6 +127,17 @@ def get_distillation_data(date,api_url):
         print('蒸馏错误',e)
 
 
+config = ZnyConfig(
+    url = 'https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', # 智能云GPT api
+    model_name = 'gpt4o',
+    temperature = 0.5, # llm输出温度，zny下的gpt4基本无效，因为是全球节点，还是会有随机性
+    max_retries = 5, # 调用gpt报错后最多重试 max_retries 次
+    qps = 5, # 多线程 or 异步多线程下，qps，不要超过5
+    max_concurrent = 10, # 异步多线程参数，一般10或者20，太大会接口超过qps
+    asyncio_flag = False, # True=异步多线程，只能python调用；False=普通多线程，Jupyter或者python均可
+    query_column_name = 'prompts', # llm模型输入列名
+    response_column_name = 'gpt4response' # llm模型输出列名
+)
 if __name__ == '__main__':
     # 创建 ArgumentParser 对象
     parser = argparse.ArgumentParser(description='distillate gpt4 for app log.')

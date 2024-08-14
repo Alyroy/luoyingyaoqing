@@ -1,0 +1,61 @@
+{# mindgpt的chat模板 #}
+{%- if not add_generation_prompt is defined -%}
+{%- set add_generation_prompt = false -%}
+{%- endif -%}
+{# system、user、assistant、thought：[unused0] 和 [unused1] 包裹
+api 和 observation 特殊处理
+#}
+{% set ns = namespace(system_role=false,thought_role=false,api_role=false,observation_role=false,api_names=[]) %}
+{%- for message in messages -%}
+    {# 请求中有system prompt #}
+    {%- if message['role'] == 'system' -%}
+        {%- set ns.system_prompt = true -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- if not ns.system_prompt -%}
+    {{'[unused0]system\n你是一个名字叫做理想同学的AI数字生命体。\n理想同学是一个可靠的智能家庭助手，由理想汽车智能空间部门创造。\n理想同学能够理解人类的指令和意图，并且给出合理的、切合问题的、没有歧视、中立的、安全的回复。\n\n请根据以下文本写一个合适的回复。[unused1]\n'}}
+{%- endif -%}
+{%- for message in messages -%}
+    {# 判断哪些角色存在，并提取对应角色的内容 #}
+    {%- if message['role'] == 'thought' -%}
+        {%- set ns.thought_role = true -%}
+    {%- endif -%}
+    {%- if message['role'] == 'api' -%}
+        {%- set ns.api_role = true -%}
+        {%- set content = message['content']|fromjson -%}
+        {{'[unused0]api\n[unused4]'}}
+        {%- for api_data in content -%}
+            {%- for key, value in api_data.items() -%}
+                {%- if key == 'APINAME' -%}
+                    {%- set ns.api_names = ns.api_names + [value ~ 'Results'] -%}
+                {%- endif -%}
+                [unused2]{{key}}[unused7]{{value}}[unused3]
+            {%- endfor -%}
+        {%- endfor -%}
+        {{'[unused5][unused6][unused1]\n'}}
+    {%- elif message['role'] == 'observation' -%}
+        {%- set ns.observation_role = true -%}
+        {{'[unused0]observation\n'}}
+        {%- set content = message['content']|fromjson -%}
+        {%- for result in content -%}
+            {%- set api_result = {ns.api_names[loop.index0]: result} -%}
+            [unused2]{{ api_result|tojson }}[unused3]
+        {%- endfor -%}
+        {{'[unused1]\n'}}
+    {%- else -%}
+        {{'[unused0]' + message['role'] + '\n' + message['content'] + '[unused1]\n'}}
+    {%- endif -%}
+{%- endfor -%}
+{# 补全对应角色的字段 #}
+{%- if not ns.thought_role -%}
+    {{'[unused0]thought\n<None>[unused1]\n'}}
+{%- endif -%}
+{%- if not ns.api_role -%}
+    {{'[unused0]api\n<None>[unused1]\n'}}
+{%- endif -%}
+{%- if not ns.observation_role -%}
+    {{'[unused0]observation\n<None>[unused1]\n'}}
+{%- endif -%}
+{%- if add_generation_prompt -%}
+    {{ '[unused0]assistant\n' }}
+{%- endif -%}

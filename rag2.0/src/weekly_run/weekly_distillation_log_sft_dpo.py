@@ -18,19 +18,6 @@ sys.path.append('../../')
 from common import utils
 tqdm.pandas()
 
-def generate_date_list(start_date_str, end_date_str):
-    start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-    end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
-
-    # 生成日期列表
-    dates = []
-    current_date = start_date
-    while current_date <= end_date:
-        dates.append(current_date.strftime('%Y-%m-%d'))
-        current_date += timedelta(days=1)
-        
-    return dates
-
 def filter_df(df):
     """
     筛选目标筛选
@@ -118,7 +105,7 @@ def get_distillation_data(date):
 
 
 config = ZnyConfig(
-    url = 'https://rhm-gpt4.fc.chj.cloud/gpt4o', # 智能云GPT api
+    url = 'https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', # 智能云GPT api
     model_name = 'gpt4o',
     temperature = 0.5, # llm输出温度，zny下的gpt4基本无效，因为是全球节点，还是会有随机性
     max_retries = 5, # 调用gpt报错后最多重试 max_retries 次
