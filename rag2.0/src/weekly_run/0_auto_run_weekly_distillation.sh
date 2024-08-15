@@ -8,9 +8,9 @@ url_list=("http://172.24.136.30:8000/v1" " http://172.24.136.30:8001/v1")
 
 api_url="http://172.24.139.95:16073/ligpt_with_api/search"
 
-output_folder="/workspace/renhuimin/pro_rag/data/distillation_data/v20240813_applog/"
-dpo_outpt="dpo_by0807.csv"
-sft_outpt="sft_by0807"
+output_folder="/workspace/renhuimin/pro_rag/data/distillation_data/v20240814_applog/"
+dpo_outpt="dpo_by0812.csv"
+sft_outpt="sft_by0812"
 
 # 启动第一个和第二个脚本并在后台运行
 ./1_auto_weekly_distillation_log.sh $start_date $end_date "$(IFS=,; echo "${model_list[*]}")" "$(IFS=,; echo "${url_list[*]}")" > log.run_weekly_distillation_log 2>&1 &
@@ -19,7 +19,6 @@ pid1=$!
 ./2_auto_weekly_distillation_extand.sh $start_date $end_date "$(IFS=,; echo "${model_list[*]}")" "$(IFS=,; echo "${url_list[*]}")" "$api_url" > log.run_weekly_distillation_extand 2>&1 &
 pid2=$!
 
-等待后台任务完成
 wait $pid1
 wait $pid2
 

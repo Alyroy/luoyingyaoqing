@@ -22,14 +22,14 @@ pip install pyarrow pandas tiktoken
 
 SERVER_NAME=$(hostname -i)  # b区服务器的主机结点
 SERVER_PORT=8000
-echo "qwen2 72b api服务启动地址 http://${SERVER_NAME}:${SERVER_PORT}"
-MODEL=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2-72B-Instruct
+echo "llama3 70b api服务启动地址 http://${SERVER_NAME}:${SERVER_PORT}"
+MODEL=/mnt/pfs-guan-ssai/nlu/lizr/models/Llama3_70B_instruct_chinese
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 # 决定使用哪张卡
 python -m vllm.entrypoints.openai.api_server \
         --host $SERVER_NAME \
         --port $SERVER_PORT \
         --model $MODEL \
-        --served-model-name qwen2_72b \
+        --served-model-name llama3_70b \
         --dtype bfloat16 \
         --disable-log-stats \
         --enforce-eager \

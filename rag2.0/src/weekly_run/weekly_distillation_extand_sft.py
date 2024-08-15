@@ -86,6 +86,7 @@ def get_distillation_data(date,api_url):
     for file in files:  
         try:
             df = pd.read_csv(infolder + file)
+            df = df[~df['user-query'].isna()]
             df = filter_df(df)
             dl.append(df)
         except Exception as e:

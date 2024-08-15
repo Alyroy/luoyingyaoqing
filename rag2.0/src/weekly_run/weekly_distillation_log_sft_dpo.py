@@ -23,7 +23,9 @@ def filter_df(df):
     筛选目标筛选
     """
     usecols = ['user-query', 'assistant', 'api', 'thought', 'observation', 'system', 'apiname',
-           'assistant_relevance', 'assistant_logic','generalized_question_from_user', 'generalized_question_from_assistant']
+              'assistant_relevance', 'assistant_logic','generalized_question_from_user', 'generalized_question_from_assistant',
+              'query_has_you', 'query_has_relative_time', 'query_has_command']
+    
     filter_df = df[
     ((df['is_rag'] == 1) | (df['is_rag'] == -1)) & 
     ((df['is_single_turn'] == 1) | (df['is_single_turn'] == -1)) &
@@ -32,11 +34,14 @@ def filter_df(df):
     ((df['is_child'] == 0) | (df['is_child'] == -1)) &
     ((df['is_simplified'] == 0) | (df['is_simplified'] == -1)) &
     ((df['is_guidance'] == 0) | (df['is_guidance'] == -1)) &
-    (df['source'] == 'real')
+    ((df['query_has_you'] == 0) | (df['query_has_you'] == -1)) &
+    ((df['query_has_relative_time'] == 0) | (df['query_has_relative_time'] == -1)) &
+    ((df['query_has_command'] == 0) | (df['query_has_command'] == -1)) &
+    (df['source'] == 'real') #&
+    # (df['is_valid_llm'] == 1)
     ]
     filter_df = filter_df[usecols]
     return filter_df
-
 
 def get_prompts_df(df: pd.DataFrame, oneshot_prompt:str) -> pd.DataFrame:
     df['prompts'] = df.apply(lambda row: oneshot_prompt + f"""
@@ -82,6 +87,7 @@ def get_distillation_data(date):
     for file in files:  
         try:
             df = pd.read_csv(infolder + file)
+            df = df[~df['user-query'].isna()]
             df = filter_df(df)
             dl.append(df)
         except Exception as e:
