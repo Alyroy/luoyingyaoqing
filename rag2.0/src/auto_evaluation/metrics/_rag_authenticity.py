@@ -110,7 +110,15 @@ class AuthenticityEval(BaseModelEval):
         except Exception as e:
             self.logger.error("error while result sorted:",e)
         return response_sorted_list
-
+    
+    def result_sorted_byindex(self, responses):
+        try:
+            prompt_index = {x["index"]: x for x in responses}
+            response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
+            response_sorted_list = [x["response"] for x in response_sorted]
+        except Exception as e:
+            self.logger.error("error while result sorted:",e)
+        return response_sorted_list
     
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
         '''
@@ -145,7 +153,7 @@ class AuthenticityEval(BaseModelEval):
                 )
                 call_zny = CallLLMByZny(config)
                 merged_df = call_zny.get_gpt4api_df(df_with_prompts)
-                responses = call_zny.parser_model_response(merged_df)
+                responses = call_zny.parser_model_response_index(merged_df)
             # 其余模型
             else:
                 config = VllmConfig(
@@ -161,10 +169,12 @@ class AuthenticityEval(BaseModelEval):
                 )
                 call_vllm = CallLLMByVllm(config)
                 responses_tmp = call_vllm.model_request(df_with_prompts)
-                responses = call_vllm.parser_model_response(responses_tmp) # 格式转化
+                responses = call_vllm.parser_model_response_index(responses_tmp) # 格式转化
                 
             # 根据原始输入文件，检查responses是否顺序一致，不一致则按顺序对responses进行重排
-            response_sorted_list = self.result_sorted(df_with_prompts[query_column_name].to_list(), responses)
+            # response_sorted_list = self.result_sorted(df_with_prompts[query_column_name].to_list(), responses)
+            response_sorted_list = self.result_sorted_byindex(responses)
+            
             truth_result = []
             for resp in response_sorted_list:
                 truth_score = self.result_parse(resp) # 解析模型回复
