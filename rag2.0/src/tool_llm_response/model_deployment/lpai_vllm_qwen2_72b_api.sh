@@ -1,7 +1,9 @@
 #!/bin/bash
 cd /lpai/volumes/ssai-nlu-bd/nlu/app/gongwuxuan/tools/sshpass/sshpass-1.10
+autoreconf
 ./configure
 make install
+
 
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 cd $CURRENT_DIR
@@ -28,6 +30,10 @@ SERVER_PORT=8000
 BROAD_CAST_FILE=/lpai/volumes/ssai-nlu-bd/nlu/app/gongwuxuan/pubilc/Qwen2_72B_running_url.log
 
 MODEL=/lpai/volumes/ssai-nlu-bd/lizr/models/Qwen2-72B-Instruct
+
+echo "qwen2 72b api服务启动地址 http://${SERVER_NAME}:${SERVER_PORT}" | tee ${BROAD_CAST_FILE}
+sshpass -p "gwx199987" scp ${BROAD_CAST_FILE} root@172.24.136.34:${BROAD_CAST_FILE}
+
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 # 决定使用哪张卡
 python -m vllm.entrypoints.openai.api_server \
         --host $SERVER_NAME \
@@ -39,7 +45,4 @@ python -m vllm.entrypoints.openai.api_server \
         --enforce-eager \
         --gpu-memory-utilization 0.9 \
         --tensor-parallel-size 4 &
-
-echo "qwen2 72b api服务启动地址 http://${SERVER_NAME}:${SERVER_PORT}" | tee ${BROAD_CAST_FILE}
-sshpass -p "gwx199987" scp ${BROAD_CAST_FILE} root@172.24.136.34:${BROAD_CAST_FILE}
 wait

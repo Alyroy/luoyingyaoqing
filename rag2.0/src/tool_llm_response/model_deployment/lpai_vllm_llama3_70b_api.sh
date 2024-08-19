@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /lpai/volumes/ssai-nlu-bd/nlu/app/gongwuxuan/tools/sshpass/sshpass-1.10
+autoreconf
 ./configure
 make install
 
