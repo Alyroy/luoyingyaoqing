@@ -156,7 +156,7 @@ class RelevanceEval(BaseModelEval):
                     temperature = temperature, # llm输出温度，zny下的gpt4基本无效，因为是全球节点，还是会有随机性
                     max_retries = 5, # 调用gpt报错后最多重试 max_retries 次
                     qps = 5, # 多线程 or 异步多线程下，qps，不要超过5
-                    max_concurrent = 1, # 异步多线程参数，一般10或者20，太大会接口超过qps
+                    max_concurrent = 5, # 异步多线程参数，一般10或者20，太大会接口超过qps
                     asyncio_flag = False, # True=异步多线程，只能python调用；False=普通多线程，Jupyter或者python均可
                     query_column_name = query_column_name, # llm模型输入列名
                     response_column_name = 'assistant_89757' # llm模型输出列名

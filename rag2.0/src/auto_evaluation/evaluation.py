@@ -1,6 +1,7 @@
 import sys
 import os
 import argparse
+import pandas as pd
 from utils.vote_strategy import vote_strategy
 from base.base_eval import BaseModelEval
 from metrics import (
@@ -58,11 +59,18 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
             temperature = temperature,
             eval_mode = eval_mode
         )
-        assert len(result) == len(df), "result length is wrong!"
-        
-        # 将每个模型的输出分数和打分原因存入df
-        df[model + '_eval_response'] = reason
-        df[model + '_' + metric] = result
+
+        if not len(result) == len(df):
+            print("result length is wrong!")
+            df = pd.DataFrame()
+            df[model + '_eval_response_' + metric] = reason
+            df[model + '_' + metric] = result
+            filename, _ = os.path.splitext(os.path.basename(input_file))
+            df.to_csv(os.path.join(output_dir, f'{filename}_eval_error_tmp_{metric}.csv'), index=False, encoding="utf_8_sig")
+        else:
+            # 将每个模型的输出分数和打分原因存入df
+            df[model + '_eval_response_' + metric] = reason
+            df[model + '_' + metric] = result
         
         show_dic = {}
         show_dic['model'] = model
@@ -83,7 +91,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     filename, _ = os.path.splitext(os.path.basename(input_file))
-    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False)
+    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False, encoding="utf_8_sig")
     return result_list, final_scores
 
 
