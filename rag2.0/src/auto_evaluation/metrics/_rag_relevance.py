@@ -2,6 +2,8 @@
 from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
 import re
 import sys
+import random
+import string
 sys.path.append('../')
 from base.base_eval import BaseModelEval
 
@@ -146,7 +148,7 @@ class RelevanceEval(BaseModelEval):
             else:
                 raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
             
-            index_name = "eval_index"
+            index_name = "eval_index-" +  ''.join(random.choice(string.ascii_lowercase) for _ in range(8)) 
             df_with_prompts[index_name] = [i+1 for i in range(df_with_prompts.shape[0])]
 
             if(model in ["gpt4","gpt4o","wenxin"]):
@@ -183,6 +185,8 @@ class RelevanceEval(BaseModelEval):
                 
             # 根据原始输入文件，检查responses是否顺序一致，不一致则按顺序对responses进行重排
             response_sorted_list = self.result_sorted_byindex(responses)
+            df_with_prompts = df_with_prompts.drop(columns=[index_name])
+
             # rel_result = [self.result_parse(resp) for resp in response_sorted_list]
             rel_result = []
             for resp in response_sorted_list:

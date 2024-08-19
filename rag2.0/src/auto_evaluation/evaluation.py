@@ -38,6 +38,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     
     df = utils.get_df(input_file)
     df = df[~df[eval_column_list[-1]].isna()] # 回复为空不评估
+    
     result_list = []
     for i in range(len(model_list)):
         model = model_list[i]
@@ -66,7 +67,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
             df[model + '_eval_response_' + metric] = reason
             df[model + '_' + metric] = result
             filename, _ = os.path.splitext(os.path.basename(input_file))
-            df.to_csv(os.path.join(output_dir, f'{filename}_eval_error_tmp_{metric}.csv'), index=False, encoding="utf_8_sig")
+            df.to_csv(os.path.join(output_dir, f'{filename}_eval_error_tmp_{metric}.csv'), index=False)
         else:
             # 将每个模型的输出分数和打分原因存入df
             df[model + '_eval_response_' + metric] = reason
@@ -91,7 +92,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     filename, _ = os.path.splitext(os.path.basename(input_file))
-    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False, encoding="utf_8_sig")
+    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False)
     return result_list, final_scores
 
 

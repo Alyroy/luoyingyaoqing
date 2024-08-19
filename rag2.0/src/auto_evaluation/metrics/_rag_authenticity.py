@@ -2,6 +2,8 @@
 from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
 import re
 import sys
+import random
+import string
 sys.path.append('../')
 from base.base_eval import BaseModelEval
 sys.path.append('../../')
@@ -137,8 +139,11 @@ class AuthenticityEval(BaseModelEval):
                 query_column_name = "llm_prompts"
             else:
                 raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
-                
             
+
+            index_name = "eval_index-" +  ''.join(random.choice(string.ascii_lowercase) for _ in range(8)) 
+            df_with_prompts[index_name] = [i+1 for i in range(df_with_prompts.shape[0])]
+
             if(model in ["gpt4","gpt4o","wenxin"]):
                 config = ZnyConfig(
                     url = url, # 智能云GPT api
@@ -153,7 +158,7 @@ class AuthenticityEval(BaseModelEval):
                 )
                 call_zny = CallLLMByZny(config)
                 merged_df = call_zny.get_gpt4api_df(df_with_prompts)
-                responses = call_zny.parser_model_response_index(merged_df)
+                responses = call_zny.parser_model_response_index(merged_df, index_name)
             # 其余模型
             else:
                 config = VllmConfig(
@@ -169,11 +174,12 @@ class AuthenticityEval(BaseModelEval):
                 )
                 call_vllm = CallLLMByVllm(config)
                 responses_tmp = call_vllm.model_request(df_with_prompts)
-                responses = call_vllm.parser_model_response_index(responses_tmp) # 格式转化
+                responses = call_vllm.parser_model_response_index(responses_tmp, index_name) # 格式转化
                 
             # 根据原始输入文件，检查responses是否顺序一致，不一致则按顺序对responses进行重排
             # response_sorted_list = self.result_sorted(df_with_prompts[query_column_name].to_list(), responses)
             response_sorted_list = self.result_sorted_byindex(responses)
+            df_with_prompts = df_with_prompts.drop(columns=[index_name])
             
             truth_result = []
             for resp in response_sorted_list:
