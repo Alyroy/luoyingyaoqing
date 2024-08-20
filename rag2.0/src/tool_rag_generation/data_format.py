@@ -9,7 +9,7 @@ from datetime import datetime
 import pandas as pd
 
 import sys 
-sys.path.append("/mnt/pfs-guan-ssai/nlu/gongwuxuan/code/rag_tool/rag2.0") 
+sys.path.append("/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/") 
 from common import utils,utils_log
 
 SYSTEM_PROMPT = '你是一个名字叫做理想同学的AI数字生命体。\n理想同学是一个可靠的智能家庭助手，由理想汽车智能空间部门创造。\n理想同学能够理解人类的指令和意图，并且给出合理的、切合问题的、没有歧视、中立的、安全的回复。\n\n请根据以下文本写一个合适的回复。'
@@ -227,8 +227,8 @@ class ObservationList:
         """
         # 兼容API数量与obs数量不一致的问题
         # observation_list = self.get_content_list()
-        apinames = [api.get('APINAME', 'QASearch') for api in apis] # 确保如果字典中没有 APINAME 键，就返回默认值 QASearch
-
+        # apinames = [api.get('APINAME', 'QASearch') for api in apis] # 确保如果字典中没有 APINAME 键，就返回默认值 QASearch
+        apinames = [api.get('apiname', 'qasearch') for api in apis]
         observations = []
         if utils.is_2d_list(observation_list):
             if len(apinames) != len(observation_list):
@@ -288,15 +288,17 @@ class DataFormat():
     2. 训练数据jsonl -> 可读性csv
     3. 日志格式 到 csv ？？
     """
-    def __init__(self, api_flag: bool = True, multi_flag: bool = False):
+    def __init__(self, api_flag: bool = True, multi_flag: bool = False, multi_type: str = 'old'):
         self.api_flag = api_flag
         self.multi_flag = multi_flag
+        self.multi_type = multi_type
 
     def validate_input(self, df: pd.DataFrame) -> bool:
         """
         检查必要字段是不是都存在
         """
-        required_columns = ['id', 'turn_id', 'source', 'user-query', 'Thought', 'API', 'observation', 'assistant']
+        df.columns = [col.lower() for col in df.columns]
+        required_columns = ['id', 'turn_id', 'source', 'user-query', 'thought', 'api', 'observation', 'assistant']
         for col in required_columns:
             if col not in df.columns:
                 raise ValueError(f"Missing required column: {col}")
@@ -305,6 +307,90 @@ class DataFormat():
             raise TypeError("Input should be a pandas DataFrame")
 
         return True
+
+    def check_api_obs_num(self,row):
+        api = ast.literal_eval(row['api'])
+        obs = ast.literal_eval(row['observation'])
+        
+        if len(api) > len(obs):
+            api = api[:len(obs)]
+        elif len(api) < len(obs):
+            api = api[:1]
+            obs = [[item for sublist in obs for item in sublist]]  # 转为长度为1的情况
+        
+        return pd.Series({'api': str(api), 'observation': str(obs)})
+
+    
+    def get_last_turn_msg(self, item):
+        """
+        转换最后一轮message，带api obs的五元组
+        """
+        messages = []
+        # user
+        user = item['user-query'] # str
+        if not isinstance(user, str):
+            raise ValueError(f"Expected 'user-query' to be str, but got {type(user)}")
+        messages.append({"role": "user", "content": [user]})
+        
+        # thought
+        thought = item['thought']  # str(list) or list or str
+        if not self.api_flag:
+            thought_content = []
+        else:
+            if isinstance(thought, str) and thought.startswith("['") and thought.endswith("']"):
+                thought_content = ast.literal_eval(thought)
+            elif isinstance(thought, str):
+                thought_content = [thought]
+            elif isinstance(thought, list):
+                thought_content = thought
+            else:
+                thought_content = [f'查询{user}']
+        if not all(isinstance(t, str) for t in thought_content):
+            raise ValueError("Each item in 'Thought' should be a string")
+        messages.append({"role": "thought", "content": thought_content})
+    
+        # api
+        api = item['api']
+        if not self.api_flag:
+            api_content = []
+        else:
+            if isinstance(api, str):
+                api_list = ast.literal_eval(api)
+            elif isinstance(api, list):
+                api_list = api
+            else:
+                raise ValueError(f"Unexpected format for 'API': {type(api)}")
+                
+            api_objects = [API(thought="",api_dict=api_dict) for api_dict in api_list]
+            api_list_obj = APIList(api_objects)
+            api_str = api_list_obj.convert_api_list2str()
+            api_content = api_list_obj.convert_api_str2sft_list(api_str)
+        messages.append({"role": "api", "content": api_content})
+    
+        # observation
+        observation = item['observation']  # str(2d-list)
+        if not self.api_flag:
+            observation_content = []
+        else:
+            if isinstance(observation, str):
+                observation_2d_list = ast.literal_eval(observation)
+            elif isinstance(observation, list):
+                observation_2d_list = observation
+            obs_list_obj = ObservationList()
+            obs_str = obs_list_obj.convert_observation_list2str(api_list, observation_2d_list)
+            observation_content = obs_list_obj.convert_observation_str2sft_list(obs_str)
+        messages.append({"role": "observation", "content": observation_content})
+    
+        # assistant 
+        assistant = str(item['assistant'])  # str， assistant为空也会正常通过
+        if not isinstance(assistant, str):
+            raise ValueError(f"Expected 'assistant' to be str, but got {type(assistant)}")
+        mes_obj = Messages(user='',assistant=assistant)
+        assistant_content = mes_obj.convert_assistant_str2sft_list()
+        messages.append({"role": "assistant", "content": assistant_content})
+
+        return messages
+
         
     def convert_csv_to_sft(self, df) -> pd.DataFrame:
         """
@@ -320,70 +406,7 @@ class DataFormat():
         messages_ls = []
         for i in range(len(df)):
             item = df.iloc[i]
-            messages = []
-
-            # user
-            user = item['user-query'] # str
-            if not isinstance(user, str):
-                raise ValueError(f"Expected 'user-query' to be str, but got {type(user)}")
-            messages.append({"role": "user", "content": [user]})
-            
-            # thought
-            thought = item['Thought']  # str(list) or list or str
-            if not self.api_flag:
-                thought_content = []
-            else:
-                if isinstance(thought, str) and thought.startswith("['") and thought.endswith("']"):
-                    thought_content = ast.literal_eval(thought)
-                elif isinstance(thought, str):
-                    thought_content = [thought]
-                elif isinstance(thought, list):
-                    thought_content = thought
-                else:
-                    raise ValueError(f"Unexpected format for 'Thought': {type(thought)}")
-            if not all(isinstance(t, str) for t in thought_content):
-                raise ValueError("Each item in 'Thought' should be a string")
-            messages.append({"role": "thought", "content": thought_content})
-    
-            # api
-            api = item['API']
-            if not self.api_flag:
-                api_content = []
-            else:
-                if isinstance(api, str):
-                    api_list = ast.literal_eval(api)
-                elif isinstance(api, list):
-                    api_list = api
-                else:
-                    raise ValueError(f"Unexpected format for 'API': {type(api)}")
-                    
-                api_objects = [API(thought="",api_dict=api_dict) for api_dict in api_list]
-                api_list_obj = APIList(api_objects)
-                api_str = api_list_obj.convert_api_list2str()
-                api_content = api_list_obj.convert_api_str2sft_list(api_str)
-            messages.append({"role": "api", "content": api_content})
-    
-            # observation
-            observation = item['observation']  # str(2d-list)
-            if not self.api_flag:
-                observation_content = []
-            else:
-                if isinstance(observation, str):
-                    observation_2d_list = ast.literal_eval(observation)
-                elif isinstance(observation, list):
-                    observation_2d_list = observation
-                obs_list_obj = ObservationList()
-                obs_str = obs_list_obj.convert_observation_list2str(api_list, observation_2d_list)
-                observation_content = obs_list_obj.convert_observation_str2sft_list(obs_str)
-            messages.append({"role": "observation", "content": observation_content})
-    
-            # assistant 
-            assistant = item['assistant']  # str， assistant为空也会正常通过
-            if not isinstance(assistant, str):
-                raise ValueError(f"Expected 'assistant' to be str, but got {type(assistant)}")
-            mes_obj = Messages(user='',assistant=assistant)
-            assistant_content = mes_obj.convert_assistant_str2sft_list()
-            messages.append({"role": "assistant", "content": assistant_content})
+            messages = self.get_last_turn_msg(item)
     
             # all
             messages_ls.append(messages)
@@ -408,13 +431,87 @@ class DataFormat():
         # 使用字典来创建新的DataFrame
         new_df = pd.DataFrame(new_df_data)
         return new_df
+
+    def check_context(self, context):
+        """
+        检查多轮上文格式是否正确，list of dict，包含完整的user 和 assistant
+        """
+        for item in context:
+            if 'user' not in item or 'assistant' not in item:
+                raise ValueError(f"context 内缺少user或assistant")
+            if not isinstance(item['user'], str) or not isinstance(item['assistant'], str):
+                raise ValueError(f"user 或 assistant的value不是str")
+        
+        return True    
     
+    def get_context_msg(self, context) -> list:
+        """
+        将context转为messages形式的五元组，thought, api, obsevation 为空
+        """
+        if isinstance(context, str):
+            context = ast.literal_eval(context)
+        elif isinstance(context, list):
+            context = context
+    
+        # 检查context是否有问题
+        self.check_context(context)
+    
+        messages = []
+        for i in range(len(context)):
+            msg = []
+            msg.append({"role":"user","content":[context[i]['user']]})
+            msg.append({"role":"thought","content":[]})
+            msg.append({"role":"api","content":[]})
+            msg.append({"role":"observation","content":[]})
+            msg.append({"role":"assistant","content":[context[i]['assistant']]})
+            messages.extend(msg)
+        return messages
+
+    
+    def merge_multi_sft_data_new(self, df) -> pd.DataFrame:
+        """
+        多轮上文存于context列的训练数据格式转换，一行为一个训练数据
+        df中必须包含，'id', 'source', 'user-query', 'Thought', 'API', 'observation', 'assistant', 'context'
+        """
+        df.columns = [col.lower() for col in df.columns] # 把列名转为小写
+        df[['api', 'observation']] = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
+        
+        messages_ls = []
+        for i in range(len(df)):
+            item = df.iloc[i]
+            messages = self.get_context_msg(item['context'])
+            last_messages = self.get_last_turn_msg(item)
+            messages.extend(last_messages)
+            messages_ls.append(messages)
+    
+        new_df_data = {
+            'id': df['id'].astype(str),  # 转换id列为字符串格式
+            'source':df['source'],
+            'messages':messages_ls
+        }
+        
+        # 添加df中存在的可选列
+        optional_columns = ['produce_source', 'create_time', 'update_time',
+            'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system']
+    
+        # 使用for循环和条件检查将可选列添加到字典中
+        for col in optional_columns:
+            if col in df.columns:
+                new_df_data[col] = df[col]
+    
+        # 使用字典来创建新的DataFrame
+        new_df = pd.DataFrame(new_df_data)
+        return new_df
+
     
     def merge_multi_sft_data(self, df:pd.DataFrame) -> pd.DataFrame:
         """
         从df格式生成sft jsonl格式，包含单轮及多轮数据，按照id group by 合并messages后保存
         df:[id,source,messages]
         """    
+        df.columns = [col.lower() for col in df.columns] # 把列名转为小写
+        df[['api', 'observation']] = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
+        
         # 定义函数来合并 messages 列为一维列表
         def merge_messages(group):
             return [message for sublist in group for message in sublist]
@@ -444,8 +541,13 @@ class DataFormat():
     def gen_sft_data(self, df: pd.DataFrame, flag_16b_inputs=False) -> pd.DataFrame:
         """
         api_flag: True = 生成API assistant；False = 生成个无API assistant
+        multi_type: new or old, new = 包含context列，old = 多轮存于多行
         multi_flag: 是否按照ID 合并session
+        flag_16b_inputs: True = 生成训练数据格式，False = 生成训练数据中间格式（贺青格式）
         """
+        df.columns = [col.lower() for col in df.columns] # 把列名转为小写
+        df[['api', 'observation']] = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
+        
         def user_prompt2query(row):
             """Combine 'user-query' with 'user_prompt' if 'user_prompt' is not null or empty."""
             user_query = row['user-query']
@@ -467,21 +569,26 @@ class DataFormat():
             df['turn_id'] = 1
         if 'system' not in df.columns:
             df['system'] = SYSTEM_PROMPT
+            
+        # 增加user-prompt
+        if 'user_prompt' in df.columns:
+            # 如果存在，则根据 'user_prompt' 更新 'user-query'
+            df['user-query'] = df.apply(user_prompt2query, axis=1)
 
         if flag_16b_inputs:
             if 'assistant' not in df.columns:
                 df['assistant'] = '无'
             else:
                 df['assistant'] = df['assistant'].fillna('无')
-            
-        # 增加user-prompt
-        if 'user_prompt' in df.columns:
-            # 如果存在，则根据 'user_prompt' 更新 'user-query'
-            df['user-query'] = df.apply(user_prompt2query, axis=1)
     
-        sft_df = self.convert_csv_to_sft(df.copy())
         if self.multi_flag:
-            sft_df = self.merge_multi_sft_data(sft_df)
+            if self.multi_type == 'old':
+                sft_df = self.convert_csv_to_sft(df.copy())
+                sft_df = self.merge_multi_sft_data(sft_df)
+            else:
+                sft_df = self.merge_multi_sft_data_new(df.copy())
+        else:
+            sft_df = self.convert_csv_to_sft(df.copy())
         print('sft 数量：',len(sft_df))
 
         if flag_16b_inputs:
@@ -585,12 +692,11 @@ class DataFormat():
             'turn_id': turn_id_ls,
             'source': source_ls,
             'user-query': user_ls,
-            'Thought': thought_ls,
-            'API': api_ls,
+            'thought': thought_ls,
+            'api': api_ls,
             'observation': observation_ls,
             'assistant': assistant_ls
         }
-
         new_df = pd.DataFrame(data)
 
         return new_df
