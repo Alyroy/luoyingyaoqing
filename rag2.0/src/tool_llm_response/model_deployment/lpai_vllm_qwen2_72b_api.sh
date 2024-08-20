@@ -34,7 +34,7 @@ MODEL=/lpai/volumes/ssai-nlu-bd/lizr/models/Qwen2-72B-Instruct
 
 echo "qwen2 72b api服务启动地址 http://${SERVER_NAME}:${SERVER_PORT}"
 echo "http://${SERVER_NAME}:${SERVER_PORT}" | tee ${BROAD_CAST_FILE}
-sshpass -p gwx199987 scp -r -P 32010 ${BROAD_CAST_FILE} root@172.24.136.34:${TGT_SERVER_PATH}
+sshpass -p xxxxx scp -r -P 32010 ${BROAD_CAST_FILE} root@172.24.136.34:${TGT_SERVER_PATH}
 
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 # 决定使用哪张卡
 python -m vllm.entrypoints.openai.api_server \
