@@ -13,6 +13,7 @@ cd $CURRENT_DIR
 # EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240801_160w_v7moe_32k_liptm_model_1/checkpoint-4902/hf_model"
 EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/luhengtong/li-safe-rlhf/output/sft-mind-gpt-v7moe-0801_dpo_dpo-v7-0802_2560_n16b3e2_0804-seed42/ckpt-2166"
 tiktoken_model_path="none"
+eval_column="resp中间结果"
 # tiktoken_model_path=/mnt/pfs-guan-ssai/nlu/lvjianwei/models/MindGPT-2.0-32K/tokenizer.model
 
 # if [ ! -f ${EVAL_MODEL}/tokenizer_config.json ]; then
@@ -38,5 +39,5 @@ declare -a file_array=("手机APP_泛化集_人工_2024-07-30.csv")
 
 for fs in "${file_array[@]}"
 do
-    python livis_moe_inference_assistant_mp.py --input_file ${input_dir}/${fs} --output_path ${output_dir} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${t_stamp} --batch_size 2 --turn_mode moe --eval_col resp中间结果
+    python livis_moe_inference_assistant_mp.py --input_file ${input_dir}/${fs} --output_path ${output_dir} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${t_stamp} --batch_size 2 --turn_mode moe --eval_col ${eval_column}
 done

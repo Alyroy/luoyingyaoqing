@@ -202,6 +202,19 @@ class CallLLMByZny(object):
 
         return result_list
 
+    def parser_model_response_index(self, merged_df, index_name) -> list:
+        """
+        评估专用解析
+        """
+        result_list = []
+        user_list = merged_df[self.config.query_column_name].to_list()
+        assistant_list = merged_df[self.config.response_column_name].to_list()
+        index_list = merged_df[index_name].to_list()
+        for query, resp, index in zip(user_list, assistant_list, index_list):
+            tmp_dict = {"query": query, "response": resp, "index":index}
+            result_list.append(tmp_dict)
+
+        return result_list
 
     def get_gpt4api_df(self, init_prompt_df):
         """

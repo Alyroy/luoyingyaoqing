@@ -4,7 +4,8 @@ cd ../
 # 模型名称与url，需一一对应，以空格间隔
 # 模型可以为[qwen deepseek autoj gpt4]
 model_list=('gpt4o') #("qwen2_72b")
-url_list=('https://rhm-gpt4.fc.chj.cloud/gpt4o') #("http://172.24.136.236:8000/v1")
+# url_list=('https://rhm-gpt4.fc.chj.cloud/gpt4o') #("http://172.24.136.236:8000/v1")
+url_list=('https://gongwuxuan-llm-test.fc.chj.cloud/gpt4o/conversation')
 
 # 评估列表，即query obs ans的自定义列名 or 日志列、输出列、输出列
 eval_column_list=("resp中间结果" "predict_output" "predict_output") #为适配格式，需要输入3个列，可重复，最后一个为output列
