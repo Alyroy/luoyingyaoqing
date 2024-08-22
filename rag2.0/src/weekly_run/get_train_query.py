@@ -1,6 +1,9 @@
 import argparse
 import pandas as pd
 import os
+import json
+import traceback
+import ast
 
 def create_directory(directory: str):
     """Creates a directory if it does not already exist."""
@@ -22,7 +25,7 @@ def load_data(input_folder):
         tmp = pd.read_json(i,lines=True)
         dl.append(tmp)
 
-    df =pd.concat(dl)
+    df = pd.concat(dl)
     print('读入原始数据总数量',len(df))
     return df
 
@@ -31,8 +34,15 @@ def get_user(df: pd.DataFrame) -> list:
     query_ls = []
     for i in range(len(df)):
         row = df.iloc[i]
-        query = row['messages'][(len(row['messages'])//5)-1]['content'][0] # 取多轮最后一轮query
-        query_ls.append(query)
+        try:
+            msg = row['messages']
+            if isinstance(msg, str):
+                msg = ast.literal_eval(msg)
+            query = msg[len(msg)-5]['content'][0] # 取多轮最后一轮query
+            query_ls.append(query)
+        except Exception as exc:
+            traceback.print_exc()
+            print(row['messages'])
 
     return query_ls
 
@@ -43,15 +53,16 @@ if __name__ == '__main__':
     
     # 添加参数
     parser.add_argument('--input_folder', type=str, help='input文件夹')
-    parser.add_argument('--output_folder', type=str, help='output文件夹')
+    parser.add_argument('--output_folder', type=str, default='/mnt/pfs-guan-ssai/nlu/renhuimin/data/trained_querys/', help='output文件夹')
     args = parser.parse_args()
     print(args)
-    create_directory(output_folder)
+    create_directory(args.output_folder)
 
     df = load_data(args.input_folder)
     query_ls = get_user(df)
 
-    with open(args.output_folder + 'querys.txt', 'w') as file:
-        # 遍历列表中的每个元素并写入文件
+    output_file_path = args.output_folder + 'queries.jsonl'
+    with open(output_file_path, 'w') as file:
+        # 遍历列表中的每个元素，将其按照JSONL格式写入文件
         for item in query_ls:
-            file.write(f"{item}\n")
+            file.write(json.dumps({"user": item}, ensure_ascii=False) + "\n")

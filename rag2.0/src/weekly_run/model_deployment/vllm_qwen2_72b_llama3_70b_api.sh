@@ -1,8 +1,7 @@
 #!/bin/bash
 CURRENT_DIR=$(cd $(dirname $0); pwd)
-# cd $CURRENT_DIR
+cd $CURRENT_DIR
 
-cd /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/rag2.0/src/auto_evaluation/model_deployment/
 
 # CUDA INFO
 nvcc_version_output=$(nvcc --version)
