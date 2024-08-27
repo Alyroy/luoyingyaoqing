@@ -92,7 +92,7 @@ class DataFilter:
             "assistant_relevance.isin(['中', '低'])",
             "assistant_logic.isin(['中', '低'])",
             "assistant_truthfulness.isin(['中','低'])",
-            "(observation_has_ambiguious_entity == 1)"
+            "(observation_has_truthfulness_ambiguity == 1)"
         ]
 
         existing_columns = set(df.columns)
@@ -103,6 +103,7 @@ class DataFilter:
 
         def is_condition_valid(condition):
             column_names = extract_column_names(condition)
+            column_names = [column for column in column_names if 'isin' not in column]
             return all(column in existing_columns for column in column_names)
 
         valid_and_conditions = ["({})".format(cond) for cond in and_conditions if is_condition_valid(cond)]
@@ -118,7 +119,7 @@ class DataFilter:
         else:
             or_condition_str = "True"
 
-        return df.query(f"({and_condition_str}) & ({or_condition_str})")
+        return df.query(f"({and_condition_str}) | ({or_condition_str})")
 
 
 class PromptConstructor:
