@@ -13,7 +13,7 @@ JOB_NAME="filter_log_single_rag"
 # current_date=$(date "+%Y-%m-%d")
 # date=$(date -d "${current_date} -2 day" "+%Y-%m-%d")
 # date="2024-08-14"
-dates=("2024-08-13" "2024-08-15" "2024-08-16" "2024-08-17" "2024-08-18")
+dates=("2024-08-21" "2024-08-22" "2024-08-23" "2024-08-24")
 
 
 get_model_url() {
@@ -41,10 +41,8 @@ get_model_url() {
     fi
 }
 
-
 CheckDependencyFunction() {
     local raw_extension_type=$1
-    local date=$2
     local done_file="/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/${date}/${raw_extension_type}/single_True_rag_True/gpt4_data/.done"
     if [ ! -f $done_file ]; then
         PrintLog "$done_file is not ready."
@@ -56,7 +54,6 @@ CheckDependencyFunction() {
 
 ExecuteJobFunction() {
     local raw_extension_type=$1
-    local date=$2
     cd /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_filter/
     folder="/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/${date}/${raw_extension_type}/single_True_rag_True/"
     initial_folder="${folder}gpt4_data/"
@@ -112,7 +109,6 @@ ExecuteJobFunction() {
 
 CheckDoneFunction() {
     local raw_extension_type=$1
-    local date=$2
     folder="/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/${date}/${raw_extension_type}/single_True_rag_True/"
     initial_folder="${folder}gpt4_data/"
 
@@ -147,9 +143,19 @@ CheckDoneFunction() {
     fi
 }
 
+for date in "${dates[@]}"; do
+    echo "[INFO] Processing raw date: $date"
+    CheckDependencyFunction "raw" $date
+    if [ $? -eq 0 ]; then
+        ExecuteJobFunction "raw" $date
+        CheckDoneFunction "raw" $date
+    else
+        echo "[ERROR] Dependency check failed for date: $date"
+    fi
+done
 
 for date in "${dates[@]}"; do
-    echo "[INFO] Processing date: $date"
+    echo "[INFO] Processing extension date: $date"
     CheckDependencyFunction "extension" $date
     if [ $? -eq 0 ]; then
         ExecuteJobFunction "extension" $date

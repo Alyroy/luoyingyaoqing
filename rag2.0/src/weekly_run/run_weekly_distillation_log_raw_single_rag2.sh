@@ -11,10 +11,9 @@ source "common/common_scripts.sh"
 JOB_NAME="distillate_raw_log_single_rag"
 
 # 日期列表
-dates=("2024-08-13" "2024-08-15" "2024-08-16" "2024-08-17" "2024-08-18")
+dates=("2024-08-21" "2024-08-22" "2024-08-23" "2024-08-24")
 
 CheckDependencyFunction() {
-    local date=$1
     local done_file="/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/${date}/prod/${date}_rule_labeled.csv.gpt_labeled.csv"
     if [ ! -f $done_file ]; then
         PrintLog "$done_file is not ready."
@@ -25,7 +24,6 @@ CheckDependencyFunction() {
 }
 
 ExecuteJobFunction() {
-    local date=$1
     model_url="https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation"
     base_output_path="/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/"
     prompt_path="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt"
@@ -35,14 +33,14 @@ ExecuteJobFunction() {
     echo "[INFO] begin_time: ${begin_time}" 
 
     # 对日志数据回复糟糕的部分进行蒸馏
-    python weekly_distillation_log_sft_dpo.py --date $date --is_single_flag --is_rag_flag --model_name 'gpt4o' --model_url ${model_url} --base_output_path ${base_output_path} --prompt_path ${prompt_path}
+    python get_raw_log_distillation.py --date $date --is_single_flag --is_rag_flag --model_name 'gpt4o' --model_url ${model_url} --base_output_path ${base_output_path} --prompt_path ${prompt_path}
 
     # 打印结束时间
     end_time=$(date "+%Y-%m-%d %H:%M:%S")
-    echo "[INFO] end_time: $end_time"
+    echo "[INFO] end_time: $end_time ${target_date} ${log_env}"
 
     duration=$(($(date +%s -d "${end_time}")-$(date +%s -d "${begin_time}")));
-    echo "[INFO] duration: $(( duration / 60 )) min"
+    echo "[INFO] duration: `expr $duration / 60` min "
 }
 
 for date in "${dates[@]}"; do

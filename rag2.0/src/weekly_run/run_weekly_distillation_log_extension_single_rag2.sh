@@ -14,7 +14,7 @@ JOB_NAME="distillate_extension_log_single_rag"
 # date=$(date -d "${current_date} -2 day" "+%Y-%m-%d")
 # date="2024-08-14"
 # 日期列表
-dates=("2024-08-16" "2024-08-17" "2024-08-18")
+dates=("2024-08-21" "2024-08-22" "2024-08-23" "2024-08-24")
 
 get_api_model_url() {
     local log_file="/mnt/pfs-guan-ssai/nlu/gongwuxuan/public/api_url.log"
@@ -26,7 +26,6 @@ get_api_model_url() {
         exit 1
     fi
 }
-
 
 CheckDependencyFunction() {
     local done_file="/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/${date}/prod/${date}_rule_labeled.csv.gpt_labeled.csv"

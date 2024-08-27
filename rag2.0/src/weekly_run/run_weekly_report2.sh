@@ -18,7 +18,7 @@ SINGLE_RAG_TYPE="single_True_rag_True"
 # current_date=$(date "+%Y-%m-%d")
 # TARGET_DATE=$(date -d "${current_date} -2 day" "+%Y-%m-%d")
 # TARGET_DATE="2024-08-14"
-dates=("2024-08-13" "2024-08-14" "2024-08-15" "2024-08-16" "2024-08-17" "2024-08-18")
+dates=("2024-08-13" "2024-08-14" "2024-08-15" "2024-08-16" "2024-08-17" "2024-08-18" "2024-08-19" "2024-08-20")
 
 CheckDependencyFunction() {
     local log_type=$1

@@ -8,32 +8,57 @@ import re
 """
 
 class DataFilter:
+    # uid 真实性 obs事实歧义
     @staticmethod
     def get_task_usecols(filter_df):
-        task_conditions = [
-            (filter_df['assistant_relevance'] == '低'),
-            (filter_df['assistant_logic'] == '低'),
-            (filter_df['assistant_relevance'] == '中'),
-            (filter_df['assistant_logic'] == '中')
-        ]
-
-        task_choices = [
-            '相关性差',
-            '逻辑性差',
-            '相关性中',
-            '逻辑性中',
-        ]
-
-        filter_df['task-name'] = np.select(task_conditions, task_choices, default=None)
-
+        # 检查列是否存在，将存在的条件加入条件列表中
+        task_conditions = []
+        task_choices = []
+        
+        if 'assistant_truthfulness' in filter_df.columns:
+            task_conditions.extend([
+                (filter_df['assistant_truthfulness'] == '低'),
+                (filter_df['assistant_truthfulness'] == '中')
+            ])
+            task_choices.extend([
+                '真实性差',
+                '真实性中'
+            ])
+            
+        if 'assistant_relevance' in filter_df.columns:
+            task_conditions.extend([
+                (filter_df['assistant_relevance'] == '低'),
+                (filter_df['assistant_relevance'] == '中')
+            ])
+            task_choices.extend([
+                '相关性差',
+                '相关性中'
+            ])
+            
+        if 'assistant_logic' in filter_df.columns:
+            task_conditions.extend([
+                (filter_df['assistant_logic'] == '低'),
+                (filter_df['assistant_logic'] == '中')
+            ])
+            task_choices.extend([
+                '逻辑性差',
+                '逻辑性中'
+            ])
+            
+        if 'observation_has_truthfulness_ambiguity' in filter_df.columns:
+            task_conditions.append((filter_df['observation_has_truthfulness_ambiguity'] == 1))
+            task_choices.append('obs事实矛盾')
+            
+        filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
+        
         desired_cols = ['user-query', 'assistant', 'api', 'thought', 'observation', 'system', 'context',
                         'generalized_question_from_user', 'generalized_question_from_assistant','query_synonym',
-                        'task-name']
-
+                        'task_name','uid']
+    
         available_cols = filter_df.columns.tolist()
         cols_to_load = [col for col in desired_cols if col in available_cols]
         filter_df = filter_df[cols_to_load]
-
+    
         return filter_df
 
     @staticmethod
@@ -65,7 +90,9 @@ class DataFilter:
 
         or_conditions = [
             "assistant_relevance.isin(['中', '低'])",
-            "assistant_logic.isin(['中', '低'])"
+            "assistant_logic.isin(['中', '低'])",
+            "assistant_truthfulness.isin(['中','低'])",
+            "(observation_has_ambiguious_entity == 1)"
         ]
 
         existing_columns = set(df.columns)

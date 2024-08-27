@@ -11,8 +11,8 @@ def load_data(input_folder):
     files = [f for f in os.listdir(input_folder) if '_保留.csv' in f and '.ipynb_checkpoints' not in f]
     for file in files: 
         df_ = pd.read_csv(input_folder+file)
-        if 'task-name' not in df_.columns:
-            df_['task-name'] = 'gpt4泛化query'
+        if 'task_name' not in df_.columns:
+            df_['task_name'] = 'gpt4泛化query'
         dl.append(df_)
     df = pd.concat(dl)
     return df
@@ -30,14 +30,14 @@ def cal_stats(target_date,log_type,single_rag_type,infolder):
         raise f"{target_date} {log_type} 蒸馏数据为空"
 
     raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
-        
+    raw_df = raw_df.rename(columns={'task-name':'task_name'})
     raw_total_count = len(raw_df)
-    raw_assistant_logic_bad_count = raw_df[raw_df['task-name'].isin(['逻辑性中','逻辑性差'])]['user-query'].count()
-    raw_assistant_relevance_bad_count = raw_df[raw_df['task-name'].isin(['相关性中','相关性差'])]['user-query'].count()
+    raw_assistant_logic_bad_count = raw_df[raw_df['task_name'].isin(['逻辑性中','逻辑性差'])]['user-query'].count()
+    raw_assistant_relevance_bad_count = raw_df[raw_df['task_name'].isin(['相关性中','相关性差'])]['user-query'].count()
 
     filter_total_count = len(filter_df)
-    filter_assistant_logic_bad_count = filter_df[filter_df['task-name'].isin(['逻辑性中','逻辑性差'])]['user-query'].count()
-    filter_assistant_relevance_bad_count = filter_df[filter_df['task-name'].isin(['相关性中','相关性差'])]['user-query'].count()
+    filter_assistant_logic_bad_count = filter_df[filter_df['task_name'].isin(['逻辑性中','逻辑性差'])]['user-query'].count()
+    filter_assistant_relevance_bad_count = filter_df[filter_df['task_name'].isin(['相关性中','相关性差'])]['user-query'].count()
 
     filter_df['assistant_length'] = filter_df['parser_gpt4'].apply(len)
     assistant_length_mean = filter_df['assistant_length'].mean()
@@ -59,12 +59,12 @@ def cal_stats(target_date,log_type,single_rag_type,infolder):
     
     # 确定是否存在已有的CSV文件
     if os.path.exists(output_csv_file):
-        existing_df = pd.read_csv(output_csv_file)
+        existing_df = pd.read_csv(output_csv_file, encoding='utf-8-sig')
         out_df = existing_df._append(new_data, ignore_index=True)
     else:
         out_df = pd.DataFrame()._append(new_data, ignore_index=True)
     
-    out_df.to_csv(output_csv_file, header=True, index=False)
+    out_df.to_csv(output_csv_file, header=True, index=False, encoding='utf-8-sig')
     return out_df
 
 

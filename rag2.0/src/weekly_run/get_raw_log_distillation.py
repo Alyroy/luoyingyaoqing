@@ -50,6 +50,7 @@ class GPT4Distillation(BaseDistillation):
                 df = df[~df['user-query'].isna()]
                 filter_df = DataFilter.filter_bad_df(df, self.config)
                 filter_df = DataFilter.get_task_usecols(filter_df)
+                filter_df = filter_df.groupby('user-query').first().reset_index()
                 dl.append(filter_df)
             except Exception as exc:
                 print(f"Exception occurred while processing file: {file_path}")
