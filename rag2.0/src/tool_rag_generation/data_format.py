@@ -13,6 +13,8 @@ sys.path.append("/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/")
 from common import utils,utils_log
 
 SYSTEM_PROMPT = '你是一个名字叫做理想同学的AI数字生命体。\n理想同学是一个可靠的智能家庭助手，由理想汽车智能空间部门创造。\n理想同学能够理解人类的指令和意图，并且给出合理的、切合问题的、没有歧视、中立的、安全的回复。\n\n请根据以下文本写一个合适的回复。'
+optional_columns = ['produce_source', 'create_time', 'update_time',
+            'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system','uid']
 
 
 class API:
@@ -288,10 +290,9 @@ class DataFormat():
     2. 训练数据jsonl -> 可读性csv
     3. 日志格式 到 csv ？？
     """
-    def __init__(self, api_flag: bool = True, multi_flag: bool = False, multi_type: str = 'old'):
+    def __init__(self, api_flag: bool = True, multi_flag: bool = False):
         self.api_flag = api_flag
         self.multi_flag = multi_flag
-        self.multi_type = multi_type
 
     def validate_input(self, df: pd.DataFrame) -> bool:
         """
@@ -308,7 +309,7 @@ class DataFormat():
 
         return True
 
-    def check_api_obs_num(self,row):
+    def check_api_obs_num(self, row):
         api = ast.literal_eval(row['api'])
         obs = ast.literal_eval(row['observation'])
         
@@ -318,7 +319,9 @@ class DataFormat():
             api = api[:1]
             obs = [[item for sublist in obs for item in sublist]]  # 转为长度为1的情况
         
-        return pd.Series({'api': str(api), 'observation': str(obs)})
+        row['api'] = str(api)
+        row['observation'] = str(obs)
+        return row
 
     
     def get_last_turn_msg(self, item):
@@ -390,9 +393,8 @@ class DataFormat():
         messages.append({"role": "assistant", "content": assistant_content})
 
         return messages
-
-        
-    def convert_csv_to_sft(self, df) -> pd.DataFrame:
+   
+    def convert_csv_to_sft_single(self, df) -> pd.DataFrame:
         """
         从csv df生成sft_messages df格式数据
         df:['id', 'turn_id', 'source', 'user-query', 'Thought', 'API', 'observation', 'assistant', 'relevant_label',
@@ -419,10 +421,6 @@ class DataFormat():
             'messages':messages_ls
         }
         
-        # 添加df中存在的可选列
-        optional_columns = ['produce_source', 'create_time', 'update_time',
-            'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system']
-    
         # 使用for循环和条件检查将可选列添加到字典中
         for col in optional_columns:
             if col in df.columns:
@@ -468,13 +466,14 @@ class DataFormat():
         return messages
 
     
-    def merge_multi_sft_data_new(self, df) -> pd.DataFrame:
+    def convert_csv_to_sft_multi(self, df) -> pd.DataFrame:
         """
         多轮上文存于context列的训练数据格式转换，一行为一个训练数据
         df中必须包含，'id', 'source', 'user-query', 'Thought', 'API', 'observation', 'assistant', 'context'
         """
         df.columns = [col.lower() for col in df.columns] # 把列名转为小写
-        df[['api', 'observation']] = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
+        if self.api_flag:
+            df = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
         
         messages_ls = []
         for i in range(len(df)):
@@ -490,9 +489,6 @@ class DataFormat():
             'messages':messages_ls
         }
         
-        # 添加df中存在的可选列
-        optional_columns = ['produce_source', 'create_time', 'update_time',
-            'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system']
     
         # 使用for循环和条件检查将可选列添加到字典中
         for col in optional_columns:
@@ -503,77 +499,75 @@ class DataFormat():
         new_df = pd.DataFrame(new_df_data)
         return new_df
 
-    
-    def merge_multi_sft_data(self, df:pd.DataFrame) -> pd.DataFrame:
-        """
-        从df格式生成sft jsonl格式，包含单轮及多轮数据，按照id group by 合并messages后保存
-        df:[id,source,messages]
-        """    
-        df.columns = [col.lower() for col in df.columns] # 把列名转为小写
-        df[['api', 'observation']] = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
+
+    def user_prompt2query(self, row):
+        """Combine 'user-query' with 'user_prompt' if 'user_prompt' is not null or empty."""
+        user_query = row['user-query']
+        user_prompt = row.get('user_prompt', None)  # 使用 get 以安全处理不存在的列
         
-        # 定义函数来合并 messages 列为一维列表
-        def merge_messages(group):
-            return [message for sublist in group for message in sublist]
+        # 检查 'user_prompt' 是否存在且不为空
+        if pd.notna(user_prompt) and user_prompt.strip():
+            return f"{user_query}\n{user_prompt.strip()}"
+        return user_query
+
+
+    def preprocess(self, df):
+        df.columns = [col.lower() for col in df.columns]  # 把列名转为小写
+        if self.api_flag:
+            df = df[~df['observation'].isin(['[]', '[[]]'])]  # 去掉obs为空的
+            df = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
+        if 'task-name' in df.columns and 'task_name' not in df.columns:
+            df = df.rename(columns={'task-name':'task_name'})
         
-        # 根据 id 及 turn_id 做排序，防止多轮顺序生成错误
-        df_sorted = df.sort_values(by=['id', 'turn_id'])
-    
-        # 根据 id 分组，保留 id 和 source 列，并合并 messages 列为一维列表
-        new_df = df.groupby('id').apply(lambda group: pd.Series({
-            'source': group['source'].iloc[0],
-            'messages': merge_messages(group['messages']),
-        })).reset_index()
-        
-        optional_columns = ['produce_source', 'create_time', 'update_time',
-            'create_user', 'update_user', 'task_name', 'is_reviewed','update_content','system']
-    
-        # 使用for循环和条件检查将可选列添加到字典中
-        for col in optional_columns:
-            if col in df.columns:
-                temp_df = df.groupby('id').apply(lambda group: pd.Series({
-                                col: group[col].iloc[0]})).reset_index()
-                new_df = pd.merge(new_df, temp_df, on='id', how='left')
-        
-        return new_df
+        default_columns = {
+            'source': '无',
+            'id': '0',
+            'turn_id': 1,
+            'system': SYSTEM_PROMPT,
+            'task_name':'问答'
+        }
+        for column, default_value in default_columns.items():
+            if column not in df.columns:
+                df[column] = default_value
+
+        if 'user_prompt' in df.columns:
+            df['user-query'] = df.apply(self.user_prompt2query, axis=1)
+
+        return df
 
     
+    def gen_sft_unused_data(self, df: pd.DataFrame) -> list[dict]:
+        """
+        直接生成模型训练的格式
+        Args:
+            input df with user-query, thought, api, observation ...
+        Return:
+            data[0] = {'instruction':'','input':'','output':''}
+        """
+        df = self.preprocess(df)
+        if 'assistant' not in df.columns:
+            df['assistant'] = '无'
+        else:
+            df['assistant'] = df['assistant'].fillna('无')
+
+        if self.multi_flag:
+            sft_df = self.convert_csv_to_sft_multi(df.copy())
+        else:
+            sft_df = self.convert_csv_to_sft_single(df.copy())
+
+        data = self.convert_to_train_data(sft_df)
+        return data
+        
+        
     def gen_sft_data(self, df: pd.DataFrame, flag_16b_inputs=False) -> pd.DataFrame:
         """
+        生成训练数据的中间格式
         api_flag: True = 生成API assistant；False = 生成个无API assistant
         multi_type: new or old, new = 包含context列，old = 多轮存于多行
         multi_flag: 是否按照ID 合并session
         flag_16b_inputs: True = 生成训练数据格式，False = 生成训练数据中间格式（贺青格式）
         """
-        df.columns = [col.lower() for col in df.columns] # 把列名转为小写
-        df[['api', 'observation']] = df.apply(self.check_api_obs_num, axis=1) # 处理api与obs个数
-        
-        def user_prompt2query(row):
-            """Combine 'user-query' with 'user_prompt' if 'user_prompt' is not null or empty."""
-            user_query = row['user-query']
-            user_prompt = row.get('user_prompt', None)  # 使用 get 以安全处理不存在的列
-            
-            # 检查 'user_prompt' 是否存在且不为空
-            if pd.notna(user_prompt) and user_prompt.strip():
-                return f"{user_query}\n{user_prompt.strip()}"
-            return user_query
-            
-        if self.api_flag:
-            df = df[~df['observation'].isin(['[]','[[]]'])] # 去掉obs为空的
-    
-        if 'source' not in df.columns:
-            df['source'] = '无'
-        if 'id' not in df.columns:
-            df['id'] = '0'
-        if 'turn_id' not in df.columns:
-            df['turn_id'] = 1
-        if 'system' not in df.columns:
-            df['system'] = SYSTEM_PROMPT
-            
-        # 增加user-prompt
-        if 'user_prompt' in df.columns:
-            # 如果存在，则根据 'user_prompt' 更新 'user-query'
-            df['user-query'] = df.apply(user_prompt2query, axis=1)
+        df = self.preprocess(df)
 
         if flag_16b_inputs:
             if 'assistant' not in df.columns:
@@ -582,13 +576,9 @@ class DataFormat():
                 df['assistant'] = df['assistant'].fillna('无')
     
         if self.multi_flag:
-            if self.multi_type == 'old':
-                sft_df = self.convert_csv_to_sft(df.copy())
-                sft_df = self.merge_multi_sft_data(sft_df)
-            else:
-                sft_df = self.merge_multi_sft_data_new(df.copy())
+            sft_df = self.convert_csv_to_sft_multi(df.copy())
         else:
-            sft_df = self.convert_csv_to_sft(df.copy())
+            sft_df = self.convert_csv_to_sft_single(df.copy())
         print('sft 数量：',len(sft_df))
 
         if flag_16b_inputs:
@@ -603,6 +593,33 @@ class DataFormat():
         # sft_df.to_json(output_path, orient='records', lines=True, force_ascii=False)
 
         return sft_df
+
+
+    def gen_dpo_unused_data(self, df) -> list[dict]:
+        """
+        df 需要包含 chosen rejected 字段 放回复数据
+        """
+        df = self.preprocess(df)
+        sft_data = self.gen_sft_unused_data(df)
+        dl = []
+        for i in range(len(sft_data)):
+            prompt = sft_data[i]['instruction'].split('[unused0]assistant\n')[0]    
+            chosen = f"[unused0]assistant\n{df.iloc[i]['chosen']}[unused1]"    
+            rejected = f"[unused0]assistant\n{df.iloc[i]['rejected']}[unused1]"
+            sample = {
+                "prompt": prompt,
+                "chosen": chosen,
+                "rejected": rejected,
+                "messages": [],
+                "source": df.iloc[i]['source'],
+                "task_name": df.iloc[i]['task_name'],
+                "create_time": df.iloc[i]['create_time'],
+                "create_user": "renhuimin",
+            }
+            dl.append(sample)
+
+        out_data = json.dumps({"train":dl}, ensure_ascii=False, indent=4)
+        return out_data
 
 
     def convert_to_train_data(self, df):

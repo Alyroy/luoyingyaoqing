@@ -21,6 +21,12 @@
 
 注：**run_weekly**系列sh为手动设置时间的运行脚本
 
+## 更新记录
+【2024.08.27】
+1. 更新data_processing filter数据逻辑
+   - 筛选 assistant_relevance assistant_logic assistant_truthfulness 为'中','低' 或 observation_has_truthfulness_ambiguity == 1
+   - 若没有满足情况的数据，则随机抽取100条正常数据
+
 ## 脚本使用说明
 - run_crontab_distillation_log_raw_single_rag.sh
 ```

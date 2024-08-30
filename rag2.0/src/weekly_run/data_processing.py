@@ -49,7 +49,7 @@ class DataFilter:
             task_conditions.append((filter_df['observation_has_truthfulness_ambiguity'] == 1))
             task_choices.append('obs事实矛盾')
             
-        filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
+        filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
         
         desired_cols = ['user-query', 'assistant', 'api', 'thought', 'observation', 'system', 'context',
                         'generalized_question_from_user', 'generalized_question_from_assistant','query_synonym',
@@ -119,7 +119,14 @@ class DataFilter:
         else:
             or_condition_str = "True"
 
-        return df.query(f"({and_condition_str}) | ({or_condition_str})")
+
+        filter_df = df.query(f"({and_condition_str}) & ({or_condition_str})")
+
+        if len(filter_df) == 0:
+            target_df = df.query(and_condition_str)
+            filter_df = target_df.sample(n=min(len(target_df),100)) # 如果没有有问题的数据，随机返回100条
+            
+        return filter_df
 
 
 class PromptConstructor:
