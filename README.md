@@ -1,5 +1,10 @@
 # RAG
 ## 更新记录
+【2024.09.03更新】
+1. 优化数据格式转化脚本，支持转sft dpo 最终训练数据格式
+- DataFormat.gen_sft_unused_data, DataFormat.gen_dpo_unused_data
+2. 对齐推理tokenizner
+
 【2024.08.14更新】
 1. 增加 weekly_run/ 自动蒸馏[线上日志](https://gitlab.chehejia.com/wangxiaoyuan/online-data-label/-/tree/master/)及生成dpo送标数据和sft训练数据
 
