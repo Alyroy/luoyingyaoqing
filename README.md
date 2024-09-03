@@ -1,6 +1,11 @@
 # RAG
-RAG数据构造流程参考src/auto_llm_distillation/example.ipynb
-### 代码结构
+## 更新记录
+【2024.08.14更新】
+1. 增加 weekly_run/ 自动蒸馏[线上日志](https://gitlab.chehejia.com/wangxiaoyuan/online-data-label/-/tree/master/)及生成dpo送标数据和sft训练数据
+
+
+RAG数据构造流程参考rag2.0/src/auto_llm_distillation/example.ipynb
+## 全局代码结构
 ```commandline
 ├── common                     通用代码
 ├── conf                       参数设置/常用prompt
@@ -10,7 +15,8 @@ RAG数据构造流程参考src/auto_llm_distillation/example.ipynb
 │   ├── tool_rag_generation         	数据格式定义及转换
 │   ├── auto_evaluation         	    评估
 │   ├── auto_filter         	        自动化筛选蒸馏数据
-│   ├── auto_redhighlight         	    回复及检索结果相似标红
+│   ├── auto_llm_distillation           获取api obs gpt4的蒸馏结果
+│   ├── weekly_run           定时蒸馏线上日志
 ...
 ```
 ## 搜索接口tool_kg_search

@@ -1,0 +1,5 @@
+2024-08-20 17:33:28,119 - /opt/conda/envs/rhm_env/lib/python3.11/site-packages/werkzeug/_internal.py[line:97] - INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:16073
+ * Running on http://86.55.25.108:16073
+2024-08-20 17:33:28,120 - /opt/conda/envs/rhm_env/lib/python3.11/site-packages/werkzeug/_internal.py[line:97] - INFO: [33mPress CTRL+C to quit[0m

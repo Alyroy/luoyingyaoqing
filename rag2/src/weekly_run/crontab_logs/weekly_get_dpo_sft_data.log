@@ -1,0 +1,296 @@
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/raw/single_True_rag_True/correct_filter_output/'
+Namespace(start_date='2024-08-12', end_date='2024-08-18', in_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', out_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/routine_label_data/2024-08-12_2024-08-18/', cate='/raw/single_True_rag_True/', dpo_outpt='raw_dpo_2024-08-12_2024-08-18_送标.csv', sft_outpt='raw_sft_2024-08-12_2024-08-18', source='livis日志回流')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 152, in <module>
+    get_merged_sft_jsonl_dpo_csv(args.start_date, args.end_date,args.in_folder, args.out_folder, args.cate, args.dpo_outpt, args.sft_outpt, args.source)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 116, in get_merged_sft_jsonl_dpo_csv
+    merged_sft_songbiao = pd.concat(sft_songbiao_list)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/reshape/concat.py", line 372, in concat
+    op = _Concatenator(
+         ^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/reshape/concat.py", line 429, in __init__
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 76, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 94, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, cate, "correct_filter_output/"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/extension/single_True_rag_True/correct_filter_output/'
+Namespace(start_date='2024-08-12', end_date='2024-08-18', in_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', out_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/routine_label_data/2024-08-12_2024-08-18/', cate='/extension/single_True_rag_True/', dpo_outpt='extension_dpo_2024-08-12_2024-08-18_送标.csv', sft_outpt='extension_sft_2024-08-12_2024-08-18', source='livis日志回流')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 152, in <module>
+    get_merged_sft_jsonl_dpo_csv(args.start_date, args.end_date,args.in_folder, args.out_folder, args.cate, args.dpo_outpt, args.sft_outpt, args.source)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 116, in get_merged_sft_jsonl_dpo_csv
+    merged_sft_songbiao = pd.concat(sft_songbiao_list)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/reshape/concat.py", line 372, in concat
+    op = _Concatenator(
+         ^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/reshape/concat.py", line 429, in __init__
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-19/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-19/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-21/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-21/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-22/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-22/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-23/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-23/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-24/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-24/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-25/raw/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-25/raw/single_True_rag_True/correct_filter_output'
+Namespace(start_date='2024-08-19', end_date='2024-08-25', in_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', out_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/routine_label_data/2024-08-19_2024-08-25/', raw_extension_type='raw', single_rag_type='single_True_rag_True', dpo_outpt='raw_dpo_2024-08-19_2024-08-25_送标', sft_outpt='raw_sft_2024-08-19_2024-08-25', source='livis日志回流')
+2024-08-19
+2024-08-20
+2024-08-21
+2024-08-22
+2024-08-23
+2024-08-24
+2024-08-25
+sft 数量： 105
+dpo送标数量：105 , sft送标数量：21, sft训练数量：105
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-21/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-21/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-22/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-22/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-23/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-23/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-24/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-24/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 88, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-25/extension/single_True_rag_True/correct_filter_output'
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_dpo_csv_sft_jsonl.py", line 106, in merge_dataframes
+    files = [f for f in os.listdir(os.path.join(folder, raw_extension_type, single_rag_type, "correct_filter_output"))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-25/extension/single_True_rag_True/correct_filter_output'
+Namespace(start_date='2024-08-19', end_date='2024-08-25', in_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', out_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/routine_label_data/2024-08-19_2024-08-25/', raw_extension_type='extension', single_rag_type='single_True_rag_True', dpo_outpt='extension_dpo_2024-08-19_2024-08-25_送标', sft_outpt='extension_sft_2024-08-19_2024-08-25', source='livis日志回流')
+2024-08-19
+2024-08-20
+2024-08-21
+2024-08-22
+2024-08-23
+2024-08-24
+2024-08-25
+sft 数量： 265
+dpo送标数量：0 , sft送标数量：42, sft训练数量：265
