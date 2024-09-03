@@ -2,7 +2,8 @@
 ## 更新记录
 【2024.09.03更新】
 1. 优化数据格式转化脚本，支持转sft dpo 最终训练数据格式
-- DataFormat.gen_sft_unused_data, DataFormat.gen_dpo_unused_data
+`DataFormat.gen_sft_unused_data, DataFormat.gen_dpo_unused_data`
+[RAG 中间训练格式说明](https://li.feishu.cn/docx/CkxadAXZfoQqOLxexWPcso5enWa)
 2. 对齐推理tokenizner
 
 【2024.08.14更新】
