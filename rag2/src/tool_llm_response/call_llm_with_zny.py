@@ -91,7 +91,7 @@ class CallLLMByZny(object):
                 except Exception as e:
                     print(f'chatgpt api exception: {e}')
                     retries += 1
-                    await asyncio.sleep(2)
+                    await asyncio.sleep(1)
 
         print('Maximum retry attempts reached, returning error')
         return {"error": "Maximum retry attempts reached, returning error"}
@@ -140,7 +140,7 @@ class CallLLMByZny(object):
                 break  # 如果成功，就跳出while循环
             except Exception as e:
                 print('chatgpt api 调用异常：{}'.format(e))
-                time.sleep(2)  # 异常调用后休眠1秒
+                time.sleep(1)  # 异常调用后休眠1秒
                 retries += 1  # 如果失败，增加重试计数器
         if retries == self.config.max_retries:  # 如果重试次数达到最大值
             print('最大重试次数已达，返回空')
@@ -202,6 +202,19 @@ class CallLLMByZny(object):
 
         return result_list
 
+    def parser_model_response_index(self, merged_df, index_name) -> list:
+        """
+        评估专用解析
+        """
+        result_list = []
+        user_list = merged_df[self.config.query_column_name].to_list()
+        assistant_list = merged_df[self.config.response_column_name].to_list()
+        index_list = merged_df[index_name].to_list()
+        for query, resp, index in zip(user_list, assistant_list, index_list):
+            tmp_dict = {"query": query, "response": resp, "index":index}
+            result_list.append(tmp_dict)
+
+        return result_list
 
     def get_gpt4api_df(self, init_prompt_df):
         """
@@ -235,62 +248,3 @@ class CallLLMByZny(object):
         merged_df = pd.merge(init_prompt_df, used_assistant_df, on=self.config.query_column_name, how='inner')
 
         return merged_df
-
-
-    # def get_gpt4api_df(self, init_prompt_df, chunk_size: int = None, save_path: str = None):
-    #     if chunk_size and save_path:
-    #         # Make sure save path directory exists
-    #         if not os.path.exists(save_path):
-    #             os.makedirs(save_path)
-
-    #         # Split the DataFrame into chunks
-    #         chunks = [init_prompt_df[i:i + chunk_size] for i in range(0, len(init_prompt_df), chunk_size)]
-    #         result_dfs = []
-
-    #         # Process each chunk
-    #         for i, chunk in enumerate(chunks):
-    #             print(f"Processing chunk {i + 1}/{len(chunks)}")
-    #             result_df = self._process_chunk(chunk)
-    #             chunk_save_path = os.path.join(save_path, f"chunk_result_{i}.csv")
-    #             result_df.to_csv(chunk_save_path, index=False)
-    #             result_dfs.append(result_df)
-
-    #         # Combine all chunk results
-    #         merged_df = pd.concat(result_dfs, ignore_index=True)
-    #         return merged_df
-
-    #     else:
-    #         return self._process_chunk(init_prompt_df)
-
-    # def _process_chunk(self, chunk_df):
-    #     """
-    #     Process a chunk of the DataFrame.
-    #     """
-    #     prompt_df = chunk_df.copy()
-
-    #     final_reward_list = []
-    #     while len(prompt_df) > 0:
-    #         print("剩余case", len(prompt_df), '/', len(chunk_df))
-    #         prompts_ls = prompt_df[self.config.query_column_name].to_list()
-    #         prompts_ls = [[prompt] for prompt in prompts_ls]
-
-    #         if self.config.asyncio_flag:
-    #             loop = asyncio.get_event_loop()
-    #             response_ls = loop.run_until_complete(self.gen_assistant_async(prompts_ls))
-    #         else:
-    #             response_ls = self.gen_assistant_threaded(prompts_ls)
-
-    #         assistant_df = self.parser_gpt_response(response_ls)
-    #         final_reward_list.append(assistant_df[assistant_df[self.config.response_column_name] != '<|wrong data|>']) # 提取有效gpt生成内容
-    #         prompt_df = assistant_df[assistant_df[self.config.response_column_name] == '<|wrong data|>']
-    #         if self.config.max_retries == 0 and len(prompt_df) > 0:
-    #             print("重复请求次数已达最大, 剩余", len(prompt_df), "条数据为空")
-    #             break
-    #         self.config.max_retries -= 1
-    #         time.sleep(2) # 重试之前休眠2s
-
-    #     final_reward_list.append(prompt_df)
-    #     used_assistant_df = pd.concat(final_reward_list, ignore_index=True)
-    #     merged_df = pd.merge(chunk_df, used_assistant_df, on=self.config.query_column_name, how='inner')
-
-    #     return merged_df

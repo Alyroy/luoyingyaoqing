@@ -2,6 +2,8 @@
 from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
 import re
 import sys
+import random
+import string
 sys.path.append('../')
 from base.base_eval import BaseModelEval
 
@@ -51,6 +53,8 @@ class RelevanceEval(BaseModelEval):
             else:
                 prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
             prompts_ls.append(prompt)
+            if i == 1500:
+                pass
         df['llm_prompts'] = prompts_ls
         return df
 
@@ -119,6 +123,15 @@ class RelevanceEval(BaseModelEval):
             self.logger.error("error while result sorted:",e)
         return response_sorted_list
 
+    def result_sorted_byindex(self, responses):
+        try:
+            prompt_index = {x["index"]: x for x in responses}
+            response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
+            response_sorted_list = [x["response"] for x in response_sorted]
+        except Exception as e:
+            self.logger.error("error while result sorted:",e)
+        return response_sorted_list
+    
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
         '''
         主评估函数
@@ -136,7 +149,10 @@ class RelevanceEval(BaseModelEval):
                 query_column_name = "llm_prompts"
             else:
                 raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
-                
+            
+            index_name = "eval_index-" +  ''.join(random.choice(string.ascii_lowercase) for _ in range(8)) 
+            df_with_prompts[index_name] = [i+1 for i in range(df_with_prompts.shape[0])]
+
             if(model in ["gpt4","gpt4o","wenxin"]):
                 config = ZnyConfig(
                     url = url, # 智能云GPT api
@@ -144,14 +160,14 @@ class RelevanceEval(BaseModelEval):
                     temperature = temperature, # llm输出温度，zny下的gpt4基本无效，因为是全球节点，还是会有随机性
                     max_retries = 5, # 调用gpt报错后最多重试 max_retries 次
                     qps = 5, # 多线程 or 异步多线程下，qps，不要超过5
-                    max_concurrent = 20, # 异步多线程参数，一般10或者20，太大会接口超过qps
+                    max_concurrent = 10, # 异步多线程参数，一般10或者20，太大会接口超过qps
                     asyncio_flag = False, # True=异步多线程，只能python调用；False=普通多线程，Jupyter或者python均可
                     query_column_name = query_column_name, # llm模型输入列名
                     response_column_name = 'assistant_89757' # llm模型输出列名
                 )
                 call_zny = CallLLMByZny(config)
                 merged_df = call_zny.get_gpt4api_df(df_with_prompts)
-                responses = call_zny.parser_model_response(merged_df)
+                responses = call_zny.parser_model_response_index(merged_df, index_name)
             # 其余模型
             else:
                 config = VllmConfig(
@@ -167,10 +183,12 @@ class RelevanceEval(BaseModelEval):
                 )
                 call_vllm = CallLLMByVllm(config)
                 responses_tmp = call_vllm.model_request(df_with_prompts)
-                responses = call_vllm.parser_model_response(responses_tmp) # 格式转化
+                responses = call_vllm.parser_model_response_index(responses_tmp, index_name) # 格式转化
                 
             # 根据原始输入文件，检查responses是否顺序一致，不一致则按顺序对responses进行重排
-            response_sorted_list = self.result_sorted(df_with_prompts[query_column_name].to_list(), responses)
+            response_sorted_list = self.result_sorted_byindex(responses)
+            df_with_prompts = df_with_prompts.drop(columns=[index_name])
+
             # rel_result = [self.result_parse(resp) for resp in response_sorted_list]
             rel_result = []
             for resp in response_sorted_list:
