@@ -1,5 +1,5 @@
 # -*-coding:utf-8-*-
-from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
+from metrics.utils_log_parser import parser_date, parser_loc, parser_obs, get_query_result_from_16b_input, get_context_result_from_16b_input
 import re
 import sys
 import random
@@ -47,7 +47,8 @@ class AuthenticityEval(BaseModelEval):
             date_info = parser_date(request) # 提取时间
             address_info = parser_loc(request) # 提取地点
             common_prompt_info = self.prompt.replace("$$$date$$$",date_info).replace("$$$pos$$$",address_info) # 替换时间地点
-            context,query = parser_context_query(request)
+            query = get_query_result_from_16b_input(request)
+            context = get_context_result_from_16b_input(request)
             obs = parser_obs(request)
             response = df.iloc[i][ans_col]
             instruction = "以上就是模型生成的内容，请你根据给出的问题和参资料，将其切分为多个最小粒度的原子信息并按照相关性划分等级然后进行准确性评估。"

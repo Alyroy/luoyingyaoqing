@@ -1,5 +1,5 @@
 # -*-coding:utf-8-*-
-from metrics.utils_log_parser import parser_date, parser_loc, parser_context_query, parser_obs
+from metrics.utils_log_parser import parser_date, parser_loc, parser_obs, get_query_result_from_16b_input, get_context_result_from_16b_input
 import re
 import sys
 import random
@@ -45,7 +45,8 @@ class RelevanceEval(BaseModelEval):
             date_info = parser_date(request) # 提取时间
             address_info = parser_loc(request) # 提取地点
             common_prompt_info = self.prompt.replace("$$$date$$$",date_info).replace("$$$pos$$$",address_info) # 替换时间地点
-            context,query = parser_context_query(request)
+            query = get_query_result_from_16b_input(request)
+            context = get_context_result_from_16b_input(request)
             response = df.iloc[i][ans_col]
             instruction = "请对以上的用户问题和大模型答案进行相关性分析，并输出相关性评估结果。"
             if len(context)>0:

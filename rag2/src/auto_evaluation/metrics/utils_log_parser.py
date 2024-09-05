@@ -22,16 +22,29 @@ def parser_obs(pro_input: str) -> list[list]:
     return obs
 
 
-def parser_context_query(data:str) ->(list[dict],str):
-    """
-    获取上文对话 和 最后一轮query
-    """
-    pattern = re.compile(r'\[unused0\]user\n(.*?)\[unused0\]thought', re.DOTALL)
-    match = pattern.findall(data)[0]
-    match = match.replace('[unused8]','\n').replace('\nthought\n','')
-    match = '[unused0]user\n'+match
-    context,query = get_context_query(match)
-    return context,query
+def get_query_result_from_16b_input(input_16b):
+    pattern = "user\n(.*?)\[unused1\]"
+    results = re.findall(pattern, input_16b, re.DOTALL)
+    if len(results) > 0:
+        return results[-1], len(results)
+    else:
+        return "", 0
+    
+def get_context_result_from_16b_input(input_16b):
+    pattern_user = "user\n(.*?)\[unused1\]"
+    pattern_assistant = "assistant\n(.*?)\[unused1\]"
+    results_user = re.findall(pattern_user, input_16b, re.DOTALL)
+    results_assistant = re.findall(pattern_assistant, input_16b)
+    context_list = []
+    if len(results_user) - len(results_assistant) == 1:
+        for i in range(len(results_user)-1):
+            context_list.append(
+                {
+                    "user": results_user[i],
+                    "assistant": results_assistant[i]
+                }
+            )
+    return context_list
 
 
 def clean_observation_pattern(pattern_list):
@@ -45,30 +58,3 @@ def clean_observation_pattern(pattern_list):
                 osl = []
             clean_pattern_list.append(osl)
     return clean_pattern_list
-
-
-def get_context_query(data):
-    # 用正则表达式分割 data 为多个段落
-    segments = re.split(r'\[unused[01]\]', data)
-    
-    # 删除空字符串和多余的空白字符
-    segments = [seg.strip() for seg in segments if seg.strip()]
-    
-    result = []
-    i = 0
-    while i < len(segments):
-        if segments[i].startswith("user"):
-            user_text = re.sub(r'^user\n', '', segments[i])
-            if i + 1 < len(segments) and segments[i + 1].startswith("assistant"):
-                assistant_text = re.sub(r'^assistant\n', '', segments[i + 1])
-                result.append({'user': user_text, 'assistant': assistant_text})
-                i += 2  # 跳过 assistant 的段落
-            else:
-                result.append({'user': user_text})
-                i += 1
-        elif segments[i].startswith("assistant"):
-            assistant_text = re.sub(r'^assistant\n', '', segments[i])
-            result.append({'assistant': assistant_text})
-            i += 1
-    
-    return result[:-1],result[-1]['user']
