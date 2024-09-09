@@ -1,5 +1,10 @@
+## MOE LLM 推理
+#### 更新记录
+【2024.09.09更新】
+1. 更新livis_moe_inference_assistant_mp.py，支持文件夹推理
+2. 支持lpai自动推理+评估 参考 0-auto_lpai_infer_eval.sh
 
-### MOE LLM 推理
+
 #### 脚本运行
 ```
 ./lizrun_livis_moe.sh

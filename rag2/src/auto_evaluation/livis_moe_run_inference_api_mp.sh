@@ -16,17 +16,17 @@ cd $CURRENT_DIR
 # tiktoken_model_path="none"
 tiktoken_model_path=/mnt/pfs-guan-ssai/nlu/lvjianwei/models/MindGPT-2.0-32K/tokenizer.model
 
-if [ ! -f ${EVAL_MODEL}/tokenizer_config.json ]; then
-    if [[ "${tiktoken_model_path}" != "none" ]]; then
-        cp config/tokenizer_config.json ${EVAL_MODEL}
-    fi
-fi
+# if [ ! -f ${EVAL_MODEL}/tokenizer_config.json ]; then
+#     if [[ "${tiktoken_model_path}" != "none" ]]; then
+#         cp config/tokenizer_config.json ${EVAL_MODEL}
+#     fi
+# fi
 
-if [ ! -f ${EVAL_MODEL}/tokenizer.json ]; then
-    if [[ "${tiktoken_model_path}" != "none" ]]; then
-        cp config/tokenizer.json ${EVAL_MODEL}
-    fi
-fi
+# if [ ! -f ${EVAL_MODEL}/tokenizer.json ]; then
+#     if [[ "${tiktoken_model_path}" != "none" ]]; then
+#         cp config/tokenizer.json ${EVAL_MODEL}
+#     fi
+# fi
 
 
 EVAL_MODEL="/lpai/volumes/ssai-nlu-bd/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240814_165w_v7moe_32k_liptm_model_1/checkpoint-4935/hf_model"
@@ -36,26 +36,5 @@ input_dir="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_tes
 output_dir="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240827/"
 
 
-readarray -t file_array < <(find "$input_dir" -type f -not -path "*/.ipynb_checkpoints/*" -exec basename {} \;)
-# declare -a file_array=("test_非markdown指令遵循.csv" "test_abstract_time.csv") 
+python livis_moe_inference_assistant_mp.py --input_file ${input_dir} --output_path ${output_dir} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${t_stamp} --batch_size 5 --turn_mode moe --eval_col model_13b_input
 
-for fs in "${file_array[@]}"
-do
-    python livis_moe_inference_assistant_mp.py --input_file ${input_dir}/${fs} --output_path ${output_dir} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${t_stamp} --batch_size 5 --turn_mode moe --eval_col model_13b_input
-done
-
-
-EVAL_MODEL="/lpai/volumes/ssai-nlu-bd/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240827_165w_v7moe_32k_liptm_model_1/checkpoint-4986/hf_model"
-t_stamp="moe_sft0827"
-
-input_dir="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240827/input_data/"
-output_dir="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240827/"
-
-
-readarray -t file_array < <(find "$input_dir" -type f -not -path "*/.ipynb_checkpoints/*" -exec basename {} \;)
-# declare -a file_array=("test_非markdown指令遵循.csv" "test_abstract_time.csv") 
-
-for fs in "${file_array[@]}"
-do
-    python livis_moe_inference_assistant_mp.py --input_file ${input_dir}/${fs} --output_path ${output_dir} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${t_stamp} --batch_size 5 --turn_mode moe --eval_col model_13b_input
-done

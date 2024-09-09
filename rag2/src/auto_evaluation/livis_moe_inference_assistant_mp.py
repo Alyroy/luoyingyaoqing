@@ -108,7 +108,7 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
         model.llm_engine.tokenizer.padding_side = "left"
 
         print("input_f:{}".format(input_f))
-        if "汽车问答" not in input_f and "用车助手" not in input_f:
+        if "汽车问答" in input_f or "用车助手" in input_f:
             sampling_params = SamplingParams(
                 temperature=0, 
                 top_p=params.top_p, 
@@ -271,7 +271,7 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
     pd.DataFrame(df).to_csv(output_pt + '_' + str(gpu_no) + ".csv", index=None, encoding='utf_8_sig')
 
 def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="moe", tiktoken_path=None):
-    test_dataset_file = args.input_file.strip('/').split('/')[-1].strip()
+    test_dataset_file = input_f.strip('/').split('/')[-1].strip()
     result_file_prefix = test_dataset_file + "." + args.time_stamp
     directory = os.path.join(args.output_path, args.time_stamp)
     if not os.path.exists(directory):
@@ -293,10 +293,12 @@ def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="moe"
 
 if __name__ == "__main__":
     start_time = time.time()
+    file = args.input_file
     if args.turn_mode in ["moe", "dense"]:
-        func_api_single(args, args.input_file, api_flag=args.api_flag, bsize=args.batch_size, loop=args.try_num, mode=args.turn_mode, tiktoken_path=args.tiktoken_path)
-    # elif args.turn_mode in ["1b"]:
-    #     func_api_single(args, args.input_file, api_flag=args.api_flag, bsize=args.batch_size, loop=args.try_num, mode="1b")
+        if os.path.isdir(file):
+            files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f]
+            for input_file in files:
+                func_api_single(args, input_file, api_flag=args.api_flag, bsize=args.batch_size, loop=args.try_num, mode=args.turn_mode, tiktoken_path=args.tiktoken_path)
     else:
         print("illegal turn mode, pls check: ", args.turn_mode)
     print("--- %s seconds used---" % (time.time() - start_time))

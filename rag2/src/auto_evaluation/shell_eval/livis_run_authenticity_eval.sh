@@ -27,9 +27,29 @@ chunk_num=5
 temperature=0.1
 
 # 输入路径，可以是目录也可以是文件
-input_dir=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/wrong_data/moe_sft0814_rag_cft_0903new/test_abstract_time.csv.moe_sft0814_rag_cft_0903new.csv
+input_dir=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/moe_sft0827_baseline/test_时效性摘要.csv.moe_sft0827_baseline.csv
 # 输出路径
-output_dir=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/wrong_data/真实性打分_qwen2_cft_0903new/
+output_dir=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/真实性打分_qwen2_sft0827/
+
+python evaluation.py  \
+    --model_list "${model_list[@]}" \
+    --url_list "${url_list[@]}" \
+    --eval_column_list "${eval_column_list[@]}" \
+    --save_column $save_column \
+    --metric $metric \
+    --input_dir $input_dir \
+    --output_dir $output_dir \
+    --prompt_path $prompt_path \
+    --thread_num $thread_num \
+    --chunk_num $chunk_num \
+    --temperature $temperature \
+    --eval_mode $eval_mode
+
+
+# 输入路径，可以是目录也可以是文件
+input_dir=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/moe_sft0903/test_时效性摘要.csv.moe_sft0903.csv
+# 输出路径
+output_dir=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/真实性打分_qwen2_sft0903/
 
 python evaluation.py  \
     --model_list "${model_list[@]}" \
