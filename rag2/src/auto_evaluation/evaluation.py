@@ -83,7 +83,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     filename, _ = os.path.splitext(os.path.basename(input_file))
-    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False)
+    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False, encoding='utf-8-sig')
     return result_list, final_scores
 
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     # 如果是文件夹
     # try:
     if os.path.isdir(file):
-        files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f]
+        files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f and '.done' not in f]
         for input_file in files:
             print("--------------------------------------------\n正在评估 ", input_file, "\n--------------------------------------------")
             results, final_scores = evaluate(
