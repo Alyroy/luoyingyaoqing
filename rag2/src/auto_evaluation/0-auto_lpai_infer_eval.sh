@@ -3,20 +3,21 @@
 # CURRENT_DIR=$(cd $(dirname $0); pwd)
 CURRENT_DIR=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/
 cd $CURRENT_DIR
-MODEL_CKPT_DIR="/lpai/volumes/ssai-nlu-bd/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240903_172w_v7moe_32k_liptm_model_1/checkpoint-5151"
+# MODEL_CKPT_DIR="/lpai/volumes/ssai-nlu-bd/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240903_172w_v7moe_32k_liptm_model_1_new/checkpoint-5121/"
+MODEL_CKPT_DIR="/lpai/volumes/ssai-nlu-bd/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240827_165w_v7moe_32k_liptm_model_1/checkpoint-4986"
 HF_MODEL_CKPT_DIR=${MODEL_CKPT_DIR}/hf_model
 
 # 1. 启动转换模型脚本
 # 模型训练转格式脚本路径
 TRAIN_MODEL_DIR=/mnt/pfs-guan-ssai/nlu/renhuimin/lisft/
-QUEUE_NAME="base-bd" # GPU机群队列名
+QUEUE_NAME="app-bd" # GPU机群队列名
 
 echo sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME
-# sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME
+sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME
 
 # 2. 启动推理脚本
 M_CNT=1 # GPU机数
-JOB_NAME="sft0903" # 推理任务名称
+JOB_NAME="sft0827" # 推理任务名称
 EVAL_MODEL=${HF_MODEL_CKPT_DIR} # 评估模型路径
 EVAL_TIMESTAMP=$JOB_NAME #-`date +%Y%m%d` # 推理结果路径
 INPUT_DIR="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/app_self_test/v20240903/input_data/"
@@ -29,7 +30,7 @@ sh auto_lizrun_lpai_livis_moe.sh ${CURRENT_DIR} ${JOB_NAME} ${QUEUE_NAME} ${M_CN
 # 3.1 判断推理是否完成
 # 循环，直到文件存在
 cnt=1
-echo "${OUTPUT_DIR}/.done"
+echo "${OUTPUT_DIR}/${EVAL_TIMESTAMP}/.done"
 until [ -f "${OUTPUT_DIR}/.done" ]; do
   echo "等待${EVAL_TIMESTAMP}推理任务结束...${cnt}*5分钟"
   sleep 300
