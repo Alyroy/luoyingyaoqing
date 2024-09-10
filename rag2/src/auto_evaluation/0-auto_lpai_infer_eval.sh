@@ -31,7 +31,7 @@ sh auto_lizrun_lpai_livis_moe.sh ${CURRENT_DIR} ${JOB_NAME} ${QUEUE_NAME} ${M_CN
 # 循环，直到文件存在
 cnt=1
 echo "${OUTPUT_DIR}/${EVAL_TIMESTAMP}/.done"
-until [ -f "${OUTPUT_DIR}/.done" ]; do
+until [ -f "${OUTPUT_DIR}/${EVAL_TIMESTAMP}/.done" ]; do
   echo "等待${EVAL_TIMESTAMP}推理任务结束...${cnt}*5分钟"
   sleep 300
   cnt=$(expr $cnt + 1)
