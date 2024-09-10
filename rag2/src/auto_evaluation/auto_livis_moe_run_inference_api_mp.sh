@@ -22,4 +22,4 @@ tiktoken_model_path=/mnt/pfs-guan-ssai/nlu/lvjianwei/models/MindGPT-2.0-32K/toke
 
 python livis_moe_inference_assistant_mp.py --input_file ${INPUT_DIR} --output_path ${OUTPUT_DIR} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${EVAL_TIMESTAMP} --batch_size 5 --turn_mode moe --eval_col ${EVAL_COL}
 
-echo "完成所有文件的推理" > ${OUTPUT_DIR}/.done
+echo "完成所有文件的推理" > ${OUTPUT_DIR}/${EVAL_TIMESTAMP}/.done
