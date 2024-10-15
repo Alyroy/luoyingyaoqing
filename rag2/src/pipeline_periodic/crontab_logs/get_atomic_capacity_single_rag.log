@@ -1,0 +1,772 @@
+[2024-09-15 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-15 10:00:02
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-15 10:00:11 
+[INFO] duration: 0 min 
+[2024-09-15 10:00:11] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-15 10:00:11
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-12/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-15 10:00:18 
+[INFO] duration: 0 min 
+[2024-09-15 10:00:18] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-15 10:00:18
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-15 10:00:26 
+[INFO] duration: 0 min 
+[2024-09-15 10:00:26] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-15 10:00:26
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-12/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-15 10:00:34 
+[INFO] duration: 0 min 
+[2024-09-16 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-13/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-13/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-16 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-16 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-16 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-13/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-13/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-16 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-16 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-16 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-13/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-13/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-16 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-16 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-16 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-13/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-13/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-16 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-16 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-17 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-14/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-14/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-17 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-17 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-17 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-14/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-14/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-17 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-17 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-17 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-14/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-14/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-17 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-17 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-17 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-14/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-14/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-17 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-17 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-18 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-15/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-15/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-18 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-18 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-18 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-15/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-15/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-18 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-18 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-18 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-15/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-15/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-18 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-18 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-18 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-15/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-15/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-18 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-18 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-19 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-16/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-16/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-19 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-19 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-19 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-16/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-16/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-19 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-19 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-19 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-16/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-16/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-19 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-19 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-19 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-16/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-16/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-19 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-19 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-20 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-17/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-17/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-20 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-20 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-20 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-17/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-17/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-20 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-20 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-20 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-17/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-17/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-20 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-20 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-20 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-17/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-17/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-20 10:00:02
+Processing: 
+[INFO] end_time: 2024-09-20 10:00:02 
+[INFO] duration: 0 min 
+[2024-09-21 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-21 10:00:01
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-21 10:00:10 
+[INFO] duration: 0 min 
+[2024-09-21 10:00:10] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-21 10:00:10
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-18/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-21 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-21 10:00:17] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-21 10:00:17
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-21 10:00:25 
+[INFO] duration: 0 min 
+[2024-09-21 10:00:25] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-21 10:00:25
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-18/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-21 10:00:33 
+[INFO] duration: 0 min 
+[2024-09-22 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-22 10:00:01
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-22 10:00:11 
+[INFO] duration: 0 min 
+[2024-09-22 10:00:11] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-22 10:00:11
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-19/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-22 10:00:19 
+[INFO] duration: 0 min 
+[2024-09-22 10:00:19] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-22 10:00:19
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-22 10:00:28 
+[INFO] duration: 0 min 
+[2024-09-22 10:00:28] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-22 10:00:28
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-19/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-22 10:00:36 
+[INFO] duration: 0 min 
+[2024-09-23 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-23 10:00:02
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-23 10:00:10 
+[INFO] duration: 0 min 
+[2024-09-23 10:00:10] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-23 10:00:10
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-20/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-23 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-23 10:00:17] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-20/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-20/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-23 10:00:17
+Processing: 
+[INFO] end_time: 2024-09-23 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-23 10:00:17] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-20/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-20/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-23 10:00:17
+Processing: 
+[INFO] end_time: 2024-09-23 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-24 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-24 10:00:01
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-24 10:00:09 
+[INFO] duration: 0 min 
+[2024-09-24 10:00:09] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-24 10:00:09
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-21/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-24 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-24 10:00:17] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-21/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-21/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-24 10:00:17
+Processing: 
+[INFO] end_time: 2024-09-24 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-24 10:00:17] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-21/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-21/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-24 10:00:17
+Processing: 
+[INFO] end_time: 2024-09-24 10:00:17 
+[INFO] duration: 0 min 
+[2024-09-25 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-25 10:00:02
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-25 10:00:11 
+[INFO] duration: 0 min 
+[2024-09-25 10:00:11] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-25 10:00:11
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-22/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-25 10:00:19 
+[INFO] duration: 0 min 
+[2024-09-25 10:00:19] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-22/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-22/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-25 10:00:19
+Processing: 
+[INFO] end_time: 2024-09-25 10:00:19 
+[INFO] duration: 0 min 
+[2024-09-25 10:00:19] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-22/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-22/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-25 10:00:19
+Processing: 
+[INFO] end_time: 2024-09-25 10:00:19 
+[INFO] duration: 0 min 
+[2024-09-26 10:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-26 10:00:04
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-26 10:01:27 
+[INFO] duration: 1 min 
+[2024-09-26 10:01:27] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-26 10:01:27
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-23/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-26 10:01:35 
+[INFO] duration: 0 min 
+[2024-09-26 10:01:35] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-23/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-23/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-26 10:01:35
+Processing: 
+[INFO] end_time: 2024-09-26 10:01:35 
+[INFO] duration: 0 min 
+[2024-09-26 10:01:35] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-23/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-23/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-26 10:01:35
+Processing: 
+[INFO] end_time: 2024-09-26 10:01:35 
+[INFO] duration: 0 min 
+[2024-09-27 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-27 10:00:01
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-27 10:00:10 
+[INFO] duration: 0 min 
+[2024-09-27 10:00:10] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-27 10:00:10
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-27 10:00:18 
+[INFO] duration: 0 min 
+[2024-09-27 10:00:18] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-27 10:00:18
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-27 10:00:26 
+[INFO] duration: 0 min 
+[2024-09-27 10:00:26] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-09-27 10:00:26
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-24/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-09-27 10:00:34 
+[INFO] duration: 0 min 
+[2024-09-28 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-25/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-25/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-28 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-28 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-28 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-25/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-25/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-28 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-28 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-28 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-25/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-25/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-28 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-28 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-28 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-25/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-25/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-28 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-28 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-29 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-26/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-26/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-29 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-29 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-29 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-26/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-26/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-29 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-29 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-29 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-26/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-26/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-29 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-29 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-29 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-26/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-26/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-29 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-29 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-30 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-27/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-27/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-30 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-30 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-30 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-27/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-27/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-30 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-30 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-30 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-27/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-27/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-30 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-30 10:00:01 
+[INFO] duration: 0 min 
+[2024-09-30 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-27/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-27/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-09-30 10:00:01
+Processing: 
+[INFO] end_time: 2024-09-30 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-01 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-28/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-28/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-01 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-01 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-01 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-28/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-28/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-01 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-01 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-01 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-28/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-28/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-01 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-01 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-01 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-28/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-28/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-01 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-01 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-02 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-29/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-29/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-02 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-02 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-02 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-29/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-29/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-02 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-02 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-02 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-29/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-29/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-02 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-02 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-02 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-29/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-29/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-02 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-02 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-03 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-30/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-30/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-03 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-03 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-03 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-30/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-30/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-03 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-03 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-03 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-30/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-30/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-03 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-03 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-03 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-30/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-09-30/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-03 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-03 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-04 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-01/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-01/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-04 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-04 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-04 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-01/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-01/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-04 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-04 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-04 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-01/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-01/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-04 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-04 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-04 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-01/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-01/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-04 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-04 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-05 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-02/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-02/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-05 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-05 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-05 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-02/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-02/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-05 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-05 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-05 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-02/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-02/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-05 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-05 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-05 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-02/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-02/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-05 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-05 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-06 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-03/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-03/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-06 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-06 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-06 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-03/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-03/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-06 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-06 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-06 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-03/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-03/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-06 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-06 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-06 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-03/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-03/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-06 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-06 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-07 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-04/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-04/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-07 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-07 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-07 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-04/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-04/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-07 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-07 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-07 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-04/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-04/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-07 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-07 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-07 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-04/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-04/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-07 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-07 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-08 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-05/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-05/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-08 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-08 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-08 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-05/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-05/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-08 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-08 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-08 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-05/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-05/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-08 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-08 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-08 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-05/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-05/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-08 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-08 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-09 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-06/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-06/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-09 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-09 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-09 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-06/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-06/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-09 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-09 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-09 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-06/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-06/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-09 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-09 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-09 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-06/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-06/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-09 10:00:02
+Processing: 
+[INFO] end_time: 2024-10-09 10:00:02 
+[INFO] duration: 0 min 
+[2024-10-10 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-07/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-07/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-10 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-10 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-10 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-07/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-07/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-10 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-10 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-10 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-07/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-07/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-10 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-10 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-10 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-07/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-07/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-10 10:00:01
+Processing: 
+[INFO] end_time: 2024-10-10 10:00:01 
+[INFO] duration: 0 min 
+[2024-10-11 10:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-10-11 10:00:01
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-10-11 10:00:10 
+[INFO] duration: 0 min 
+[2024-10-11 10:00:10] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-10-11 10:00:10
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-10-11 10:00:18 
+[INFO] duration: 0 min 
+[2024-10-11 10:00:18] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-08/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-08/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-11 10:00:18
+Processing: 
+[INFO] end_time: 2024-10-11 10:00:18 
+[INFO] duration: 0 min 
+[2024-10-11 10:00:18] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-08/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-08/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-11 10:00:18
+Processing: 
+[INFO] end_time: 2024-10-11 10:00:18 
+[INFO] duration: 0 min 
+[2024-10-12 10:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-10-12 10:00:02
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-10-12 10:00:11 
+[INFO] duration: 0 min 
+[2024-10-12 10:00:11] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/extension/single_True_rag_True/correct_filter_output/.done is ready.
+[INFO] begin_time: 2024-10-12 10:00:11
+Processing: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv
+Namespace(input_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/extension/single_True_rag_True/correct_filter_output/gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/extension/single_True_rag_True/correct_filter_output_atomic//gpt4_chunk_1_speech_style_filter_保留_correct_ans_filter.csv', ans_col='parser_gpt4', eval_col='qwen2_72b_eval_response', prompt_folder='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/synonyms_prompts/', source='rag原子能力-回复话术判断', date=None)
+数据处理完成。
+[INFO] end_time: 2024-10-12 10:00:19 
+[INFO] duration: 0 min 
+[2024-10-12 10:00:19] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-09/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-09/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-12 10:00:19
+Processing: 
+[INFO] end_time: 2024-10-12 10:00:19 
+[INFO] duration: 0 min 
+[2024-10-12 10:00:19] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-09/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-09/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-12 10:00:19
+Processing: 
+[INFO] end_time: 2024-10-12 10:00:19 
+[INFO] duration: 0 min 
+[2024-10-13 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-13 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-13 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-13 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-13 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-13 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-13 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-10/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-10/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-13 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-13 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-13 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-10/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-10/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-13 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-13 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-14 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-14 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-14 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-14 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-14 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-14 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-14 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-11/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-11/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-14 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-14 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-14 02:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-11/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-11/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-14 02:00:02
+Processing: 
+[INFO] end_time: 2024-10-14 02:00:02 
+[INFO] duration: 0 min 
+[2024-10-15 02:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-12/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-12/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-15 02:00:01
+Processing: 
+[INFO] end_time: 2024-10-15 02:00:01 
+[INFO] duration: 0 min 
+[2024-10-15 02:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-12/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-12/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-15 02:00:01
+Processing: 
+[INFO] end_time: 2024-10-15 02:00:01 
+[INFO] duration: 0 min 
+[2024-10-15 02:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-12/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-12/raw/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-15 02:00:01
+Processing: 
+[INFO] end_time: 2024-10-15 02:00:01 
+[INFO] duration: 0 min 
+[2024-10-15 02:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_get_atomic_capacity_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-12/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+find: ‘/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-12/extension/single_True_rag_True/correct_filter_output/’: No such file or directory
+[INFO] begin_time: 2024-10-15 02:00:01
+Processing: 
+[INFO] end_time: 2024-10-15 02:00:01 
+[INFO] duration: 0 min 

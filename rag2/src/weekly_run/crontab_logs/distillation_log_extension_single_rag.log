@@ -1,616 +1,0 @@
-[2024-08-21 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-19/prod/2024-08-19_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-21 22:00:02
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 41
-    def split_you_time_command_queries(self,query_ls:list) -> list, list[dict]:
-                                                                  ^
-SyntaxError: expected ':'
-[INFO] end_time: 2024-08-21 22:00:02  
-[INFO] duration: 0 min 
-[2024-08-22 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-20/prod/2024-08-20_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-22 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:30: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:364: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
-  warnings.warn(
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  return self.fget.__get__(instance, owner)()
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-20', api_url='http://172.24.162.100:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-20
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-20
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-20/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-20/prod/2024-08-20_rule_labeled.csv.gpt_labeled.csv
-  0%|          | 0/29 [00:00<?, ?it/s]  7%|▋         | 2/29 [00:00<00:12,  2.15it/s] 10%|█         | 3/29 [00:02<00:19,  1.35it/s] 14%|█▍        | 4/29 [00:03<00:20,  1.19it/s] 17%|█▋        | 5/29 [00:04<00:22,  1.08it/s] 21%|██        | 6/29 [00:05<00:22,  1.03it/s] 24%|██▍       | 7/29 [00:06<00:21,  1.04it/s] 28%|██▊       | 8/29 [00:07<00:20,  1.05it/s] 31%|███       | 9/29 [00:07<00:14,  1.40it/s] 34%|███▍      | 10/29 [00:08<00:15,  1.21it/s] 38%|███▊      | 11/29 [00:09<00:15,  1.14it/s] 41%|████▏     | 12/29 [00:10<00:15,  1.09it/s] 45%|████▍     | 13/29 [00:11<00:15,  1.04it/s] 48%|████▊     | 14/29 [00:12<00:15,  1.00s/it] 52%|█████▏    | 15/29 [00:13<00:14,  1.02s/it] 55%|█████▌    | 16/29 [00:14<00:13,  1.03s/it] 59%|█████▊    | 17/29 [00:15<00:12,  1.02s/it] 62%|██████▏   | 18/29 [00:16<00:11,  1.06s/it] 66%|██████▌   | 19/29 [00:17<00:10,  1.04s/it] 69%|██████▉   | 20/29 [00:18<00:09,  1.04s/it] 72%|███████▏  | 21/29 [00:19<00:08,  1.07s/it] 76%|███████▌  | 22/29 [00:20<00:07,  1.04s/it] 79%|███████▉  | 23/29 [00:21<00:05,  1.01it/s] 83%|████████▎ | 24/29 [00:22<00:05,  1.01s/it] 86%|████████▌ | 25/29 [00:23<00:04,  1.00s/it] 90%|████████▉ | 26/29 [00:24<00:03,  1.03s/it] 93%|█████████▎| 27/29 [00:26<00:02,  1.06s/it] 97%|█████████▋| 28/29 [00:27<00:01,  1.03s/it]100%|██████████| 29/29 [00:28<00:00,  1.05s/it]100%|██████████| 29/29 [00:29<00:00,  1.01s/it]
-Error occurred: invalid syntax (<unknown>, line 1)
-  0%|          | 0/28 [00:00<?, ?it/s]  4%|▎         | 1/28 [00:02<01:15,  2.81s/it]  7%|▋         | 2/28 [00:06<01:23,  3.21s/it] 11%|█         | 3/28 [00:09<01:22,  3.31s/it] 14%|█▍        | 4/28 [00:13<01:22,  3.42s/it] 18%|█▊        | 5/28 [00:16<01:18,  3.41s/it] 21%|██▏       | 6/28 [00:18<01:06,  3.01s/it] 25%|██▌       | 7/28 [00:22<01:06,  3.16s/it] 29%|██▊       | 8/28 [00:25<01:04,  3.24s/it] 32%|███▏      | 9/28 [00:28<00:57,  3.01s/it] 36%|███▌      | 10/28 [00:31<00:55,  3.10s/it] 39%|███▉      | 11/28 [00:34<00:53,  3.16s/it] 43%|████▎     | 12/28 [00:37<00:47,  3.00s/it] 46%|████▋     | 13/28 [00:40<00:43,  2.88s/it] 50%|█████     | 14/28 [00:43<00:42,  3.01s/it] 54%|█████▎    | 15/28 [00:53<01:06,  5.09s/it] 57%|█████▋    | 16/28 [00:55<00:50,  4.18s/it] 61%|██████    | 17/28 [00:58<00:43,  3.92s/it] 64%|██████▍   | 18/28 [01:01<00:34,  3.48s/it] 68%|██████▊   | 19/28 [01:04<00:31,  3.50s/it] 71%|███████▏  | 20/28 [01:08<00:27,  3.46s/it] 75%|███████▌  | 21/28 [01:11<00:23,  3.40s/it] 79%|███████▊  | 22/28 [01:14<00:20,  3.41s/it] 82%|████████▏ | 23/28 [01:18<00:17,  3.44s/it] 86%|████████▌ | 24/28 [01:21<00:13,  3.45s/it] 89%|████████▉ | 25/28 [01:24<00:09,  3.24s/it] 93%|█████████▎| 26/28 [01:27<00:06,  3.26s/it] 96%|█████████▋| 27/28 [01:31<00:03,  3.27s/it]100%|██████████| 28/28 [01:33<00:00,  2.92s/it]100%|██████████| 28/28 [01:33<00:00,  3.33s/it]
-exception:'data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"code":13,"message":"result rescore fail for all recalls are below the min score threshold 0.000000"}, query:圣马力诺的政治体制
-exception:'data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"code":13,"message":"result rescore fail for all recalls are below the min score threshold 0.000000"}, query:圣马力诺的政治体制
-exception:'data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"code":13,"message":"result rescore fail for all recalls are below the min score threshold 0.000000"}, query:圣马力诺的政治体制
-exception:'data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"code":13,"message":"result rescore fail for all recalls are below the min score threshold 0.000000"}, query:圣马力诺的政治体制
-exception:'data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"code":13,"message":"result rescore fail for all recalls are below the min score threshold 0.000000"}, query:圣马力诺的政治体制
-Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-20/extension/single_True_rag_True/split_data/chunk_1.csv
-Regenerating missing GPT-4 file for split data file: chunk_1.csv
-Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt
-Reading oneshot prompt done.
-Building prompts for dataframe entries.
-Calling GPT-4 API
-剩余case 27 / 27
-  0%|          | 0/27 [00:00<?, ?it/s]  4%|▎         | 1/27 [00:14<06:23, 14.74s/it] 15%|█▍        | 4/27 [00:20<01:39,  4.35s/it] 26%|██▌       | 7/27 [00:26<01:01,  3.09s/it] 37%|███▋      | 10/27 [00:30<00:38,  2.29s/it] 41%|████      | 11/27 [00:37<00:50,  3.14s/it] 52%|█████▏    | 14/27 [00:43<00:34,  2.66s/it] 56%|█████▌    | 15/27 [01:28<01:57,  9.82s/it] 93%|█████████▎| 25/27 [01:31<00:06,  3.07s/it] 96%|█████████▋| 26/27 [01:39<00:03,  3.57s/it]100%|██████████| 27/27 [01:43<00:00,  3.62s/it]100%|██████████| 27/27 [01:43<00:00,  3.85s/it]
-Parsing GPT-4 response
-All GPT-4 files are generated and valid. Total files: 1
-[INFO] end_time: 2024-08-22 22:06:12  
-[INFO] duration: 6 min 
-[2024-08-23 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-21/prod/2024-08-21_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-23 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 152, in get_distillation_data
-    filter_df = DataFilter.get_task_usecols(filter_df)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py", line 34, in get_task_usecols
-    filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/numpy/lib/function_base.py", line 813, in select
-    raise ValueError(
-ValueError: list of cases must be same length as list of conditions
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-21', api_url='http://172.24.162.100:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-21
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-21
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-21/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-21/prod/2024-08-21_rule_labeled.csv.gpt_labeled.csv
-Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-21/prod/2024-08-21_rule_labeled.csv.gpt_labeled.csv
-Data list is empty, no valid dataframes read.
-[INFO] end_time: 2024-08-23 22:00:18  
-[INFO] duration: 0 min 
-[2024-08-24 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-22/prod/2024-08-22_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-24 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 152, in get_distillation_data
-    filter_df = DataFilter.get_task_usecols(filter_df)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py", line 34, in get_task_usecols
-    filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/numpy/lib/function_base.py", line 813, in select
-    raise ValueError(
-ValueError: list of cases must be same length as list of conditions
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-22', api_url='http://172.24.162.100:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-22
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-22
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-22/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-22/prod/2024-08-22_rule_labeled.csv.gpt_labeled.csv
-Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-22/prod/2024-08-22_rule_labeled.csv.gpt_labeled.csv
-Data list is empty, no valid dataframes read.
-[INFO] end_time: 2024-08-24 22:00:19  
-[INFO] duration: 0 min 
-[2024-08-25 22:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-23/prod/2024-08-23_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-25 22:00:01
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 152, in get_distillation_data
-    filter_df = DataFilter.get_task_usecols(filter_df)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py", line 34, in get_task_usecols
-    filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/numpy/lib/function_base.py", line 813, in select
-    raise ValueError(
-ValueError: list of cases must be same length as list of conditions
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-23', api_url='http://172.24.162.100:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-23
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-23
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-23/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-23/prod/2024-08-23_rule_labeled.csv.gpt_labeled.csv
-Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-23/prod/2024-08-23_rule_labeled.csv.gpt_labeled.csv
-Data list is empty, no valid dataframes read.
-[INFO] end_time: 2024-08-25 22:00:17  
-[INFO] duration: 0 min 
-[2024-08-26 22:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-24/prod/2024-08-24_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-26 22:00:01
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 152, in get_distillation_data
-    filter_df = DataFilter.get_task_usecols(filter_df)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py", line 34, in get_task_usecols
-    filter_df['task_name'] = np.select(task_conditions, task_choices, default=None)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/numpy/lib/function_base.py", line 813, in select
-    raise ValueError(
-ValueError: list of cases must be same length as list of conditions
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-24', api_url='http://172.24.162.100:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-24
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-24
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-24/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-24/prod/2024-08-24_rule_labeled.csv.gpt_labeled.csv
-Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-24/prod/2024-08-24_rule_labeled.csv.gpt_labeled.csv
-Data list is empty, no valid dataframes read.
-[INFO] end_time: 2024-08-26 22:00:18  
-[INFO] duration: 0 min 
-[2024-08-27 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-25/prod/2024-08-25_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-27 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:364: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
-  warnings.warn(
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  return self.fget.__get__(instance, owner)()
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-25', api_url='http://172.24.162.100:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-25
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-25
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-25/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-25/prod/2024-08-25_rule_labeled.csv.gpt_labeled.csv
-raw log len: 0
-时效人设任务型query 数量： 0
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 247, in <module>
-    distillator.get_distillation_data(args.date)
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 176, in get_distillation_data
-    unique_queries_with_metadata = self.get_unique_query(clean_queries_with_metadata, batch_size=64)
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 109, in get_unique_query
-    embeddings = np.vstack(all_embeddings)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/numpy/core/shape_base.py", line 289, in vstack
-    return _nx.concatenate(arrs, 0, dtype=dtype, casting=casting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: need at least one array to concatenate
-[INFO] end_time: 2024-08-27 22:00:23  
-[INFO] duration: 0 min 
-[2024-08-28 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-26/prod/2024-08-26_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-28 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:52: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:364: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
-  warnings.warn(
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-  return self.fget.__get__(instance, owner)()
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(date='2024-08-26', api_url='http://172.24.139.202:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-26
-Input folder: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-26
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-26/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-26/prod/2024-08-26_rule_labeled.csv.gpt_labeled.csv
-raw log len: 89
-时效人设任务型query 数量： 13
-unique queries len: 371
-  0%|          | 0/371 [00:00<?, ?it/s]  1%|          | 2/371 [00:01<04:09,  1.48it/s]  1%|          | 3/371 [00:02<06:26,  1.05s/it]  1%|          | 4/371 [00:04<06:57,  1.14s/it]  1%|▏         | 5/371 [00:06<09:59,  1.64s/it]  2%|▏         | 6/371 [00:08<10:04,  1.66s/it]  2%|▏         | 7/371 [00:09<09:46,  1.61s/it]  2%|▏         | 8/371 [00:11<09:17,  1.53s/it]  2%|▏         | 9/371 [00:13<09:27,  1.57s/it]  3%|▎         | 10/371 [00:14<09:15,  1.54s/it]  3%|▎         | 11/371 [00:15<09:06,  1.52s/it]  3%|▎         | 12/371 [00:17<08:59,  1.50s/it]  4%|▎         | 13/371 [00:18<08:51,  1.48s/it]  4%|▍         | 14/371 [00:20<08:59,  1.51s/it]  4%|▍         | 15/371 [00:21<08:46,  1.48s/it]  4%|▍         | 16/371 [00:23<08:39,  1.46s/it]  5%|▍         | 17/371 [00:24<07:34,  1.28s/it]  5%|▍         | 18/371 [00:26<09:41,  1.65s/it]  5%|▌         | 19/371 [00:27<09:07,  1.56s/it]  5%|▌         | 20/371 [00:29<08:39,  1.48s/it]  6%|▌         | 21/371 [00:30<08:28,  1.45s/it]  6%|▌         | 22/371 [00:32<08:16,  1.42s/it]  6%|▌         | 23/371 [00:33<08:06,  1.40s/it]  6%|▋         | 24/371 [00:34<08:06,  1.40s/it]  7%|▋         | 25/371 [00:36<07:58,  1.38s/it]  7%|▋         | 26/371 [00:37<07:43,  1.34s/it]  7%|▋         | 27/371 [00:38<08:01,  1.40s/it]  8%|▊         | 28/371 [00:40<08:02,  1.41s/it]  8%|▊         | 29/371 [00:41<08:20,  1.46s/it]  8%|▊         | 30/371 [00:43<08:08,  1.43s/it]  8%|▊         | 31/371 [00:45<09:26,  1.67s/it]  9%|▊         | 32/371 [00:47<09:26,  1.67s/it]  9%|▉         | 33/371 [00:48<09:00,  1.60s/it]  9%|▉         | 34/371 [00:50<08:51,  1.58s/it]  9%|▉         | 35/371 [00:51<08:24,  1.50s/it] 10%|▉         | 36/371 [00:52<08:14,  1.48s/it] 10%|▉         | 37/371 [00:54<08:01,  1.44s/it] 10%|█         | 38/371 [00:55<08:08,  1.47s/it] 11%|█         | 39/371 [00:57<08:03,  1.46s/it] 11%|█         | 40/371 [00:58<07:59,  1.45s/it] 11%|█         | 41/371 [01:00<08:12,  1.49s/it] 11%|█▏        | 42/371 [01:01<07:55,  1.44s/it] 12%|█▏        | 43/371 [01:02<07:46,  1.42s/it] 12%|█▏        | 44/371 [01:04<07:33,  1.39s/it] 12%|█▏        | 45/371 [01:05<07:27,  1.37s/it] 12%|█▏        | 46/371 [01:07<08:03,  1.49s/it] 13%|█▎        | 47/371 [01:08<07:54,  1.46s/it] 13%|█▎        | 48/371 [01:10<07:55,  1.47s/it] 13%|█▎        | 49/371 [01:11<07:50,  1.46s/it] 13%|█▎        | 50/371 [01:13<08:22,  1.57s/it] 14%|█▎        | 51/371 [01:14<08:02,  1.51s/it] 14%|█▍        | 52/371 [01:16<07:55,  1.49s/it] 14%|█▍        | 53/371 [01:17<08:00,  1.51s/it] 15%|█▍        | 54/371 [01:19<07:50,  1.49s/it] 15%|█▍        | 55/371 [01:20<07:58,  1.51s/it] 15%|█▌        | 56/371 [01:22<07:48,  1.49s/it] 15%|█▌        | 57/371 [01:23<07:18,  1.40s/it] 16%|█▌        | 58/371 [01:24<07:12,  1.38s/it] 16%|█▌        | 59/371 [01:26<07:00,  1.35s/it] 16%|█▌        | 60/371 [01:27<07:21,  1.42s/it] 16%|█▋        | 61/371 [01:28<07:05,  1.37s/it] 17%|█▋        | 62/371 [01:30<07:23,  1.44s/it] 17%|█▋        | 63/371 [01:31<07:07,  1.39s/it] 17%|█▋        | 64/371 [01:33<07:03,  1.38s/it] 18%|█▊        | 65/371 [01:34<07:12,  1.41s/it] 18%|█▊        | 66/371 [01:36<07:15,  1.43s/it] 18%|█▊        | 67/371 [01:37<06:59,  1.38s/it] 18%|█▊        | 68/371 [01:38<07:10,  1.42s/it] 19%|█▊        | 69/371 [01:40<07:00,  1.39s/it] 19%|█▉        | 70/371 [01:41<07:00,  1.40s/it] 19%|█▉        | 71/371 [01:43<07:16,  1.46s/it] 19%|█▉        | 72/371 [01:44<07:03,  1.42s/it] 20%|█▉        | 73/371 [01:46<07:19,  1.48s/it] 20%|█▉        | 74/371 [01:47<07:07,  1.44s/it] 20%|██        | 75/371 [01:48<07:03,  1.43s/it] 20%|██        | 76/371 [01:50<07:31,  1.53s/it] 21%|██        | 77/371 [01:52<07:19,  1.50s/it] 21%|██        | 78/371 [01:53<07:12,  1.48s/it] 21%|██▏       | 79/371 [01:54<06:57,  1.43s/it] 22%|██▏       | 80/371 [01:56<06:54,  1.42s/it] 22%|██▏       | 81/371 [01:57<06:45,  1.40s/it] 22%|██▏       | 82/371 [01:59<07:54,  1.64s/it] 22%|██▏       | 83/371 [02:01<07:17,  1.52s/it] 23%|██▎       | 84/371 [02:02<07:04,  1.48s/it] 23%|██▎       | 85/371 [02:03<06:55,  1.45s/it] 23%|██▎       | 86/371 [02:05<06:59,  1.47s/it] 23%|██▎       | 87/371 [02:06<06:56,  1.47s/it] 24%|██▎       | 88/371 [02:08<06:54,  1.46s/it] 24%|██▍       | 89/371 [02:09<06:43,  1.43s/it] 24%|██▍       | 90/371 [02:11<07:06,  1.52s/it] 25%|██▍       | 91/371 [02:12<06:47,  1.45s/it] 25%|██▍       | 92/371 [02:13<06:35,  1.42s/it] 25%|██▌       | 93/371 [02:15<06:56,  1.50s/it] 25%|██▌       | 94/371 [02:16<06:43,  1.46s/it] 26%|██▌       | 95/371 [02:18<06:46,  1.47s/it] 26%|██▌       | 96/371 [02:19<06:36,  1.44s/it] 26%|██▌       | 97/371 [02:20<05:00,  1.10s/it] 26%|██▋       | 98/371 [02:21<05:32,  1.22s/it] 27%|██▋       | 99/371 [02:23<05:49,  1.28s/it] 27%|██▋       | 100/371 [02:25<06:41,  1.48s/it] 27%|██▋       | 101/371 [02:26<06:39,  1.48s/it] 27%|██▋       | 102/371 [02:28<07:06,  1.59s/it] 28%|██▊       | 103/371 [02:29<06:55,  1.55s/it] 28%|██▊       | 104/371 [02:31<06:30,  1.46s/it] 28%|██▊       | 105/371 [02:32<06:28,  1.46s/it] 29%|██▊       | 106/371 [02:33<06:22,  1.44s/it] 29%|██▉       | 107/371 [02:35<06:19,  1.44s/it] 29%|██▉       | 108/371 [02:36<06:27,  1.47s/it] 29%|██▉       | 109/371 [02:38<06:30,  1.49s/it] 30%|██▉       | 110/371 [02:40<06:40,  1.54s/it] 30%|██▉       | 111/371 [02:41<06:18,  1.46s/it] 30%|███       | 112/371 [02:42<06:27,  1.50s/it] 30%|███       | 113/371 [02:44<06:07,  1.42s/it] 31%|███       | 114/371 [02:45<06:05,  1.42s/it] 31%|███       | 115/371 [02:47<06:09,  1.44s/it] 31%|███▏      | 116/371 [02:48<06:13,  1.46s/it] 32%|███▏      | 117/371 [02:49<06:03,  1.43s/it] 32%|███▏      | 118/371 [02:51<06:12,  1.47s/it] 32%|███▏      | 119/371 [02:52<06:07,  1.46s/it] 32%|███▏      | 120/371 [02:54<06:20,  1.52s/it] 33%|███▎      | 121/371 [02:56<06:14,  1.50s/it] 33%|███▎      | 122/371 [02:57<06:07,  1.48s/it] 33%|███▎      | 123/371 [02:59<06:13,  1.51s/it] 33%|███▎      | 124/371 [03:00<06:13,  1.51s/it] 34%|███▎      | 125/371 [03:01<06:01,  1.47s/it] 34%|███▍      | 126/371 [03:04<06:50,  1.67s/it] 34%|███▍      | 127/371 [03:05<06:30,  1.60s/it] 35%|███▍      | 128/371 [03:06<06:03,  1.50s/it] 35%|███▍      | 129/371 [03:08<06:05,  1.51s/it] 35%|███▌      | 130/371 [03:09<06:08,  1.53s/it] 35%|███▌      | 131/371 [03:11<05:51,  1.46s/it] 36%|███▌      | 132/371 [03:12<05:52,  1.47s/it] 36%|███▌      | 133/371 [03:14<05:59,  1.51s/it] 36%|███▌      | 134/371 [03:15<05:48,  1.47s/it] 36%|███▋      | 135/371 [03:17<05:40,  1.44s/it] 37%|███▋      | 136/371 [03:18<05:38,  1.44s/it] 37%|███▋      | 137/371 [03:20<05:39,  1.45s/it] 37%|███▋      | 138/371 [03:21<05:42,  1.47s/it] 37%|███▋      | 139/371 [03:23<05:46,  1.49s/it] 38%|███▊      | 140/371 [03:23<04:21,  1.13s/it] 38%|███▊      | 141/371 [03:24<04:45,  1.24s/it] 38%|███▊      | 142/371 [03:26<04:55,  1.29s/it] 39%|███▊      | 143/371 [03:26<03:48,  1.00s/it] 39%|███▉      | 144/371 [03:27<04:10,  1.11s/it] 39%|███▉      | 145/371 [03:29<04:33,  1.21s/it] 39%|███▉      | 146/371 [03:30<04:53,  1.31s/it] 40%|███▉      | 147/371 [03:32<04:53,  1.31s/it] 40%|███▉      | 148/371 [03:33<05:06,  1.37s/it] 40%|████      | 149/371 [03:34<03:53,  1.05s/it] 40%|████      | 150/371 [03:35<04:30,  1.22s/it] 41%|████      | 151/371 [03:37<04:45,  1.30s/it] 41%|████      | 152/371 [03:39<06:03,  1.66s/it] 41%|████      | 153/371 [03:41<05:52,  1.62s/it] 42%|████▏     | 154/371 [03:41<04:24,  1.22s/it] 42%|████▏     | 155/371 [03:42<04:37,  1.28s/it] 42%|████▏     | 156/371 [03:44<04:48,  1.34s/it] 42%|████▏     | 157/371 [03:45<04:48,  1.35s/it] 43%|████▎     | 158/371 [03:46<03:39,  1.03s/it] 43%|████▎     | 159/371 [03:47<03:58,  1.13s/it] 43%|████▎     | 160/371 [03:48<04:21,  1.24s/it] 43%|████▎     | 161/371 [03:50<04:47,  1.37s/it] 44%|████▎     | 162/371 [03:52<04:56,  1.42s/it] 44%|████▍     | 163/371 [03:53<04:52,  1.41s/it] 44%|████▍     | 164/371 [03:54<04:41,  1.36s/it] 44%|████▍     | 165/371 [03:56<04:56,  1.44s/it] 45%|████▍     | 166/371 [03:57<04:57,  1.45s/it] 45%|████▌     | 167/371 [03:59<04:57,  1.46s/it] 45%|████▌     | 168/371 [04:00<04:43,  1.40s/it] 46%|████▌     | 169/371 [04:01<04:40,  1.39s/it] 46%|████▌     | 170/371 [04:03<04:52,  1.46s/it] 46%|████▌     | 171/371 [04:04<04:51,  1.46s/it] 46%|████▋     | 172/371 [04:06<04:37,  1.39s/it] 47%|████▋     | 173/371 [04:07<04:34,  1.39s/it] 47%|████▋     | 174/371 [04:09<04:36,  1.40s/it] 47%|████▋     | 175/371 [04:10<04:29,  1.38s/it] 47%|████▋     | 176/371 [04:11<04:38,  1.43s/it] 48%|████▊     | 177/371 [04:13<04:32,  1.41s/it] 48%|████▊     | 178/371 [04:14<04:29,  1.40s/it] 48%|████▊     | 179/371 [04:16<04:34,  1.43s/it] 49%|████▊     | 180/371 [04:17<04:32,  1.42s/it] 49%|████▉     | 181/371 [04:19<04:34,  1.45s/it] 49%|████▉     | 182/371 [04:20<04:37,  1.47s/it] 49%|████▉     | 183/371 [04:22<04:37,  1.48s/it] 50%|████▉     | 184/371 [04:23<04:22,  1.41s/it] 50%|████▉     | 185/371 [04:24<04:36,  1.49s/it] 50%|█████     | 186/371 [04:26<04:26,  1.44s/it] 50%|█████     | 187/371 [04:27<04:32,  1.48s/it] 51%|█████     | 188/371 [04:29<04:22,  1.44s/it] 51%|█████     | 189/371 [04:30<04:24,  1.46s/it] 51%|█████     | 190/371 [04:32<04:19,  1.44s/it] 51%|█████▏    | 191/371 [04:33<04:23,  1.46s/it] 52%|█████▏    | 192/371 [04:35<04:25,  1.49s/it] 52%|█████▏    | 193/371 [04:36<04:32,  1.53s/it] 52%|█████▏    | 194/371 [04:38<04:25,  1.50s/it] 53%|█████▎    | 195/371 [04:38<03:27,  1.18s/it] 53%|█████▎    | 196/371 [04:40<04:18,  1.48s/it] 53%|█████▎    | 197/371 [04:42<04:02,  1.40s/it] 53%|█████▎    | 198/371 [04:43<04:02,  1.40s/it] 54%|█████▎    | 199/371 [04:44<03:59,  1.39s/it] 54%|█████▍    | 200/371 [04:46<04:02,  1.42s/it] 54%|█████▍    | 201/371 [04:48<04:41,  1.66s/it] 54%|█████▍    | 202/371 [04:49<04:18,  1.53s/it] 55%|█████▍    | 203/371 [04:51<04:09,  1.48s/it] 55%|█████▍    | 204/371 [04:53<04:48,  1.73s/it] 55%|█████▌    | 205/371 [04:55<05:22,  1.94s/it] 56%|█████▌    | 206/371 [04:57<04:53,  1.78s/it] 56%|█████▌    | 207/371 [04:58<04:48,  1.76s/it] 56%|█████▌    | 208/371 [05:01<05:13,  1.92s/it] 56%|█████▋    | 209/371 [05:02<04:58,  1.84s/it] 57%|█████▋    | 210/371 [05:04<04:40,  1.74s/it] 57%|█████▋    | 211/371 [05:04<03:29,  1.31s/it] 57%|█████▋    | 212/371 [05:06<03:43,  1.40s/it] 57%|█████▋    | 213/371 [05:07<03:42,  1.41s/it] 58%|█████▊    | 214/371 [05:09<03:35,  1.38s/it] 58%|█████▊    | 215/371 [05:10<03:34,  1.38s/it] 58%|█████▊    | 216/371 [05:11<03:31,  1.37s/it] 58%|█████▊    | 217/371 [05:13<03:34,  1.39s/it] 59%|█████▉    | 218/371 [05:14<03:45,  1.48s/it] 59%|█████▉    | 219/371 [05:16<03:37,  1.43s/it] 59%|█████▉    | 220/371 [05:17<03:44,  1.49s/it] 60%|█████▉    | 221/371 [05:18<03:06,  1.24s/it] 60%|█████▉    | 222/371 [05:18<02:23,  1.04it/s] 60%|██████    | 223/371 [05:20<02:45,  1.12s/it] 60%|██████    | 224/371 [05:21<03:06,  1.27s/it] 61%|██████    | 225/371 [05:23<03:13,  1.32s/it] 61%|██████    | 226/371 [05:24<03:14,  1.34s/it] 61%|██████    | 227/371 [05:27<04:02,  1.69s/it] 61%|██████▏   | 228/371 [05:28<03:53,  1.63s/it] 62%|██████▏   | 229/371 [05:30<03:52,  1.64s/it] 62%|██████▏   | 230/371 [05:31<03:32,  1.51s/it] 62%|██████▏   | 231/371 [05:33<03:40,  1.57s/it] 63%|██████▎   | 232/371 [05:33<02:45,  1.19s/it] 63%|██████▎   | 233/371 [05:35<02:51,  1.24s/it] 63%|██████▎   | 234/371 [05:36<03:07,  1.37s/it] 63%|██████▎   | 235/371 [05:37<03:02,  1.34s/it] 64%|██████▎   | 236/371 [05:39<03:10,  1.41s/it] 64%|██████▍   | 237/371 [05:41<03:11,  1.43s/it] 64%|██████▍   | 238/371 [05:41<02:24,  1.09s/it] 64%|██████▍   | 239/371 [05:42<02:30,  1.14s/it] 65%|██████▍   | 240/371 [05:44<02:41,  1.24s/it] 65%|██████▍   | 241/371 [05:46<03:40,  1.70s/it] 65%|██████▌   | 242/371 [05:48<03:36,  1.68s/it] 65%|██████▌   | 243/371 [05:49<03:18,  1.55s/it] 66%|██████▌   | 244/371 [05:51<03:12,  1.52s/it] 66%|██████▌   | 245/371 [05:52<03:06,  1.48s/it] 66%|██████▋   | 246/371 [05:53<02:59,  1.44s/it] 67%|██████▋   | 247/371 [05:55<03:02,  1.47s/it] 67%|██████▋   | 248/371 [05:56<02:54,  1.42s/it] 67%|██████▋   | 249/371 [05:59<03:54,  1.92s/it] 67%|██████▋   | 250/371 [06:01<03:37,  1.79s/it] 68%|██████▊   | 251/371 [06:02<03:25,  1.71s/it] 68%|██████▊   | 252/371 [06:04<03:20,  1.69s/it] 68%|██████▊   | 253/371 [06:05<03:07,  1.59s/it] 68%|██████▊   | 254/371 [06:07<02:55,  1.50s/it] 69%|██████▊   | 255/371 [06:08<02:57,  1.53s/it] 69%|██████▉   | 256/371 [06:09<02:46,  1.45s/it] 69%|██████▉   | 257/371 [06:11<02:50,  1.49s/it] 70%|██████▉   | 258/371 [06:12<02:44,  1.45s/it] 70%|██████▉   | 259/371 [06:14<02:45,  1.48s/it] 70%|███████   | 260/371 [06:15<02:38,  1.42s/it] 70%|███████   | 261/371 [06:17<02:34,  1.41s/it] 71%|███████   | 262/371 [06:18<02:32,  1.40s/it] 71%|███████   | 263/371 [06:18<01:55,  1.07s/it] 71%|███████   | 264/371 [06:20<02:02,  1.14s/it] 71%|███████▏  | 265/371 [06:21<02:13,  1.26s/it] 72%|███████▏  | 266/371 [06:23<02:23,  1.37s/it] 72%|███████▏  | 267/371 [06:24<02:24,  1.39s/it] 72%|███████▏  | 268/371 [06:26<02:21,  1.38s/it] 73%|███████▎  | 269/371 [06:27<02:24,  1.42s/it] 73%|███████▎  | 270/371 [06:29<02:27,  1.46s/it] 73%|███████▎  | 271/371 [06:30<02:25,  1.46s/it] 73%|███████▎  | 272/371 [06:32<02:28,  1.50s/it] 74%|███████▎  | 273/371 [06:33<02:25,  1.48s/it] 74%|███████▍  | 274/371 [06:34<02:19,  1.44s/it] 74%|███████▍  | 275/371 [06:36<02:21,  1.47s/it] 74%|███████▍  | 276/371 [06:38<02:21,  1.49s/it] 75%|███████▍  | 277/371 [06:39<02:17,  1.46s/it] 75%|███████▍  | 278/371 [06:41<02:41,  1.74s/it] 75%|███████▌  | 279/371 [06:43<02:43,  1.78s/it] 75%|███████▌  | 280/371 [06:45<02:31,  1.66s/it] 76%|███████▌  | 281/371 [06:46<02:22,  1.58s/it] 76%|███████▌  | 282/371 [06:47<02:15,  1.52s/it] 76%|███████▋  | 283/371 [06:49<02:07,  1.45s/it] 77%|███████▋  | 284/371 [06:50<02:05,  1.45s/it] 77%|███████▋  | 285/371 [06:50<01:34,  1.10s/it] 77%|███████▋  | 286/371 [06:52<01:34,  1.12s/it] 77%|███████▋  | 287/371 [06:54<02:20,  1.67s/it] 78%|███████▊  | 288/371 [06:56<02:18,  1.67s/it] 78%|███████▊  | 289/371 [06:58<02:16,  1.67s/it] 78%|███████▊  | 290/371 [07:00<02:36,  1.94s/it] 78%|███████▊  | 291/371 [07:02<02:31,  1.89s/it] 79%|███████▊  | 292/371 [07:03<02:15,  1.71s/it] 79%|███████▉  | 293/371 [07:05<02:08,  1.64s/it] 79%|███████▉  | 294/371 [07:06<02:02,  1.60s/it] 80%|███████▉  | 295/371 [07:09<02:17,  1.81s/it] 80%|███████▉  | 296/371 [07:10<02:10,  1.74s/it] 80%|████████  | 297/371 [07:12<02:05,  1.70s/it] 80%|████████  | 298/371 [07:13<01:55,  1.59s/it] 81%|████████  | 299/371 [07:16<02:13,  1.86s/it] 81%|████████  | 300/371 [07:16<01:38,  1.39s/it] 81%|████████  | 301/371 [07:19<02:00,  1.72s/it] 81%|████████▏ | 302/371 [07:20<01:55,  1.68s/it] 82%|████████▏ | 303/371 [07:23<02:08,  1.89s/it] 82%|████████▏ | 304/371 [07:23<01:45,  1.57s/it] 82%|████████▏ | 305/371 [07:25<01:38,  1.49s/it] 82%|████████▏ | 306/371 [07:26<01:35,  1.47s/it] 83%|████████▎ | 307/371 [07:27<01:30,  1.42s/it] 83%|████████▎ | 308/371 [07:29<01:33,  1.48s/it] 83%|████████▎ | 309/371 [07:30<01:30,  1.46s/it] 84%|████████▎ | 310/371 [07:32<01:26,  1.42s/it] 84%|████████▍ | 311/371 [07:33<01:23,  1.40s/it] 84%|████████▍ | 312/371 [07:35<01:36,  1.63s/it] 84%|████████▍ | 313/371 [07:37<01:31,  1.58s/it] 85%|████████▍ | 314/371 [07:38<01:28,  1.56s/it] 85%|████████▍ | 315/371 [07:40<01:23,  1.49s/it] 85%|████████▌ | 316/371 [07:41<01:18,  1.42s/it] 85%|████████▌ | 317/371 [07:41<00:59,  1.10s/it] 86%|████████▌ | 318/371 [07:43<01:04,  1.22s/it] 86%|████████▌ | 319/371 [07:44<01:08,  1.31s/it] 86%|████████▋ | 320/371 [07:46<01:08,  1.35s/it] 87%|████████▋ | 321/371 [07:47<01:10,  1.41s/it] 87%|████████▋ | 322/371 [07:49<01:21,  1.66s/it] 87%|████████▋ | 323/371 [07:51<01:15,  1.57s/it] 87%|████████▋ | 324/371 [07:52<01:13,  1.56s/it] 88%|████████▊ | 325/371 [07:54<01:10,  1.53s/it] 88%|████████▊ | 326/371 [07:56<01:14,  1.65s/it] 88%|████████▊ | 327/371 [07:57<01:11,  1.62s/it] 88%|████████▊ | 328/371 [07:58<00:52,  1.22s/it] 89%|████████▊ | 329/371 [07:59<00:53,  1.27s/it] 89%|████████▉ | 330/371 [08:00<00:55,  1.35s/it] 89%|████████▉ | 331/371 [08:02<01:02,  1.56s/it] 89%|████████▉ | 332/371 [08:04<00:58,  1.50s/it] 90%|████████▉ | 333/371 [08:05<00:54,  1.43s/it] 90%|█████████ | 334/371 [08:05<00:40,  1.09s/it] 90%|█████████ | 335/371 [08:08<00:55,  1.53s/it] 91%|█████████ | 336/371 [08:10<00:53,  1.54s/it] 91%|█████████ | 337/371 [08:11<00:53,  1.58s/it] 91%|█████████ | 338/371 [08:13<00:52,  1.60s/it] 91%|█████████▏| 339/371 [08:14<00:48,  1.53s/it] 92%|█████████▏| 340/371 [08:16<00:48,  1.57s/it] 92%|█████████▏| 341/371 [08:17<00:44,  1.49s/it] 92%|█████████▏| 342/371 [08:19<00:42,  1.46s/it] 92%|█████████▏| 343/371 [08:19<00:30,  1.10s/it] 93%|█████████▎| 344/371 [08:20<00:31,  1.18s/it] 93%|█████████▎| 345/371 [08:22<00:33,  1.28s/it] 93%|█████████▎| 346/371 [08:23<00:31,  1.25s/it] 94%|█████████▎| 347/371 [08:24<00:30,  1.28s/it] 94%|█████████▍| 348/371 [08:27<00:36,  1.60s/it] 94%|█████████▍| 349/371 [08:28<00:33,  1.53s/it] 94%|█████████▍| 350/371 [08:29<00:30,  1.48s/it] 95%|█████████▍| 351/371 [08:31<00:28,  1.41s/it] 95%|█████████▍| 352/371 [08:32<00:26,  1.38s/it] 95%|█████████▌| 353/371 [08:33<00:24,  1.38s/it] 95%|█████████▌| 354/371 [08:35<00:24,  1.44s/it] 96%|█████████▌| 355/371 [08:36<00:22,  1.43s/it] 96%|█████████▌| 356/371 [08:38<00:21,  1.43s/it] 96%|█████████▌| 357/371 [08:39<00:19,  1.38s/it] 96%|█████████▋| 358/371 [08:40<00:17,  1.36s/it] 97%|█████████▋| 359/371 [08:42<00:16,  1.39s/it] 97%|█████████▋| 360/371 [08:42<00:11,  1.06s/it] 97%|█████████▋| 361/371 [08:44<00:12,  1.26s/it] 98%|█████████▊| 362/371 [08:45<00:11,  1.29s/it] 98%|█████████▊| 363/371 [08:46<00:10,  1.29s/it] 98%|█████████▊| 364/371 [08:48<00:09,  1.33s/it] 98%|█████████▊| 365/371 [08:49<00:08,  1.41s/it] 99%|█████████▊| 366/371 [08:51<00:07,  1.43s/it] 99%|█████████▉| 367/371 [08:53<00:06,  1.54s/it] 99%|█████████▉| 368/371 [08:54<00:04,  1.47s/it] 99%|█████████▉| 369/371 [08:55<00:02,  1.48s/it]100%|█████████▉| 370/371 [08:57<00:01,  1.45s/it]100%|██████████| 371/371 [08:58<00:00,  1.42s/it]100%|██████████| 371/371 [08:59<00:00,  1.45s/it]
-Error occurred: 'arguments'
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: 'arguments'
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: 'arguments'
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: 'arguments'
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-Error occurred: invalid syntax (<unknown>, line 1)
-有效api数量 347
-  0%|          | 0/347 [00:00<?, ?it/s]  0%|          | 1/347 [00:01<10:14,  1.78s/it]  1%|          | 2/347 [00:03<09:37,  1.67s/it]  1%|          | 3/347 [00:04<08:53,  1.55s/it]  1%|          | 4/347 [00:08<14:36,  2.55s/it]  1%|▏         | 5/347 [00:10<12:59,  2.28s/it]  2%|▏         | 6/347 [00:12<12:23,  2.18s/it]  2%|▏         | 7/347 [00:14<11:17,  1.99s/it]  2%|▏         | 8/347 [00:15<10:21,  1.83s/it]  3%|▎         | 9/347 [00:17<10:28,  1.86s/it]  3%|▎         | 10/347 [00:19<10:23,  1.85s/it]  3%|▎         | 11/347 [00:21<10:20,  1.85s/it]  3%|▎         | 12/347 [00:22<09:13,  1.65s/it]  4%|▎         | 13/347 [00:23<08:47,  1.58s/it]  4%|▍         | 14/347 [00:25<08:30,  1.53s/it]  4%|▍         | 15/347 [00:26<08:16,  1.49s/it]  5%|▍         | 16/347 [00:31<13:04,  2.37s/it]  5%|▍         | 17/347 [00:32<11:13,  2.04s/it]  5%|▌         | 18/347 [00:33<09:40,  1.76s/it]  5%|▌         | 19/347 [00:35<09:29,  1.74s/it]  6%|▌         | 20/347 [00:37<09:31,  1.75s/it]  6%|▌         | 21/347 [00:38<09:39,  1.78s/it]  6%|▋         | 22/347 [00:40<09:52,  1.82s/it]  7%|▋         | 23/347 [00:42<09:03,  1.68s/it]  7%|▋         | 24/347 [00:43<08:47,  1.63s/it]  7%|▋         | 25/347 [00:45<08:51,  1.65s/it]  7%|▋         | 26/347 [00:47<09:01,  1.69s/it]  8%|▊         | 27/347 [00:48<09:08,  1.71s/it]  8%|▊         | 28/347 [00:50<08:37,  1.62s/it]  8%|▊         | 29/347 [00:53<11:10,  2.11s/it]  9%|▊         | 30/347 [00:55<10:20,  1.96s/it]  9%|▉         | 31/347 [00:57<10:12,  1.94s/it]  9%|▉         | 32/347 [00:58<09:44,  1.85s/it] 10%|▉         | 33/347 [01:00<09:09,  1.75s/it] 10%|▉         | 34/347 [01:01<08:25,  1.62s/it] 10%|█         | 35/347 [01:02<08:04,  1.55s/it] 10%|█         | 36/347 [01:04<07:57,  1.54s/it] 11%|█         | 37/347 [01:06<08:43,  1.69s/it] 11%|█         | 38/347 [01:08<08:35,  1.67s/it] 11%|█         | 39/347 [01:09<08:52,  1.73s/it] 12%|█▏        | 40/347 [01:11<08:34,  1.68s/it] 12%|█▏        | 41/347 [01:13<08:31,  1.67s/it] 12%|█▏        | 42/347 [01:14<08:12,  1.61s/it] 12%|█▏        | 43/347 [01:15<07:32,  1.49s/it] 13%|█▎        | 44/347 [01:17<07:22,  1.46s/it] 13%|█▎        | 45/347 [01:19<08:25,  1.67s/it] 13%|█▎        | 46/347 [01:21<08:24,  1.68s/it] 14%|█▎        | 47/347 [01:22<08:28,  1.70s/it] 14%|█▍        | 48/347 [01:24<08:11,  1.64s/it] 14%|█▍        | 49/347 [01:26<08:45,  1.76s/it] 14%|█▍        | 50/347 [01:28<08:31,  1.72s/it] 15%|█▍        | 51/347 [01:29<07:57,  1.61s/it] 15%|█▍        | 52/347 [01:31<08:10,  1.66s/it] 15%|█▌        | 53/347 [01:32<07:57,  1.62s/it] 16%|█▌        | 54/347 [01:34<08:12,  1.68s/it] 16%|█▌        | 55/347 [01:35<07:48,  1.60s/it] 16%|█▌        | 56/347 [01:37<08:15,  1.70s/it] 16%|█▋        | 57/347 [01:38<06:18,  1.31s/it] 17%|█▋        | 58/347 [01:40<07:10,  1.49s/it] 17%|█▋        | 59/347 [01:41<06:29,  1.35s/it] 17%|█▋        | 60/347 [01:42<07:04,  1.48s/it] 18%|█▊        | 61/347 [01:44<07:18,  1.53s/it] 18%|█▊        | 62/347 [01:46<08:22,  1.76s/it] 18%|█▊        | 63/347 [01:48<08:00,  1.69s/it] 18%|█▊        | 64/347 [01:50<08:17,  1.76s/it] 19%|█▊        | 65/347 [01:51<07:51,  1.67s/it] 19%|█▉        | 66/347 [01:53<08:14,  1.76s/it] 19%|█▉        | 67/347 [01:55<08:03,  1.73s/it] 20%|█▉        | 68/347 [01:56<07:35,  1.63s/it] 20%|█▉        | 69/347 [01:58<07:16,  1.57s/it] 20%|██        | 70/347 [01:59<06:54,  1.50s/it] 20%|██        | 71/347 [02:01<07:12,  1.57s/it] 21%|██        | 72/347 [02:03<07:55,  1.73s/it] 21%|██        | 73/347 [02:05<07:55,  1.74s/it] 21%|██▏       | 74/347 [02:06<07:57,  1.75s/it] 22%|██▏       | 75/347 [02:08<07:43,  1.71s/it] 22%|██▏       | 76/347 [02:10<08:29,  1.88s/it] 22%|██▏       | 77/347 [02:12<08:21,  1.86s/it] 22%|██▏       | 78/347 [02:14<07:50,  1.75s/it] 23%|██▎       | 79/347 [02:15<06:41,  1.50s/it] 23%|██▎       | 80/347 [02:18<09:42,  2.18s/it] 23%|██▎       | 81/347 [02:20<09:10,  2.07s/it] 24%|██▎       | 82/347 [02:21<08:04,  1.83s/it] 24%|██▍       | 83/347 [02:23<07:07,  1.62s/it] 24%|██▍       | 84/347 [02:25<07:50,  1.79s/it] 24%|██▍       | 85/347 [02:27<07:56,  1.82s/it] 25%|██▍       | 86/347 [02:29<08:06,  1.86s/it] 25%|██▌       | 87/347 [02:30<08:00,  1.85s/it] 25%|██▌       | 88/347 [02:32<08:07,  1.88s/it] 26%|██▌       | 89/347 [02:35<08:32,  1.99s/it] 26%|██▌       | 90/347 [02:36<07:19,  1.71s/it] 26%|██▌       | 91/347 [02:38<07:42,  1.81s/it] 27%|██▋       | 92/347 [02:39<07:05,  1.67s/it] 27%|██▋       | 93/347 [02:41<07:25,  1.76s/it] 27%|██▋       | 94/347 [02:43<07:12,  1.71s/it] 27%|██▋       | 95/347 [02:45<07:29,  1.78s/it] 28%|██▊       | 96/347 [02:46<06:58,  1.67s/it] 28%|██▊       | 97/347 [02:48<06:53,  1.65s/it] 28%|██▊       | 98/347 [02:49<06:28,  1.56s/it] 29%|██▊       | 99/347 [02:50<06:17,  1.52s/it] 29%|██▉       | 100/347 [02:52<06:19,  1.54s/it] 29%|██▉       | 101/347 [02:54<06:30,  1.59s/it] 29%|██▉       | 102/347 [02:55<06:06,  1.50s/it] 30%|██▉       | 103/347 [02:57<06:47,  1.67s/it] 30%|██▉       | 104/347 [02:58<06:29,  1.60s/it] 30%|███       | 105/347 [03:00<06:33,  1.63s/it] 31%|███       | 106/347 [03:02<06:23,  1.59s/it] 31%|███       | 107/347 [03:03<06:39,  1.66s/it] 31%|███       | 108/347 [03:05<06:17,  1.58s/it] 31%|███▏      | 109/347 [03:07<06:19,  1.59s/it] 32%|███▏      | 110/347 [03:08<05:57,  1.51s/it] 32%|███▏      | 111/347 [03:09<06:00,  1.53s/it] 32%|███▏      | 112/347 [03:11<06:18,  1.61s/it] 33%|███▎      | 113/347 [03:13<06:30,  1.67s/it] 33%|███▎      | 114/347 [03:15<06:26,  1.66s/it] 33%|███▎      | 115/347 [03:16<06:19,  1.64s/it] 33%|███▎      | 116/347 [03:18<06:47,  1.77s/it] 34%|███▎      | 117/347 [03:20<06:41,  1.75s/it] 34%|███▍      | 118/347 [03:21<06:09,  1.61s/it] 34%|███▍      | 119/347 [03:23<05:51,  1.54s/it] 35%|███▍      | 120/347 [03:24<05:39,  1.49s/it] 35%|███▍      | 121/347 [03:26<06:13,  1.65s/it] 35%|███▌      | 122/347 [03:28<06:10,  1.65s/it] 35%|███▌      | 123/347 [03:31<07:48,  2.09s/it] 36%|███▌      | 124/347 [03:32<07:10,  1.93s/it] 36%|███▌      | 125/347 [03:34<06:51,  1.86s/it] 36%|███▋      | 126/347 [03:36<06:46,  1.84s/it] 37%|███▋      | 127/347 [03:37<06:25,  1.75s/it] 37%|███▋      | 128/347 [03:39<05:52,  1.61s/it] 37%|███▋      | 129/347 [03:41<06:10,  1.70s/it] 37%|███▋      | 130/347 [03:42<06:07,  1.69s/it] 38%|███▊      | 131/347 [03:44<06:09,  1.71s/it] 38%|███▊      | 132/347 [03:45<05:51,  1.63s/it] 38%|███▊      | 133/347 [03:47<06:13,  1.74s/it] 39%|███▊      | 134/347 [03:51<07:51,  2.22s/it] 39%|███▉      | 135/347 [03:52<06:46,  1.92s/it] 39%|███▉      | 136/347 [03:54<06:41,  1.90s/it] 39%|███▉      | 137/347 [03:56<06:31,  1.86s/it] 40%|███▉      | 138/347 [03:57<06:22,  1.83s/it] 40%|████      | 139/347 [03:59<06:12,  1.79s/it] 41%|████      | 141/347 [04:05<07:57,  2.32s/it] 41%|████      | 142/347 [04:06<06:53,  2.02s/it] 41%|████      | 143/347 [04:08<06:41,  1.97s/it] 41%|████▏     | 144/347 [04:09<06:04,  1.80s/it] 42%|████▏     | 145/347 [04:11<05:48,  1.73s/it] 42%|████▏     | 146/347 [04:14<06:47,  2.03s/it] 42%|████▏     | 147/347 [04:15<06:29,  1.95s/it] 43%|████▎     | 148/347 [04:17<05:56,  1.79s/it] 43%|████▎     | 149/347 [04:18<05:41,  1.72s/it] 43%|████▎     | 150/347 [04:20<05:09,  1.57s/it] 44%|████▎     | 151/347 [04:22<05:34,  1.71s/it] 44%|████▍     | 152/347 [04:24<05:54,  1.82s/it] 44%|████▍     | 153/347 [04:25<05:28,  1.69s/it] 44%|████▍     | 154/347 [04:26<04:45,  1.48s/it] 45%|████▍     | 155/347 [04:27<04:21,  1.36s/it] 45%|████▍     | 156/347 [04:28<03:46,  1.19s/it] 45%|████▌     | 157/347 [04:29<03:49,  1.21s/it] 46%|████▌     | 158/347 [04:31<03:58,  1.26s/it] 46%|████▌     | 159/347 [04:32<04:19,  1.38s/it] 46%|████▌     | 160/347 [04:34<04:41,  1.50s/it] 46%|████▋     | 161/347 [04:36<05:09,  1.66s/it] 47%|████▋     | 162/347 [04:37<04:51,  1.58s/it] 47%|████▋     | 163/347 [04:39<04:58,  1.62s/it] 47%|████▋     | 164/347 [04:41<04:56,  1.62s/it] 48%|████▊     | 165/347 [04:43<05:07,  1.69s/it] 48%|████▊     | 166/347 [04:43<04:19,  1.43s/it] 48%|████▊     | 167/347 [04:45<04:12,  1.40s/it] 48%|████▊     | 168/347 [04:46<04:18,  1.45s/it] 49%|████▊     | 169/347 [04:48<04:11,  1.41s/it] 49%|████▉     | 170/347 [04:50<04:36,  1.56s/it] 49%|████▉     | 171/347 [04:51<04:14,  1.45s/it] 50%|████▉     | 172/347 [04:53<04:49,  1.66s/it] 50%|████▉     | 173/347 [04:54<04:31,  1.56s/it] 50%|█████     | 174/347 [04:56<04:37,  1.60s/it] 50%|█████     | 175/347 [04:57<04:32,  1.59s/it] 51%|█████     | 176/347 [04:59<04:55,  1.73s/it] 51%|█████     | 177/347 [05:00<04:08,  1.46s/it] 51%|█████▏    | 178/347 [05:02<04:09,  1.48s/it] 52%|█████▏    | 179/347 [05:03<03:57,  1.41s/it] 52%|█████▏    | 180/347 [05:04<03:34,  1.29s/it] 52%|█████▏    | 181/347 [05:06<03:46,  1.36s/it] 52%|█████▏    | 182/347 [05:07<03:48,  1.39s/it] 53%|█████▎    | 183/347 [05:09<04:00,  1.47s/it] 53%|█████▎    | 184/347 [05:10<03:47,  1.40s/it] 53%|█████▎    | 185/347 [05:12<03:54,  1.45s/it] 54%|█████▎    | 186/347 [05:13<03:58,  1.48s/it] 54%|█████▍    | 187/347 [05:16<04:52,  1.83s/it] 54%|█████▍    | 188/347 [05:17<04:24,  1.66s/it] 54%|█████▍    | 189/347 [05:19<04:34,  1.74s/it] 55%|█████▍    | 190/347 [05:20<04:24,  1.68s/it] 55%|█████▌    | 191/347 [05:22<04:12,  1.62s/it] 55%|█████▌    | 192/347 [05:23<03:25,  1.33s/it] 56%|█████▌    | 193/347 [05:24<03:15,  1.27s/it] 56%|█████▌    | 194/347 [05:25<03:16,  1.28s/it] 56%|█████▌    | 195/347 [05:28<04:25,  1.75s/it] 56%|█████▋    | 196/347 [05:31<05:17,  2.11s/it] 57%|█████▋    | 197/347 [05:33<04:57,  1.98s/it] 57%|█████▋    | 198/347 [05:34<04:38,  1.87s/it] 57%|█████▋    | 199/347 [05:37<05:34,  2.26s/it] 58%|█████▊    | 200/347 [05:39<05:02,  2.06s/it] 58%|█████▊    | 201/347 [05:41<04:45,  1.96s/it] 58%|█████▊    | 202/347 [05:42<04:28,  1.85s/it] 59%|█████▊    | 203/347 [05:44<04:15,  1.78s/it] 59%|█████▉    | 204/347 [05:45<04:10,  1.75s/it] 59%|█████▉    | 205/347 [05:47<03:48,  1.61s/it] 59%|█████▉    | 206/347 [05:48<03:50,  1.63s/it] 60%|█████▉    | 207/347 [05:50<03:59,  1.71s/it] 60%|█████▉    | 208/347 [05:51<03:30,  1.52s/it] 60%|██████    | 209/347 [05:53<03:24,  1.48s/it] 61%|██████    | 210/347 [05:55<03:46,  1.65s/it] 61%|██████    | 211/347 [05:56<03:34,  1.58s/it] 61%|██████    | 212/347 [05:58<03:25,  1.52s/it] 61%|██████▏   | 213/347 [05:58<02:52,  1.29s/it] 62%|██████▏   | 214/347 [06:00<02:58,  1.34s/it] 62%|██████▏   | 215/347 [06:03<04:11,  1.91s/it] 62%|██████▏   | 216/347 [06:05<04:02,  1.85s/it] 63%|██████▎   | 217/347 [06:06<03:44,  1.73s/it] 63%|██████▎   | 218/347 [06:08<03:24,  1.59s/it] 63%|██████▎   | 219/347 [06:09<03:31,  1.65s/it] 63%|██████▎   | 220/347 [06:11<03:23,  1.60s/it] 64%|██████▎   | 221/347 [06:12<03:16,  1.56s/it] 64%|██████▍   | 222/347 [06:14<03:09,  1.51s/it] 64%|██████▍   | 223/347 [06:15<02:56,  1.42s/it] 65%|██████▍   | 224/347 [06:16<02:48,  1.37s/it] 65%|██████▍   | 225/347 [06:20<04:36,  2.26s/it] 65%|██████▌   | 226/347 [06:22<04:24,  2.18s/it] 65%|██████▌   | 227/347 [06:26<05:18,  2.65s/it] 66%|██████▌   | 228/347 [06:28<04:30,  2.27s/it] 66%|██████▌   | 229/347 [06:29<04:01,  2.05s/it] 66%|██████▋   | 230/347 [06:31<03:38,  1.86s/it] 67%|██████▋   | 231/347 [06:32<03:17,  1.70s/it] 67%|██████▋   | 232/347 [06:34<03:17,  1.72s/it] 67%|██████▋   | 233/347 [06:35<03:06,  1.64s/it] 67%|██████▋   | 234/347 [06:37<02:58,  1.58s/it] 68%|██████▊   | 235/347 [06:40<03:54,  2.10s/it] 68%|██████▊   | 236/347 [06:40<02:57,  1.60s/it] 68%|██████▊   | 237/347 [06:42<02:55,  1.60s/it] 69%|██████▊   | 238/347 [06:43<02:39,  1.47s/it] 69%|██████▉   | 239/347 [06:45<02:50,  1.58s/it] 69%|██████▉   | 240/347 [06:46<02:39,  1.49s/it] 69%|██████▉   | 241/347 [06:48<02:40,  1.51s/it] 70%|██████▉   | 242/347 [06:49<02:32,  1.46s/it] 70%|███████   | 243/347 [06:51<02:39,  1.54s/it] 70%|███████   | 244/347 [06:52<02:35,  1.51s/it] 71%|███████   | 245/347 [06:53<02:21,  1.39s/it] 71%|███████   | 246/347 [06:55<02:42,  1.61s/it] 71%|███████   | 247/347 [06:57<02:39,  1.59s/it] 71%|███████▏  | 248/347 [06:59<02:42,  1.64s/it] 72%|███████▏  | 249/347 [07:01<02:49,  1.73s/it] 72%|███████▏  | 250/347 [07:02<02:38,  1.64s/it] 72%|███████▏  | 251/347 [07:04<02:43,  1.70s/it] 73%|███████▎  | 252/347 [07:05<02:29,  1.58s/it] 73%|███████▎  | 253/347 [07:07<02:27,  1.57s/it] 73%|███████▎  | 254/347 [07:08<02:28,  1.59s/it] 73%|███████▎  | 255/347 [07:10<02:20,  1.52s/it] 74%|███████▍  | 256/347 [07:11<02:15,  1.49s/it] 74%|███████▍  | 258/347 [07:13<01:42,  1.15s/it] 75%|███████▍  | 259/347 [07:14<01:49,  1.25s/it] 75%|███████▍  | 260/347 [07:16<01:53,  1.30s/it] 75%|███████▌  | 261/347 [07:17<01:54,  1.33s/it] 76%|███████▌  | 262/347 [07:20<02:27,  1.73s/it] 76%|███████▌  | 263/347 [07:21<02:15,  1.62s/it] 76%|███████▌  | 264/347 [07:23<02:12,  1.60s/it] 76%|███████▋  | 265/347 [07:25<02:19,  1.70s/it] 77%|███████▋  | 266/347 [07:26<02:09,  1.60s/it] 77%|███████▋  | 267/347 [07:28<02:11,  1.64s/it] 77%|███████▋  | 268/347 [07:29<02:08,  1.63s/it] 78%|███████▊  | 269/347 [07:30<01:52,  1.44s/it] 78%|███████▊  | 270/347 [07:33<02:21,  1.84s/it] 78%|███████▊  | 271/347 [07:35<02:25,  1.92s/it] 78%|███████▊  | 272/347 [07:37<02:19,  1.86s/it] 79%|███████▊  | 273/347 [07:41<02:54,  2.36s/it] 79%|███████▉  | 274/347 [07:43<02:46,  2.28s/it] 79%|███████▉  | 275/347 [07:44<02:29,  2.07s/it] 80%|███████▉  | 276/347 [07:46<02:18,  1.95s/it] 80%|███████▉  | 277/347 [07:48<02:23,  2.05s/it] 80%|████████  | 278/347 [07:50<02:17,  2.00s/it] 80%|████████  | 279/347 [07:52<02:07,  1.88s/it] 81%|████████  | 280/347 [07:53<02:03,  1.84s/it] 81%|████████  | 281/347 [07:55<01:54,  1.74s/it] 81%|████████▏ | 282/347 [07:58<02:14,  2.07s/it] 82%|████████▏ | 283/347 [08:00<02:22,  2.22s/it] 82%|████████▏ | 284/347 [08:02<02:04,  1.98s/it] 82%|████████▏ | 285/347 [08:05<02:29,  2.42s/it] 83%|████████▎ | 287/347 [08:07<01:37,  1.63s/it] 83%|████████▎ | 288/347 [08:08<01:33,  1.59s/it] 83%|████████▎ | 289/347 [08:09<01:24,  1.46s/it] 84%|████████▎ | 290/347 [08:11<01:24,  1.47s/it] 84%|████████▍ | 291/347 [08:12<01:19,  1.41s/it] 84%|████████▍ | 292/347 [08:13<01:19,  1.44s/it] 84%|████████▍ | 293/347 [08:17<01:50,  2.05s/it] 85%|████████▍ | 294/347 [08:19<01:41,  1.91s/it] 85%|████████▌ | 295/347 [08:20<01:30,  1.73s/it] 85%|████████▌ | 296/347 [08:21<01:25,  1.67s/it] 86%|████████▌ | 297/347 [08:23<01:23,  1.66s/it] 86%|████████▌ | 298/347 [08:25<01:24,  1.73s/it] 86%|████████▌ | 299/347 [08:26<01:20,  1.68s/it] 87%|████████▋ | 301/347 [08:28<00:59,  1.30s/it] 87%|████████▋ | 302/347 [08:30<01:08,  1.53s/it] 87%|████████▋ | 303/347 [08:32<01:07,  1.54s/it] 88%|████████▊ | 304/347 [08:34<01:08,  1.60s/it] 88%|████████▊ | 305/347 [08:35<01:03,  1.52s/it] 88%|████████▊ | 306/347 [08:37<01:02,  1.52s/it] 88%|████████▊ | 307/347 [08:38<01:00,  1.50s/it] 89%|████████▉ | 308/347 [08:39<00:55,  1.43s/it] 89%|████████▉ | 309/347 [08:41<00:54,  1.44s/it] 89%|████████▉ | 310/347 [08:43<01:06,  1.79s/it] 90%|████████▉ | 311/347 [08:45<01:00,  1.67s/it] 90%|████████▉ | 312/347 [08:46<00:58,  1.68s/it] 90%|█████████ | 313/347 [08:49<01:06,  1.97s/it] 90%|█████████ | 314/347 [08:51<01:02,  1.89s/it] 91%|█████████ | 315/347 [08:53<00:59,  1.85s/it] 91%|█████████ | 316/347 [08:54<00:55,  1.79s/it] 91%|█████████▏| 317/347 [08:56<00:51,  1.71s/it] 92%|█████████▏| 318/347 [08:57<00:46,  1.61s/it] 92%|█████████▏| 319/347 [08:58<00:42,  1.50s/it] 92%|█████████▏| 320/347 [09:00<00:42,  1.57s/it] 93%|█████████▎| 321/347 [09:02<00:41,  1.58s/it] 93%|█████████▎| 322/347 [09:03<00:38,  1.55s/it] 93%|█████████▎| 323/347 [09:04<00:33,  1.41s/it] 93%|█████████▎| 324/347 [09:06<00:34,  1.48s/it] 94%|█████████▎| 325/347 [09:10<00:46,  2.12s/it] 94%|█████████▍| 326/347 [09:11<00:42,  2.03s/it] 94%|█████████▍| 327/347 [09:13<00:36,  1.82s/it] 95%|█████████▍| 328/347 [09:14<00:31,  1.66s/it] 95%|█████████▍| 329/347 [09:16<00:31,  1.76s/it] 95%|█████████▌| 330/347 [09:17<00:28,  1.69s/it] 95%|█████████▌| 331/347 [09:19<00:28,  1.77s/it] 96%|█████████▌| 332/347 [09:20<00:22,  1.52s/it] 96%|█████████▌| 333/347 [09:22<00:23,  1.66s/it] 96%|█████████▋| 334/347 [09:24<00:19,  1.50s/it] 97%|█████████▋| 335/347 [09:25<00:18,  1.55s/it] 97%|█████████▋| 336/347 [09:27<00:17,  1.56s/it] 97%|█████████▋| 337/347 [09:29<00:16,  1.66s/it] 97%|█████████▋| 338/347 [09:30<00:15,  1.72s/it] 98%|█████████▊| 339/347 [09:32<00:12,  1.59s/it] 98%|█████████▊| 340/347 [09:33<00:10,  1.50s/it] 98%|█████████▊| 341/347 [09:35<00:09,  1.51s/it] 99%|█████████▊| 342/347 [09:36<00:07,  1.54s/it] 99%|█████████▉| 343/347 [09:38<00:06,  1.61s/it] 99%|█████████▉| 344/347 [09:39<00:04,  1.48s/it] 99%|█████████▉| 345/347 [09:41<00:03,  1.58s/it]100%|█████████▉| 346/347 [09:42<00:01,  1.36s/it]100%|██████████| 347/347 [09:43<00:00,  1.31s/it]100%|██████████| 347/347 [09:43<00:00,  1.68s/it]
-invalid api type, one_api_str:{'category': '人设', 'query': '你听过饭后百步走，活到九十九吗', 'tag': '你听过饭后百步走，活到九十九吗', 'apiname': 'charasearch'}
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"1820","lambdamart-score":"<nil>,-1.814065","service-version":"1b18d66"}}]}, query:AR体验毒液的用户感受如何
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"1028","lambdamart-score":"<nil>,-1.783967","service-version":"1b18d66"}}]}, query:AR体验毒液的用户感受如何
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"1004","lambdamart-score":"<nil>,-2.585299","service-version":"1b18d66"}}]}, query:AR体验毒液的用户感受如何
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"990","lambdamart-score":"<nil>,-2.585299","service-version":"1b18d66"}}]}, query:AR体验毒液的用户感受如何
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"985","lambdamart-score":"<nil>,-0.905533","service-version":"1b18d66"}}]}, query:AR体验毒液的用户感受如何
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"1520","lambdamart-score":"<nil>,-1.600452","service-version":"1b18d66"}}]}, query:传统燃油车市场份额计算方法
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"701","lambdamart-score":"<nil>,-0.886527","service-version":"1b18d66"}}]}, query:传统燃油车市场份额计算方法
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"685","lambdamart-score":"<nil>,-0.905533","service-version":"1b18d66"}}]}, query:传统燃油车市场份额计算方法
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"695","lambdamart-score":"<nil>,-2.089855","service-version":"1b18d66"}}]}, query:传统燃油车市场份额计算方法
-exception:'bot_data', parse search results:{"metadata":{"dynamic_info":{"position":{"latitude":22.993279,"longitude":113.702286,"coordinate":"wgs84"},"speaker_seat":"RIGHT_SEAT_OF_SECOND_ROW","night_mode":"NIGHT_MODE_NIGHT"},"vehicle_info":{"vehicle_config_code":"7,64,9,32,1,255,255,9,77,3,67,3,2,3,3,255,255","hu_ota_version":"4.5.1-1.12.101","user_manual_version":"7","help_app_version":"2003000","vin":"1c4dd333c1f111111","vehicle_model":"VEHICLE_MODEL_X01","spu":"ss3pro","voice_version":"5.2.0.4","hu_version":"4.1.12006"},"request_info":{"msg_id":"postman-liping-1reaHUeB9WEITBe9"}},"message":"success","data":[{"bot_name":"knowledge-search-engine","bot_version":"1b18d66","debug_info":{"knowledge-search-engine-cost":"703","lambdamart-score":"<nil>,-0.905533","service-version":"1b18d66"}}]}, query:传统燃油车市场份额计算方法
-invalid api type, one_api_str:{'keyphrase': '2560*1440的图片适合用作桌面壁纸吗', 'category': '其他', 'style': '写实', 'apiname': 'aipainting'}
-invalid api type, one_api_str:{'domain': '车控', 'action': '调节', 'entity': '屏幕', 'sub': '亮度', 'range': '大一点', 'apiname': 'todrequest'}
-invalid api type, one_api_str:{'keyphrase': '1920*536', 'category': '其他', 'style': '写实', 'apiname': 'aipainting'}
-有效obs数量 341
-Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-26/extension/single_True_rag_True/split_data/chunk_1.csv
-Regenerating missing GPT-4 file for split data file: chunk_1.csv
-Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt
-Reading oneshot prompt done.
-Building prompts for dataframe entries.
-Calling GPT-4 API
-剩余case 341 / 341
-  0%|          | 0/341 [00:00<?, ?it/s]  0%|          | 1/341 [00:08<48:17,  8.52s/it]  1%|          | 2/341 [00:09<24:40,  4.37s/it]  1%|          | 3/341 [00:16<30:17,  5.38s/it]  1%|          | 4/341 [00:20<26:31,  4.72s/it]  2%|▏         | 6/341 [00:32<30:21,  5.44s/it]  2%|▏         | 8/341 [00:33<18:25,  3.32s/it]  3%|▎         | 10/341 [00:36<14:38,  2.65s/it]  3%|▎         | 11/341 [00:37<12:47,  2.33s/it]  4%|▍         | 13/341 [00:51<22:32,  4.12s/it]  6%|▌         | 20/341 [00:53<08:30,  1.59s/it]  6%|▋         | 22/341 [00:57<08:51,  1.67s/it]  7%|▋         | 24/341 [01:17<18:59,  3.59s/it]  9%|▉         | 31/341 [01:20<09:58,  1.93s/it] 10%|▉         | 34/341 [01:24<08:46,  1.72s/it] 11%|█         | 36/341 [01:26<08:21,  1.64s/it] 12%|█▏        | 40/341 [01:33<08:20,  1.66s/it] 13%|█▎        | 43/341 [01:40<09:07,  1.84s/it] 13%|█▎        | 44/341 [01:41<08:31,  1.72s/it] 13%|█▎        | 46/341 [01:46<09:16,  1.89s/it] 14%|█▍        | 48/341 [02:03<17:54,  3.67s/it] 16%|█▌        | 54/341 [02:08<10:12,  2.14s/it] 16%|█▌        | 55/341 [02:19<15:00,  3.15s/it] 18%|█▊        | 60/341 [02:33<14:07,  3.02s/it] 19%|█▉        | 65/341 [02:33<08:32,  1.86s/it] 19%|█▉        | 65/341 [02:44<08:32,  1.86s/it] 19%|█▉        | 66/341 [02:50<15:13,  3.32s/it] 21%|██        | 70/341 [02:51<10:03,  2.23s/it] 21%|██        | 72/341 [03:04<13:47,  3.07s/it] 22%|██▏       | 76/341 [03:10<11:01,  2.50s/it] 23%|██▎       | 77/341 [03:12<10:50,  2.47s/it] 23%|██▎       | 80/341 [03:34<17:56,  4.13s/it] 26%|██▌       | 87/341 [03:34<08:18,  1.96s/it] 26%|██▌       | 89/341 [03:37<07:53,  1.88s/it] 27%|██▋       | 91/341 [03:49<11:12,  2.69s/it] 27%|██▋       | 92/341 [03:52<11:15,  2.71s/it] 27%|██▋       | 93/341 [03:54<10:55,  2.64s/it] 28%|██▊       | 95/341 [03:56<08:18,  2.03s/it] 28%|██▊       | 96/341 [04:02<11:39,  2.86s/it] 28%|██▊       | 97/341 [04:02<09:24,  2.31s/it] 29%|██▊       | 98/341 [04:04<08:18,  2.05s/it] 29%|██▉       | 99/341 [04:05<07:33,  1.87s/it] 29%|██▉       | 100/341 [04:06<06:40,  1.66s/it] 30%|██▉       | 101/341 [04:13<12:22,  3.09s/it] 30%|███       | 104/341 [04:15<07:17,  1.85s/it] 31%|███       | 106/341 [04:20<07:51,  2.01s/it] 32%|███▏      | 108/341 [04:22<06:24,  1.65s/it] 32%|███▏      | 109/341 [04:25<07:37,  1.97s/it] 32%|███▏      | 110/341 [04:31<11:14,  2.92s/it] 33%|███▎      | 111/341 [04:33<10:19,  2.69s/it] 33%|███▎      | 114/341 [04:38<08:15,  2.18s/it] 34%|███▎      | 115/341 [04:51<15:23,  4.09s/it] 35%|███▌      | 121/341 [05:00<09:18,  2.54s/it] 36%|███▌      | 122/341 [05:01<08:36,  2.36s/it] 36%|███▌      | 123/341 [05:03<08:09,  2.25s/it] 36%|███▋      | 124/341 [05:06<08:23,  2.32s/it] 37%|███▋      | 125/341 [05:17<15:28,  4.30s/it] 38%|███▊      | 128/341 [05:22<10:27,  2.95s/it] 38%|███▊      | 131/341 [05:27<08:45,  2.50s/it] 39%|███▉      | 133/341 [05:33<09:04,  2.62s/it] 40%|███▉      | 135/341 [06:23<30:54,  9.00s/it] 43%|████▎     | 148/341 [06:31<09:19,  2.90s/it] 44%|████▍     | 151/341 [06:41<09:22,  2.96s/it] 45%|████▌     | 154/341 [06:44<08:06,  2.60s/it] 46%|████▋     | 158/341 [06:49<06:32,  2.14s/it] 47%|████▋     | 160/341 [06:55<07:02,  2.34s/it] 48%|████▊     | 163/341 [07:00<06:16,  2.11s/it] 48%|████▊     | 164/341 [07:08<08:13,  2.79s/it] 48%|████▊     | 165/341 [07:09<07:41,  2.62s/it] 49%|████▉     | 167/341 [07:27<12:57,  4.47s/it] 51%|█████     | 174/341 [07:36<07:13,  2.60s/it] 52%|█████▏    | 176/341 [07:38<06:11,  2.25s/it] 52%|█████▏    | 178/341 [07:46<07:12,  2.65s/it] 53%|█████▎    | 180/341 [07:50<06:33,  2.44s/it] 53%|█████▎    | 181/341 [07:55<07:40,  2.88s/it] 54%|█████▍    | 184/341 [08:11<09:48,  3.75s/it] 54%|█████▍    | 185/341 [08:12<08:55,  3.43s/it] 55%|█████▍    | 187/341 [08:45<18:54,  7.37s/it] 57%|█████▋    | 196/341 [08:49<06:40,  2.76s/it] 58%|█████▊    | 197/341 [08:58<08:09,  3.40s/it] 58%|█████▊    | 198/341 [09:21<13:36,  5.71s/it] 60%|█████▉    | 203/341 [09:49<12:58,  5.64s/it] 61%|██████    | 208/341 [10:05<10:23,  4.69s/it] 62%|██████▏   | 211/341 [10:08<08:03,  3.72s/it] 62%|██████▏   | 213/341 [10:15<07:57,  3.73s/it] 63%|██████▎   | 214/341 [11:08<20:37,  9.75s/it] 66%|██████▌   | 224/341 [11:29<09:32,  4.89s/it] 67%|██████▋   | 228/341 [11:33<07:10,  3.81s/it] 67%|██████▋   | 229/341 [11:38<07:24,  3.97s/it] 68%|██████▊   | 231/341 [12:21<13:38,  7.44s/it] 71%|███████   | 241/341 [12:30<06:00,  3.61s/it] 71%|███████▏  | 243/341 [12:31<05:06,  3.13s/it] 72%|███████▏  | 244/341 [12:41<06:07,  3.79s/it] 72%|███████▏  | 247/341 [12:41<04:17,  2.74s/it] 73%|███████▎  | 248/341 [12:46<04:36,  2.98s/it] 73%|███████▎  | 249/341 [12:56<06:02,  3.94s/it] 74%|███████▍  | 253/341 [12:56<03:13,  2.20s/it] 75%|███████▍  | 255/341 [13:03<03:40,  2.56s/it] 75%|███████▌  | 256/341 [13:04<03:15,  2.30s/it] 75%|███████▌  | 257/341 [13:08<03:41,  2.64s/it] 76%|███████▌  | 258/341 [13:18<05:40,  4.10s/it] 77%|███████▋  | 262/341 [13:48<07:45,  5.89s/it] 78%|███████▊  | 266/341 [13:49<04:20,  3.48s/it] 79%|███████▉  | 269/341 [13:58<03:57,  3.30s/it] 79%|███████▉  | 270/341 [14:01<03:52,  3.28s/it] 80%|███████▉  | 272/341 [14:05<03:17,  2.86s/it] 80%|████████  | 273/341 [14:08<03:19,  2.94s/it] 80%|████████  | 274/341 [14:21<05:21,  4.80s/it] 82%|████████▏ | 279/341 [14:30<03:08,  3.05s/it] 82%|████████▏ | 281/341 [14:30<02:21,  2.36s/it] 83%|████████▎ | 282/341 [14:33<02:19,  2.37s/it] 83%|████████▎ | 283/341 [14:39<03:02,  3.15s/it] 84%|████████▎ | 285/341 [14:46<02:54,  3.12s/it] 84%|████████▍ | 286/341 [15:00<04:56,  5.38s/it] 85%|████████▍ | 289/341 [15:03<02:52,  3.31s/it] 85%|████████▌ | 290/341 [15:04<02:32,  2.99s/it] 85%|████████▌ | 291/341 [15:15<03:44,  4.49s/it] 86%|████████▌ | 293/341 [15:17<02:39,  3.33s/it] 87%|████████▋ | 296/341 [15:29<02:41,  3.59s/it] 87%|████████▋ | 298/341 [15:33<02:13,  3.11s/it] 88%|████████▊ | 299/341 [15:37<02:20,  3.34s/it] 88%|████████▊ | 300/341 [15:49<03:22,  4.94s/it] 89%|████████▉ | 304/341 [15:53<01:45,  2.86s/it] 90%|█████████ | 307/341 [16:05<01:50,  3.24s/it] 91%|█████████ | 309/341 [16:07<01:27,  2.75s/it] 91%|█████████ | 310/341 [16:21<02:16,  4.39s/it] 92%|█████████▏| 313/341 [16:35<02:06,  4.51s/it] 93%|█████████▎| 318/341 [16:39<01:02,  2.73s/it] 94%|█████████▎| 319/341 [16:40<00:55,  2.51s/it] 94%|█████████▍| 320/341 [16:46<01:02,  2.97s/it] 94%|█████████▍| 322/341 [16:48<00:47,  2.52s/it] 95%|█████████▍| 323/341 [16:50<00:41,  2.30s/it] 95%|█████████▌| 324/341 [16:54<00:45,  2.68s/it] 95%|█████████▌| 325/341 [17:00<00:55,  3.48s/it] 96%|█████████▌| 326/341 [17:03<00:49,  3.31s/it] 96%|█████████▋| 329/341 [17:05<00:24,  2.04s/it] 97%|█████████▋| 331/341 [17:11<00:22,  2.28s/it] 98%|█████████▊| 333/341 [17:15<00:18,  2.27s/it] 98%|█████████▊| 334/341 [17:22<00:21,  3.05s/it] 99%|█████████▊| 336/341 [17:23<00:10,  2.18s/it] 99%|█████████▉| 337/341 [17:29<00:12,  3.01s/it] 99%|█████████▉| 339/341 [17:36<00:06,  3.20s/it]100%|██████████| 341/341 [17:59<00:00,  5.87s/it]100%|██████████| 341/341 [17:59<00:00,  3.16s/it]
-Parsing GPT-4 response
-All GPT-4 files are generated and valid. Total files: 1
-[INFO] end_time: 2024-08-28 22:39:09  
-[INFO] duration: 39 min 
-[2024-08-29 22:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-27/prod/2024-08-27_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-29 22:00:01
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:79: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(api_url='http://172.24.139.202:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-27/prod/2024-08-27_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-27
-Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-27/prod/2024-08-27_rule_labeled.csv.gpt_labeled.csv
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-27/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-27/prod/2024-08-27_rule_labeled.csv.gpt_labeled.csv
-raw log len: 960
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 186, in <module>
-    distillator.get_distillation_data(args.input_file)
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 104, in get_distillation_data
-    query_ls_with_metadata = self.get_new_query_ls_with_metadata(filter_df)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 70, in get_new_query_ls_with_metadata
-    query_ls1 = self.get_query_ls_with_metadata(df, 'generalized_question_from_user')
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 59, in get_query_ls_with_metadata
-    queries = row[query_column_name].split('\n')
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'split'
-[INFO] end_time: 2024-08-29 22:00:17 
-[INFO] duration: 0 min 
-[2024-08-30 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-28/prod/2024-08-28_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-30 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:79: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(api_url='http://172.24.139.202:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-28/prod/2024-08-28_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-28
-Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-28/prod/2024-08-28_rule_labeled.csv.gpt_labeled.csv
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-28/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-28/prod/2024-08-28_rule_labeled.csv.gpt_labeled.csv
-raw log len: 761
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 186, in <module>
-    distillator.get_distillation_data(args.input_file)
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 104, in get_distillation_data
-    query_ls_with_metadata = self.get_new_query_ls_with_metadata(filter_df)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 70, in get_new_query_ls_with_metadata
-    query_ls1 = self.get_query_ls_with_metadata(df, 'generalized_question_from_user')
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 59, in get_query_ls_with_metadata
-    queries = row[query_column_name].split('\n')
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'split'
-[INFO] end_time: 2024-08-30 22:00:19 
-[INFO] duration: 0 min 
-[2024-08-31 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-29/prod/2024-08-29_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-08-31 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:79: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(api_url='http://172.24.139.202:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-29/prod/2024-08-29_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-29
-Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-29/prod/2024-08-29_rule_labeled.csv.gpt_labeled.csv
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-29/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-29/prod/2024-08-29_rule_labeled.csv.gpt_labeled.csv
-raw log len: 1033
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 186, in <module>
-    distillator.get_distillation_data(args.input_file)
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 104, in get_distillation_data
-    query_ls_with_metadata = self.get_new_query_ls_with_metadata(filter_df)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 70, in get_new_query_ls_with_metadata
-    query_ls1 = self.get_query_ls_with_metadata(df, 'generalized_question_from_user')
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 59, in get_query_ls_with_metadata
-    queries = row[query_column_name].split('\n')
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'split'
-[INFO] end_time: 2024-08-31 22:00:18 
-[INFO] duration: 0 min 
-[2024-09-01 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-30/prod/2024-08-30_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-09-01 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:79: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(api_url='http://172.24.139.202:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-30/prod/2024-08-30_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-30
-Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-30/prod/2024-08-30_rule_labeled.csv.gpt_labeled.csv
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-30/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-30/prod/2024-08-30_rule_labeled.csv.gpt_labeled.csv
-raw log len: 787
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 186, in <module>
-    distillator.get_distillation_data(args.input_file)
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 104, in get_distillation_data
-    query_ls_with_metadata = self.get_new_query_ls_with_metadata(filter_df)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 70, in get_new_query_ls_with_metadata
-    query_ls1 = self.get_query_ls_with_metadata(df, 'generalized_question_from_user')
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 59, in get_query_ls_with_metadata
-    queries = row[query_column_name].split('\n')
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'split'
-[INFO] end_time: 2024-09-01 22:00:17 
-[INFO] duration: 0 min 
-[2024-09-02 22:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_distillation_log_extension_single_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-31/prod/2024-08-31_rule_labeled.csv.gpt_labeled.csv is ready.
-[INFO] begin_time: 2024-09-02 22:00:02
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
-  warn(msg)
-/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
-Either way, this might cause trouble in the future:
-If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
-  warn(msg)
-/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/data_processing.py:79: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  filter_df['task_name'] = np.select(task_conditions, task_choices, default='正常数据')
-
-===================================BUG REPORT===================================
-Welcome to bitsandbytes. For bug reports, please run
-
-python -m bitsandbytes
-
- and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
-================================================================================
-bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
-CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
-CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
-CUDA SETUP: Highest compute capability among GPUs detected: 8.0
-CUDA SETUP: Detected CUDA version 116
-CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
-Arguments: Namespace(api_url='http://172.24.139.202:16073/ligpt_with_api/search', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh', is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-31/prod/2024-08-31_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
-Processing distillation data for date: 2024-08-31
-Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-31/prod/2024-08-31_rule_labeled.csv.gpt_labeled.csv
-Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-08-31/extension/single_True_rag_True
-Reading input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-08-31/prod/2024-08-31_rule_labeled.csv.gpt_labeled.csv
-raw log len: 292
-Traceback (most recent call last):
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 186, in <module>
-    distillator.get_distillation_data(args.input_file)
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 104, in get_distillation_data
-    query_ls_with_metadata = self.get_new_query_ls_with_metadata(filter_df)
-                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 70, in get_new_query_ls_with_metadata
-    query_ls1 = self.get_query_ls_with_metadata(df, 'generalized_question_from_user')
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/get_extension_log_distillation.py", line 59, in get_query_ls_with_metadata
-    queries = row[query_column_name].split('\n')
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'split'
-[INFO] end_time: 2024-09-02 22:00:18 
-[INFO] duration: 0 min 

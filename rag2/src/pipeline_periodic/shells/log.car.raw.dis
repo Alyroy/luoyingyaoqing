@@ -1,0 +1,164 @@
+[INFO] Processing date: 2024-10-08
+[2024-10-14 20:53:40] ./run_weekly_car_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-08/2024-10-08_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:53:40
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 44, in get_distillation_data
+    df = df[~df['taskformer-model-13b-input'].isna()]
+             ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-08/2024-10-08_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-08
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-08/2024-10-08_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-08/raw/single_True_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-08/2024-10-08_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-14 20:53:52
+[INFO] duration: 0 min 
+[INFO] Processing date: 2024-10-09
+[2024-10-14 20:53:52] ./run_weekly_car_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-09/2024-10-09_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:53:52
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 44, in get_distillation_data
+    df = df[~df['taskformer-model-13b-input'].isna()]
+             ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-09/2024-10-09_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-09
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-09/2024-10-09_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-09/raw/single_True_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-09/2024-10-09_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-14 20:54:06
+[INFO] duration: 0 min 
+[INFO] Processing date: 2024-10-10
+[2024-10-14 20:54:06] ./run_weekly_car_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-10/2024-10-10_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:54:06
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 44, in get_distillation_data
+    df = df[~df['taskformer-model-13b-input'].isna()]
+             ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-10/2024-10-10_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-10
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-10/2024-10-10_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-10/raw/single_True_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-10/2024-10-10_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-14 20:54:18
+[INFO] duration: 0 min 
+[INFO] Processing date: 2024-10-11
+[2024-10-14 20:54:18] ./run_weekly_car_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-11/2024-10-11_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:54:18
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 44, in get_distillation_data
+    df = df[~df['taskformer-model-13b-input'].isna()]
+             ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-11/2024-10-11_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-11
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-11/2024-10-11_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation_car/2024-10-11/raw/single_True_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data-car/2024-10-11/2024-10-11_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-14 20:54:31
+[INFO] duration: 0 min 

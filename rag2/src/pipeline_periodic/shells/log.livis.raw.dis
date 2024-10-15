@@ -1,0 +1,60 @@
+[INFO] Processing date: 2024-10-08
+[2024-10-14 20:53:40] ./run_weekly_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-08/prod/2024-10-08_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:53:40
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:302: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-08/prod/2024-10-08_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-08
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-08/prod/2024-10-08_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_True_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_True_rag_True/split_data/chunk_1.csv
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-14 20:53:59
+[INFO] duration: 0 min 
+[INFO] Processing date: 2024-10-09
+[2024-10-14 20:53:59] ./run_weekly_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-09/prod/2024-10-09_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:53:59
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:302: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-09/prod/2024-10-09_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-09
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-09/prod/2024-10-09_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_True_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_True_rag_True/split_data/chunk_1.csv
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-14 20:54:15
+[INFO] duration: 0 min 
+[INFO] Processing date: 2024-10-10
+[2024-10-14 20:54:15] ./run_weekly_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-10/prod/2024-10-10_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:54:15
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:302: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-10/prod/2024-10-10_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-10
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-10/prod/2024-10-10_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/raw/single_True_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/raw/single_True_rag_True/split_data/chunk_1.csv
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-14 20:54:30
+[INFO] duration: 0 min 
+[INFO] Processing date: 2024-10-11
+[2024-10-14 20:54:30] ./run_weekly_distillation_log_raw_single_rag2.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-11/prod/2024-10-11_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 20:54:30
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:302: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Arguments: Namespace(is_single_flag=True, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_单轮RAG日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-11/prod/2024-10-11_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-11
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-11/prod/2024-10-11_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/raw/single_True_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/raw/single_True_rag_True/split_data/chunk_1.csv
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-14 20:54:44
+[INFO] duration: 0 min 
