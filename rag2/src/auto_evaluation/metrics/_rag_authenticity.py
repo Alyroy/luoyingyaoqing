@@ -111,7 +111,7 @@ class AuthenticityEval(BaseModelEval):
             response_sorted = sorted(response_dict.items(), key=lambda x: x[0], reverse=False)
             response_sorted_list = [x[1] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
         return response_sorted_list
     
     def result_sorted_byindex(self, responses):
@@ -120,7 +120,7 @@ class AuthenticityEval(BaseModelEval):
             response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
             response_sorted_list = [x["response"] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
         return response_sorted_list
     
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
@@ -167,7 +167,7 @@ class AuthenticityEval(BaseModelEval):
                     url = url, # 智能云GPT api
                     temperature = temperature,
                     top_p = 0.9,
-                    max_tokens = 2048, # 最大输出长度
+                    max_tokens = 8000, # 最大输出长度
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名
@@ -186,13 +186,17 @@ class AuthenticityEval(BaseModelEval):
             for resp in response_sorted_list:
                 truth_score = self.result_parse(resp) # 解析模型回复
                 truth_backup = self.parse_backup(resp) # 兜底回复均为0
-                truth_result_tmp = 0 if truth_score == 0 or truth_backup==1 else 1
+                if truth_backup == 1:
+                    truth_result_tmp = 0
+                else:
+                    truth_result_tmp = truth_score
+                # truth_result_tmp = 0 if truth_score == 0 or truth_backup==1 or truth_backup==-2 else 1
                 truth_result.append(truth_result_tmp)
             truth_reason = response_sorted_list
         except Exception as e:
             truth_result = [-1 for _ in range(len(df))]
             truth_reason = ['nan' for _ in range(len(df))]
-            self.logger.error("error while authenticity eval:{}".format(e))
+            print("error while authenticity eval:{}".format(e))
         return truth_result, truth_reason
 
 authenticityEval = AuthenticityEval("authenticity_eval")

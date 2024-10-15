@@ -3,7 +3,8 @@ pip install git+https://github.com/huggingface/accelerate
 pip install https://test-space-internal-cache.s3.bj.bcebos.com/cache/ssai-training/litiktoken/litiktoken-0.0.1-py3-none-any.whl
 pip install aiohttp
 pip install pyltp
-pip install vllm==0.5.3.post1
+# pip install vllm==0.5.3.post1
+pip install vllm==0.6.2
 pip install blobfile
 
 # 评估候选模型
