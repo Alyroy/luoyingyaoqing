@@ -5,9 +5,13 @@ from utils.vote_strategy import vote_strategy
 from base.base_eval import BaseModelEval
 from metrics import (
     authenticityEval,
+    authenticityEval2,
     relResponseEval,
     unknowEval,
-    instructFollowEval
+    instructFollowEval,
+    avoidnegEval,
+    authenticityTestAPIEval,
+    relResponseTestAPIEval
 )
 
 sys.path.append("..")
@@ -24,11 +28,23 @@ METRIC_DICT = {
     "authenticity":{
         "function":authenticityEval,
     },
+    "authenticity2":{
+        "function":authenticityEval2,
+    },
+    "authenticity_test_api_eval":{
+        "function":authenticityTestAPIEval,
+    },
+    "relevance_test_api_eval":{
+        "function":relResponseTestAPIEval,
+    },
     "unknow":{
         "function":unknowEval
     },
     "instruct_follow":{
         'function':instructFollowEval
+    },
+    "follow_avoid_neg":{
+        'function':avoidnegEval
     }
 }
 
@@ -40,7 +56,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     result_list = []
     for i in range(len(model_list)):
         model = model_list[i]
-        assert model in ['qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
+        assert model in ['', 'qwen2-72b', 'llama3-70b', 'qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
         print("---------------------------------\n正在使用", model, "进行评估\n---------------------------------")
         url = url_list[i]
         assert metric in METRIC_DICT, "metric name is not right!!!"
@@ -83,7 +99,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     filename, _ = os.path.splitext(os.path.basename(input_file))
-    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False)
+    df.to_csv(os.path.join(output_dir, f'{filename}_auto_eval_{metric}.csv'), index=False, encoding='utf-8-sig')
     return result_list, final_scores
 
 
@@ -118,7 +134,7 @@ if __name__ == "__main__":
     # 如果是文件夹
     # try:
     if os.path.isdir(file):
-        files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f]
+        files = [file+f for f in os.listdir(file) if '.ipynb_checkpoints' not in f and '.done' not in f and '.csv' in f]
         for input_file in files:
             print("--------------------------------------------\n正在评估 ", input_file, "\n--------------------------------------------")
             results, final_scores = evaluate(
