@@ -9,6 +9,7 @@ from base.base_eval import BaseModelEval
 sys.path.append('../../')
 from tool_llm_response.call_llm_with_zny import CallLLMByZny,ZnyConfig
 from tool_llm_response.call_llm_with_vllm import CallLLMByVllm,VllmConfig
+import warnings
 
 class AuthenticityEval(BaseModelEval):
     def __init__(self, task_name):
@@ -51,12 +52,14 @@ class AuthenticityEval(BaseModelEval):
             context = get_context_result_from_16b_input(request)
             obs = parser_obs(request)
             response = df.iloc[i][ans_col]
-            instruction = "以上就是模型生成的内容，请你根据给出的问题和参资料，将其切分为多个最小粒度的原子信息并按照相关性划分等级然后进行准确性评估。"
+            # instruction = "以上就是模型生成的内容，请你根据给出的问题和参资料，将其切分为多个最小粒度的原子信息并按照相关性划分等级然后进行准确性评估。"
+            instruction = "以上就是模型生成的内容，请你根据给出的问题和参考答案进行准确性评估。"
             if len(context)>0:
                 # prompt = "\n".join([common_prompt_info + "\n", "历史对话：",context, "问题：", query, '参考资料：', obs, '生成内容：', response.strip(), instruction])
-                prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n参考资料：{obs}\n生成内容：{response.strip()}\n{instruction}"
+                prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n参考答案：{obs}\n生成内容：{response.strip()}\n{instruction}"
             else:
-                prompt = f"{common_prompt_info}\n问题：{query}\n参考资料：{obs}\n生成内容：{response.strip()}\n{instruction}"
+                # prompt = f"{common_prompt_info}\n问题：{query}\n参考答案：{obs}\n生成内容：{response.strip()}\n{instruction}"
+                prompt = "\n".join([common_prompt_info + "\n", "问题：", str(query), '参考答案：', str(obs), '生成内容：', str(response).strip(), instruction])
             prompts_ls.append(prompt)
         df['llm_prompts'] = prompts_ls
         return df
@@ -81,9 +84,54 @@ class AuthenticityEval(BaseModelEval):
             return ret
         except:
             return -1
+    
+    def result_truth_parse(self, response):
+        """
+        解析真实性打分
+        """
+        if "<|wrong data|>" in response:
+            warnings.warn("注意：当前例子真实性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低", UserWarning)
+            print("注意：当前例子真实性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低")
+            return [-2]
 
+        eval_data = re.search("准确性评估(.*?)兜底回复", response.replace("\n","").strip())
+        if eval_data == None:
+            warnings.warn('警告，Qwen进行当前例子真实性评估无法被解析，请检查原因，常见原因1：max_generate设置过短，评估没有完成；2：评估没有遵循指令。可能导致最终结果偏低', UserWarning)
+            print('警告，Qwen进行当前例子真实性评估无法被解析，请检查原因，常见原因1：max_generate设置过短，评估没有完成；2：评估没有遵循指令。可能导致最终结果偏低')
+            return [-3]
+        
+        # 正常情况
+        try:
+            eval_score = re.findall("【(\d*?)】",eval_data.group(1))
+            eval_result = [int(float(x)) for x in eval_score]
+            return eval_result
+        except:
+            return []
 
-    def parse_backup(self,response):
+    def result_truth_parse_todo(self, response):
+        """
+        解析待定状态的真实性打分
+        """
+        if "<|wrong data|>" in response:
+            warnings.warn("注意：评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低", UserWarning)
+            print("注意：评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低")
+            return [-2]
+
+        eval_data = re.search("准确性评估(.*?)兜底回复", response.replace("\n","").strip())
+        if eval_data == None:
+            warnings.warn('警告，Qwen评估无法被解析，请检查原因，常见原因1：max_generate设置过短，评估没有完成；2：评估没有遵循指令。可能导致最终结果偏低', UserWarning)
+            print('警告，Qwen评估无法被解析，请检查原因，常见原因1：max_generate设置过短，评估没有完成；2：评估没有遵循指令。可能导致最终结果偏低')
+            return [-3]
+        
+        # 正常情况
+        try:
+            eval_score = re.findall("「(\d*?)」",eval_data.group(1))
+            eval_result = [int(float(x)) for x in eval_score]
+            return eval_result
+        except:
+            return []
+
+    def parse_backup(self, response):
         """
         解析兜底数据
         """
@@ -111,7 +159,7 @@ class AuthenticityEval(BaseModelEval):
             response_sorted = sorted(response_dict.items(), key=lambda x: x[0], reverse=False)
             response_sorted_list = [x[1] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
         return response_sorted_list
     
     def result_sorted_byindex(self, responses):
@@ -120,7 +168,7 @@ class AuthenticityEval(BaseModelEval):
             response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
             response_sorted_list = [x["response"] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
         return response_sorted_list
     
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
@@ -167,7 +215,7 @@ class AuthenticityEval(BaseModelEval):
                     url = url, # 智能云GPT api
                     temperature = temperature,
                     top_p = 0.9,
-                    max_tokens = 2048, # 最大输出长度
+                    max_tokens = 10000, # 最大输出长度
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名
@@ -182,17 +230,24 @@ class AuthenticityEval(BaseModelEval):
             response_sorted_list = self.result_sorted_byindex(responses)
             df_with_prompts = df_with_prompts.drop(columns=[index_name])
             
-            truth_result = []
+            truth_result_list = []
             for resp in response_sorted_list:
-                truth_score = self.result_parse(resp) # 解析模型回复
-                truth_backup = self.parse_backup(resp) # 兜底回复均为0
-                truth_result_tmp = 0 if truth_score == 0 or truth_backup==1 else 1
-                truth_result.append(truth_result_tmp)
+                result_truth = self.result_truth_parse(resp) # 解析模型回复
+                result_truth_todo = self.result_truth_parse_todo(resp)
+                truth_score = 1 if 0 not in result_truth and 0 not in result_truth_todo and result_truth!=[-2] and result_truth!=[-3] and result_truth_todo!=[-2] and result_truth_todo!=[-3] else 0
+                backup_score = self.parse_backup(resp) # 兜底回复均为0
+                truth_result_tmp = 0 if  truth_score == 0 or backup_score==1 else 1
+                # if truth_backup == 1:
+                #     truth_result_tmp = 0
+                # else:
+                #     truth_result_tmp = truth_score
+                # truth_result_tmp = 0 if truth_score == 0 or truth_backup==1 or truth_backup==-2 else 1
+                truth_result_list.append(truth_result_tmp)
             truth_reason = response_sorted_list
         except Exception as e:
-            truth_result = [-1 for _ in range(len(df))]
+            truth_result_list = [-1 for _ in range(len(df))]
             truth_reason = ['nan' for _ in range(len(df))]
-            self.logger.error("error while authenticity eval:{}".format(e))
-        return truth_result, truth_reason
+            print("error while authenticity eval:{}".format(e))
+        return truth_result_list, truth_reason
 
 authenticityEval = AuthenticityEval("authenticity_eval")

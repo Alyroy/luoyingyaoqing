@@ -156,7 +156,7 @@ class AuthenticityTestAPIEval(BaseModelEval):
                     url = url, # 智能云GPT api
                     temperature = temperature,
                     top_p = 0.9,
-                    max_tokens = 8000, # 最大输出长度
+                    max_tokens = 10000, # 最大输出长度
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名

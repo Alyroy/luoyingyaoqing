@@ -16,10 +16,9 @@ save_column=相关性打分
 
 # 指标和prompt地址，二者需要同时修改
 # [authenticity, relevance] 
-metric=relevance
+metric=relevance_test_api_eval
 # prompt_path=/mnt/pfs-guan-ssai/nlu/nlu/renhuimin/rag_tool/rag2.0/src/auto_evaluation/prompts/relevance-prompts-resp.txt
-# prompt_path=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/prompts/common-relevance.txt
-prompt_path=/mnt/pfs-guan-ssai/nlu/zhouwenjie/llm_auto_evaluation/prompts/qwen-relevance.txt
+prompt_path=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/prompts/common-relevance.txt
 
 # prompt拼接方式
 # user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)
@@ -29,7 +28,7 @@ thread_num=20
 # chunk数
 chunk_num=5
 # 模型的temperature值
-temperature=0.0
+temperature=0.1
 
 
 python evaluation.py  \

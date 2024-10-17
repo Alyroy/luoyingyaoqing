@@ -6,8 +6,8 @@ EVAL_OUTPUT_DIR_REL=$4
 
 cd $CURRENT_DIR
 
-QWEN_URL=$(< /mnt/pfs-guan-ssai/nlu/gongwuxuan/public/Qwen2_72B_running_url.log)/v1/
-model_list=("qwen2_72b")
+QWEN_URL=$(< /mnt/pfs-guan-ssai/nlu/chihuixuan/rag_tool/rag2/src/auto_evaluation/public/Qwen2_72B_running_url.log)/v1/
+model_list=("qwen2-72b")
 url_list=("${QWEN_URL}")
 
 # 评估列表，即query obs ans的自定义列名 or 日志列、输出列、输出列
@@ -18,7 +18,8 @@ save_column=真实性打分
 # [authenticity, relevance] 
 metric=authenticity
 # prompt_path=/mnt/pfs-guan-ssai/nlu/nlu/renhuimin/rag_tool/rag2.0/src/auto_evaluation/prompts/authenticity-prompts-rag.txt
-prompt_path=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/prompts/common-truthful.txt
+# prompt_path=/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/prompts/common-truthful.txt
+prompt_path=/mnt/pfs-guan-ssai/nlu/zhouwenjie/llm_auto_evaluation/prompts/common-truthful_v3.txt
 
 # prompt拼接方式
 # user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)
@@ -28,7 +29,7 @@ thread_num=20
 # chunk数
 chunk_num=5
 # 模型的temperature值
-temperature=0.1
+temperature=0.0
 
 python evaluation.py  \
     --model_list "${model_list[@]}" \

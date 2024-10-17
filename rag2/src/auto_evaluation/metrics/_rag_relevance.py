@@ -10,6 +10,7 @@ from base.base_eval import BaseModelEval
 sys.path.append('../../')
 from tool_llm_response.call_llm_with_zny import CallLLMByZny,ZnyConfig
 from tool_llm_response.call_llm_with_vllm import CallLLMByVllm,VllmConfig
+import warnings
 
 class RelevanceEval(BaseModelEval):
     def __init__(self, task_name):
@@ -52,7 +53,8 @@ class RelevanceEval(BaseModelEval):
             if len(context)>0:
                 prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
             else:
-                prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
+                # prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
+                prompt = "\n".join([common_prompt_info,"\n问题：",str(query).strip(),"答案：",str(response).strip(), instruction])
             prompts_ls.append(prompt)
             if i == 1500:
                 pass
@@ -77,6 +79,23 @@ class RelevanceEval(BaseModelEval):
             self.logger.error("[rel-eval]:结果解析失败！")
             rel_pred = -1
         return rel_pred
+    
+    def relevance_parse(self, eval_res):
+        if "<|wrong data|>" in eval_res:
+            warnings.warn("注意：当前例子相关性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低", UserWarning)
+            print("注意：当前例子相关性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低")
+            return [-2]
+        try:
+            eval_data = re.findall("【(\d*?)】",eval_res.replace("\n","").strip())
+            eval_score = [int(float(x)) for x in eval_data]
+            eval_result = [False if x<=3 else True for x in eval_score]
+            # print(eval_result)
+            if False in eval_result:
+                return 0
+            else:
+                return 1
+        except:
+            return -1
 
 
     def parse_backup(self,response):
@@ -87,6 +106,21 @@ class RelevanceEval(BaseModelEval):
             return -2
         try:
             patterns = [r'原子信息：(.*?)是否为兜底回复：', r'是否为兜底回复：【(.*?)】']
+            match_backup = re.search(patterns[1], response.replace("\n", ""))
+            result = int(match_backup.group(1))
+        except:
+            return -2
+        return result
+    
+    def rel_parse_backup(self, response):
+        """
+        解析兜底数据
+        """
+        response = str(response)
+        if "<|wrong data|>" in response:
+            return -2
+        try:
+            patterns = [r'原子信息：(.*?)是否为兜底回复：', r'兜底评估：{{(.*?)}}']
             match_backup = re.search(patterns[1], response.replace("\n", ""))
             result = int(match_backup.group(1))
         except:
@@ -176,7 +210,7 @@ class RelevanceEval(BaseModelEval):
                     url = url, # 智能云GPT api
                     temperature = temperature,
                     top_p = 0.9,
-                    max_tokens = 2048, # 最大输出长度
+                    max_tokens = 10000, # 最大输出长度
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名
@@ -193,13 +227,14 @@ class RelevanceEval(BaseModelEval):
             # rel_result = [self.result_parse(resp) for resp in response_sorted_list]
             rel_result = []
             for resp in response_sorted_list:
-                if eval_mode!='model_13b_log':
-                    rel_score = self.result_parse(resp) # 解析模型回复
-                    rel_backup = self.parse_backup(resp) # 兜底回复均为0
-                    rel_result_tmp = 0 if rel_score == 0 or rel_backup==1 else 1
+                if eval_mode == 'model_13b_log':
+                    rel_score = self.relevance_parse(resp) # 解析模型回复
+                    rel_backup = self.rel_parse_backup(resp) # 兜底回复均为0
+                    rel_result_tmp = 0 if rel_score==0 or rel_score==-1 or rel_score==[-2] or rel_backup==1 else 1
+                    # rel_result_tmp = 0 if rel_score == 0 or rel_backup==1 else 1
                     rel_result.append(rel_result_tmp)
                 else:
-                    rel_result_tmp = self.log_relevance_parse(resp) # 针对log评估的解析方法
+                    rel_result_tmp = self.log_relevance_parse(resp) # 针对log评估的解析方法 # log_relevance_parse
                     rel_result.append(rel_result_tmp)
             rel_reason = response_sorted_list
         except Exception as e:
