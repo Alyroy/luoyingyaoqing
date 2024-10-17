@@ -81,6 +81,7 @@ class CallLLMByTestAPI(object):
                 "config": {"url": self.config.url},
                 "eval_mode": "single",
                 "eval_data": [{
+                    "max_generate": self.config.max_tokens,
                     "query": row[self.config.query_column_name],
                     "input_text": row[self.config.model_input_column_name],
                     "response": row[self.config.predict_column_name]
@@ -92,6 +93,7 @@ class CallLLMByTestAPI(object):
                 "config": {"url": self.config.url},
                 "eval_mode": "single",
                 "eval_data": [{
+                    "max_generate": self.config.max_tokens,
                     "query": row[self.config.query_column_name],
                     "input_text_type": self.config.input_text_type,
                     "input_text": row[self.config.model_input_column_name],
