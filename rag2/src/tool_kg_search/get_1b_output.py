@@ -58,10 +58,10 @@ class LinluResult(object):
 
 
 class ApiResult(object):
-    def __init__(self, category: str, query: str, url: str = "http://172.24.139.95:16073/ligpt_with_api/search") -> None:
+    def __init__(self, category: str, query: list, url: str = "http://172.24.139.47:16073/ligpt_with_api/search") -> None:
         """
         category:"QASearch","AUTOSearch","AIPainting","TaskMaster","MEDIASearch","other_vision","other_origin"
-        query: str
+        query: list
         """
         self.category = category
         self.query = query
@@ -78,7 +78,7 @@ class ApiResult(object):
         """
         payload = json.dumps({
           "prompt_id": self.category,
-          "query": [self.query]
+          "query": self.query
         })
         headers = {
           'Content-Type': 'application/json'
@@ -94,9 +94,11 @@ def get_thought_api(query, url):
     """
     解析1b接口
     """
+    if isinstance(query, str):
+        query = [query]
     try:
         # 获取apiname
-        linlu_tool = LinluResult(query)
+        linlu_tool = LinluResult(query[-1])
         category = linlu_tool.get_api_name()
 
         # 获取1b结果

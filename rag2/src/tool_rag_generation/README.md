@@ -8,3 +8,13 @@
 3. dataformat_obj.gen_sft_data(df) # 生成jsonl
 4. dataformat_obj.gen_sft_unused_data(df) # 生成最终训练数据格式 json
 5.  dataformat_obj.gen_dpo_unused_data(df) # 生成最终训练数据格式，必须包含chosen，rejected字段
+
+### 数据格式说明
+|key|数据结构|描述|
+|---|---|---|
+|**user-query**|str|**用户query**|
+|**assistant**|str|**线上回复**|
+|**api**|list[dict]|**API**|
+|**thought**|str|**thought**|
+|**observation**|list[list[str]]|**observation**|
+|**context**|list[dict[str, str]]|**上文信息**|

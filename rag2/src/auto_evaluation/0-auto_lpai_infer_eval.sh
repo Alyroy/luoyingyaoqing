@@ -12,8 +12,8 @@ HF_MODEL_CKPT_DIR=${MODEL_CKPT_DIR}/hf_model
 TRAIN_MODEL_DIR=/mnt/pfs-guan-ssai/nlu/renhuimin/lisft/
 QUEUE_NAME="app-bd" # GPU机群队列名
 
-echo sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME
-sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME
+echo sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME $CURRENT_DIR
+# sh auto_lizrun_lpai_trans_hf_model.sh $TRAIN_MODEL_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR $QUEUE_NAME $CURRENT_DIR
 
 # 2. 启动推理脚本
 M_CNT=1 # GPU机数

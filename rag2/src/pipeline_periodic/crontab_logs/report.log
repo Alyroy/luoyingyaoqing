@@ -1,0 +1,964 @@
+[2024-08-22 18:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-19/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-24 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-21/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-25 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-22/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-26 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-23/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-27 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-24/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-28 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-25/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-29 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-26/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-08-26', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+[2024-08-29 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-26/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-08-26', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+[2024-08-30 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-27/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-08-31 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-28/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-08-28', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-28/raw/single_True_rag_True/2024-08-28_log_data.csv'
+[2024-08-31 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-28/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-01 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-29/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-08-29', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-29/raw/single_True_rag_True/2024-08-29_log_data.csv'
+[2024-09-01 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-29/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-02 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-30/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-08-30', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-30/raw/single_True_rag_True/2024-08-30_log_data.csv'
+[2024-09-02 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-30/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-03 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-31/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-08-31', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-31/raw/single_True_rag_True/2024-08-31_log_data.csv'
+[2024-09-03 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-08-31/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-04 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-01/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-01', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-01/raw/single_True_rag_True/2024-09-01_log_data.csv'
+[2024-09-04 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-01/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-05 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-02/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-02', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-02/raw/single_True_rag_True/2024-09-02_log_data.csv'
+[2024-09-05 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-02/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-06 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-03/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-03', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-03/raw/single_True_rag_True/2024-09-03_log_data.csv'
+[2024-09-06 08:00:05] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-03/extension/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-07 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-04/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-08 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-05/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-05', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-05/raw/single_True_rag_True/2024-09-05_log_data.csv'
+[2024-09-08 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-05/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-05', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-05/extension/single_True_rag_True/2024-09-05_log_data.csv'
+[2024-09-09 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-06/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-06', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-06/raw/single_True_rag_True/2024-09-06_log_data.csv'
+[2024-09-09 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-06/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-06', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-06/extension/single_True_rag_True/2024-09-06_log_data.csv'
+[2024-09-10 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-07/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-07', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-07/raw/single_True_rag_True/2024-09-07_log_data.csv'
+[2024-09-10 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-07/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-07', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-07/extension/single_True_rag_True/2024-09-07_log_data.csv'
+[2024-09-11 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-08/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-08', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-08/raw/single_True_rag_True/2024-09-08_log_data.csv'
+[2024-09-11 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-08/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-08', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-08/extension/single_True_rag_True/2024-09-08_log_data.csv'
+/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh: line 7: cd: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/weekly_run/: No such file or directory
+/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh: line 8: common/periodical_job_template.sh: No such file or directory
+/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh: line 10: common/common_scripts.sh: No such file or directory
+/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh: line 26: PrintLog: command not found
+[2024-09-13 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-10/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-10', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-10/raw/single_True_rag_True/2024-09-10_log_data.csv'
+[2024-09-13 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-10/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-10', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-10/extension/single_True_rag_True/2024-09-10_log_data.csv'
+[2024-09-14 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-11/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-11', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-11/raw/single_True_rag_True/2024-09-11_log_data.csv'
+[2024-09-14 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-11/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-11', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-11/extension/single_True_rag_True/2024-09-11_log_data.csv'
+[2024-09-15 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-12/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-12', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-12/raw/single_True_rag_True/2024-09-12_log_data.csv'
+[2024-09-15 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-12/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-12', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-12/extension/single_True_rag_True/2024-09-12_log_data.csv'
+[2024-09-16 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-13/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-17 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-14/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-18 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-15/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-19 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-16/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-20 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-17/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-21 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-18/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-18', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-18/raw/single_True_rag_True/2024-09-18_log_data.csv'
+[2024-09-21 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-18/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-18', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-18/extension/single_True_rag_True/2024-09-18_log_data.csv'
+[2024-09-22 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-19/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-19', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-19/raw/single_True_rag_True/2024-09-19_log_data.csv'
+[2024-09-22 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-19/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-19', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-19/extension/single_True_rag_True/2024-09-19_log_data.csv'
+[2024-09-23 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-20/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-20', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-20/raw/single_True_rag_True/2024-09-20_log_data.csv'
+[2024-09-23 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-20/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-20', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-20/extension/single_True_rag_True/2024-09-20_log_data.csv'
+[2024-09-24 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-21/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-21', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-21/raw/single_True_rag_True/2024-09-21_log_data.csv'
+[2024-09-24 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-21/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-21', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-21/extension/single_True_rag_True/2024-09-21_log_data.csv'
+[2024-09-25 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-22/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-22', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-22/raw/single_True_rag_True/2024-09-22_log_data.csv'
+[2024-09-25 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-22/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-22', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-22/extension/single_True_rag_True/2024-09-22_log_data.csv'
+[2024-09-26 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-23/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-23', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 30, in cal_stats
+    raise f"{target_date} {log_type} 蒸馏数据为空"
+TypeError: exceptions must derive from BaseException
+[2024-09-26 08:00:04] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-23/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-23', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-23/extension/single_True_rag_True/2024-09-23_log_data.csv'
+[2024-09-27 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-24/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-24', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-24/raw/single_True_rag_True/2024-09-24_log_data.csv'
+[2024-09-27 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-24/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-09-24', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-24/extension/single_True_rag_True/2024-09-24_log_data.csv'
+[2024-09-28 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-25/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-29 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-26/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-09-30 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-27/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-01 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-28/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-02 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-29/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-03 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-09-30/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-04 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-01/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-05 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-02/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-06 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-03/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-07 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-04/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-08 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-05/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-09 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-06/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-10 08:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-07/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-11 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-08/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-10-08', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-08/raw/single_True_rag_True/2024-10-08_log_data.csv'
+[2024-10-11 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-08/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-10-08', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-08/extension/single_True_rag_True/2024-10-08_log_data.csv'
+[2024-10-12 08:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-09/raw/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-10-09', log_type='raw', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-09/raw/single_True_rag_True/2024-10-09_log_data.csv'
+[2024-10-12 08:00:03] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-09/extension/single_True_rag_True/correct_filter_output/.done is ready.
+Namespace(target_date='2024-10-09', log_type='extension', single_rag_type='single_True_rag_True', infolder='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/')
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 83, in <module>
+    cal_stats(args.target_date,args.log_type,args.single_rag_type,args.infolder)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/report.py", line 32, in cal_stats
+    raw_df = pd.read_csv(f'{infolder}/{target_date}/{log_type}/{single_rag_type}/{target_date}_log_data.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-09/extension/single_True_rag_True/2024-10-09_log_data.csv'
+[2024-10-13 00:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-10/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-14 00:00:02] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-11/raw/single_True_rag_True/correct_filter_output/.done is not ready.
+[2024-10-15 00:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_report.sh:56  /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation//2024-10-12/raw/single_True_rag_True/correct_filter_output/.done is not ready.

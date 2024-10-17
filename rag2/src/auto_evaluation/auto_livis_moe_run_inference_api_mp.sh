@@ -3,7 +3,8 @@ pip install git+https://github.com/huggingface/accelerate
 pip install https://test-space-internal-cache.s3.bj.bcebos.com/cache/ssai-training/litiktoken/litiktoken-0.0.1-py3-none-any.whl
 pip install aiohttp
 pip install pyltp
-pip install vllm==0.5.3.post1
+# pip install vllm==0.5.3.post1
+pip install vllm==0.6.2
 pip install blobfile
 
 # 评估候选模型
@@ -22,4 +23,4 @@ tiktoken_model_path=/mnt/pfs-guan-ssai/nlu/lvjianwei/models/MindGPT-2.0-32K/toke
 
 python livis_moe_inference_assistant_mp.py --input_file ${INPUT_DIR} --output_path ${OUTPUT_DIR} --model ${EVAL_MODEL} --tiktoken_path ${tiktoken_model_path} --time_stamp ${EVAL_TIMESTAMP} --batch_size 5 --turn_mode moe --eval_col ${EVAL_COL}
 
-echo "完成所有文件的推理" > ${OUTPUT_DIR}/.done
+echo "完成所有文件的推理" > ${OUTPUT_DIR}/${EVAL_TIMESTAMP}/.done
