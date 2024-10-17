@@ -10,9 +10,10 @@ from base.base_eval import BaseModelEval
 sys.path.append('../../')
 from tool_llm_response.call_llm_with_zny import CallLLMByZny,ZnyConfig
 from tool_llm_response.call_llm_with_vllm import CallLLMByVllm,VllmConfig
-import warnings
+from tool_llm_response.call_llm_with_test_api import CallLLMByTestAPI,TestAPIConfig
+import json
 
-class RelevanceEval(BaseModelEval):
+class RelevanceTestAPIEval(BaseModelEval):
     def __init__(self, task_name):
         super().__init__(task_name)
 
@@ -53,47 +54,22 @@ class RelevanceEval(BaseModelEval):
             if len(context)>0:
                 prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
             else:
-                # prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
-                prompt = "\n".join([common_prompt_info,"\n问题：",str(query).strip(),"答案：",str(response).strip(), instruction])
+                prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
             prompts_ls.append(prompt)
             if i == 1500:
                 pass
         df['llm_prompts'] = prompts_ls
         return df
-
-    def result_parse(self,response):
-        if "<|wrong data|>" in response:
-            return -2
-        try:
-            responses_parser = re.findall(r"{{(.*?)}}", response, re.S)
-            score_str = responses_parser[0] if len(responses_parser) == 3 else -1
-            score = float(score_str)
-            if score == -1:
-                rel_pred = -1
-            elif score > 3:
-                rel_pred = 1
-            else:
-                rel_pred = 0
-            # rel_pred = 1 if score > 3 else 0 # 评分为1-5，大于3则评估为相关，否则不相关
-        except:
-            self.logger.error("[rel-eval]:结果解析失败！")
-            rel_pred = -1
-        return rel_pred
     
-    def relevance_parse(self, eval_res):
-        if "<|wrong data|>" in eval_res:
-            warnings.warn("注意：当前例子相关性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低", UserWarning)
-            print("注意：当前例子相关性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低")
-            return [-2]
+    def result_parse(self,response):
+        """
+        解析相关性打分
+        """
         try:
-            eval_data = re.findall("【(\d*?)】",eval_res.replace("\n","").strip())
-            eval_score = [int(float(x)) for x in eval_data]
-            eval_result = [False if x<=3 else True for x in eval_score]
-            # print(eval_result)
-            if False in eval_result:
-                return 0
-            else:
-                return 1
+            eval_result = json.loads(response)
+            ele = eval_result['eval_results'][0]
+            ret = ele['pred_rel_score']
+            return ret
         except:
             return -1
 
@@ -104,28 +80,8 @@ class RelevanceEval(BaseModelEval):
         """
         if "<|wrong data|>" in response:
             return -2
-        try:
-            patterns = [r'原子信息：(.*?)是否为兜底回复：', r'是否为兜底回复：【(.*?)】']
-            match_backup = re.search(patterns[1], response.replace("\n", ""))
-            result = int(match_backup.group(1))
-        except:
-            return -2
-        return result
-    
-    def rel_parse_backup(self, response):
-        """
-        解析兜底数据
-        """
-        response = str(response)
-        if "<|wrong data|>" in response:
-            return -2
-        try:
-            patterns = [r'原子信息：(.*?)是否为兜底回复：', r'兜底评估：{{(.*?)}}']
-            match_backup = re.search(patterns[1], response.replace("\n", ""))
-            result = int(match_backup.group(1))
-        except:
-            return -2
-        return result
+        else:
+            return 0
         
 
     def log_relevance_parse(self, eval_res):
@@ -181,7 +137,7 @@ class RelevanceEval(BaseModelEval):
                 query_column_name = eval_column_list[0] # 如果不拼已有的prompt默认取第一个做eval
             elif eval_mode=='model_13b_log':
                 df_with_prompts = self.add_log_prompt(df, eval_column_list, prompt_path)
-                query_column_name = "llm_prompts"
+                query_column_name = "query"  # "llm_prompts"
             else:
                 raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
             
@@ -205,7 +161,7 @@ class RelevanceEval(BaseModelEval):
                 responses = call_zny.parser_model_response_index(merged_df, index_name)
             # 其余模型
             else:
-                config = VllmConfig(
+                config = TestAPIConfig(
                     model = model,
                     url = url, # 智能云GPT api
                     temperature = temperature,
@@ -214,9 +170,14 @@ class RelevanceEval(BaseModelEval):
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名
-                    response_column_name = 'assistant_89757'
+                    model_input_column_name='model_13b_input',
+                    predict_column_name='predict_output',
+                    response_column_name = 'assistant_89757',
+                    eval_task='qwen_relevance_eval',
+                    input_text_type='',
+                    test_api='http://172.24.139.92:31696/predict'
                 )
-                call_vllm = CallLLMByVllm(config)
+                call_vllm = CallLLMByTestAPI(config)
                 responses_tmp = call_vllm.model_request(df_with_prompts)
                 responses = call_vllm.parser_model_response_index(responses_tmp, index_name) # 格式转化
                 
@@ -227,15 +188,8 @@ class RelevanceEval(BaseModelEval):
             # rel_result = [self.result_parse(resp) for resp in response_sorted_list]
             rel_result = []
             for resp in response_sorted_list:
-                if eval_mode == 'model_13b_log':
-                    rel_score = self.relevance_parse(resp) # 解析模型回复
-                    rel_backup = self.rel_parse_backup(resp) # 兜底回复均为0
-                    rel_result_tmp = 0 if rel_score==0 or rel_score==-1 or rel_score==[-2] or rel_backup==1 else 1
-                    # rel_result_tmp = 0 if rel_score == 0 or rel_backup==1 else 1
-                    rel_result.append(rel_result_tmp)
-                else:
-                    rel_result_tmp = self.log_relevance_parse(resp) # 针对log评估的解析方法 # log_relevance_parse
-                    rel_result.append(rel_result_tmp)
+                rel_score = self.result_parse(resp) # 解析模型回复
+                rel_result.append(rel_score)
             rel_reason = response_sorted_list
         except Exception as e:
             rel_result = [-1 for _ in range(len(df))]
@@ -243,4 +197,4 @@ class RelevanceEval(BaseModelEval):
             self.logger.error("error while relevance eval:{}".format(e))
         return rel_result,rel_reason
 
-relResponseEval = RelevanceEval("relevance_eval")
+relResponseTestAPIEval = RelevanceTestAPIEval("relevance_test_api_eval")

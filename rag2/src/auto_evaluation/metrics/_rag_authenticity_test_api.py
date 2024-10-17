@@ -6,20 +6,22 @@ import random
 import string
 sys.path.append('../')
 from base.base_eval import BaseModelEval
-
 sys.path.append('../../')
 from tool_llm_response.call_llm_with_zny import CallLLMByZny,ZnyConfig
 from tool_llm_response.call_llm_with_vllm import CallLLMByVllm,VllmConfig
-import warnings
+from tool_llm_response.call_llm_with_test_api import CallLLMByTestAPI,TestAPIConfig
+import json
 
-class RelevanceEval(BaseModelEval):
+class AuthenticityTestAPIEval(BaseModelEval):
     def __init__(self, task_name):
         super().__init__(task_name)
+
 
     def read_prompt(self, path):
         with open(path, "r") as f:
             self.prompt = f.read().strip()
         assert self.prompt not in ['', 'nan'],"prompt is none!"
+
 
     def concat_prompt(self, df, eval_column_list, prompt_path): #生成prompts，并存入df prompts列
         '''
@@ -27,14 +29,15 @@ class RelevanceEval(BaseModelEval):
         '''
         self.read_prompt(prompt_path)
         query, obs, ans = eval_column_list
-        
-        # 使用apply函数拼接prompt，并存入prompts列
-        df['llm_prompts'] = df.apply(lambda row: f"{self.prompt}【数据输入】\n【query】\n{row[query]}\n【response】\n{row[ans]}\n【结果输出】", axis=1)
+        instruction = "以上就是模型生成的内容，请你根据给出的问题和参考资料，将其切分为多个最小粒度的原子信息并按照相关性划分等级然后进行准确性评估。"
+        # 使用apply函数拼接prompt与三列的数据，并存入prompts列
+        df['llm_prompts'] = df.apply(lambda row: f"{self.prompt}\n问题：{row[query]}\n参考资料：{row[obs]}\n生成内容：{row[ans]}\n{instruction}", axis=1)
         return df
+
 
     def add_log_prompt(self, df, eval_column_list, prompt_path):
         '''
-        解析log to date_time, location, context(user), assistant
+        解析log to date_time, location, context(user), observation, assistant
         1. 提取各个元素
         2. 拼接prompt
         '''
@@ -48,52 +51,28 @@ class RelevanceEval(BaseModelEval):
             common_prompt_info = self.prompt.replace("$$$date$$$",date_info).replace("$$$pos$$$",address_info) # 替换时间地点
             query = get_query_result_from_16b_input(request)
             context = get_context_result_from_16b_input(request)
+            obs = parser_obs(request)
             response = df.iloc[i][ans_col]
-            instruction = "请对以上的用户问题和大模型答案进行相关性分析，并输出相关性评估结果。"
+            instruction = "以上就是模型生成的内容，请你根据给出的问题和参资料，将其切分为多个最小粒度的原子信息并按照相关性划分等级然后进行准确性评估。"
             if len(context)>0:
-                prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
+                # prompt = "\n".join([common_prompt_info + "\n", "历史对话：",context, "问题：", query, '参考资料：', obs, '生成内容：', response.strip(), instruction])
+                prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n参考资料：{obs}\n生成内容：{response.strip()}\n{instruction}"
             else:
-                # prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
-                prompt = "\n".join([common_prompt_info,"\n问题：",str(query).strip(),"答案：",str(response).strip(), instruction])
+                prompt = f"{common_prompt_info}\n问题：{query}\n参考资料：{obs}\n生成内容：{response.strip()}\n{instruction}"
             prompts_ls.append(prompt)
-            if i == 1500:
-                pass
         df['llm_prompts'] = prompts_ls
         return df
+        
 
     def result_parse(self,response):
-        if "<|wrong data|>" in response:
-            return -2
+        """
+        解析真实性打分
+        """
         try:
-            responses_parser = re.findall(r"{{(.*?)}}", response, re.S)
-            score_str = responses_parser[0] if len(responses_parser) == 3 else -1
-            score = float(score_str)
-            if score == -1:
-                rel_pred = -1
-            elif score > 3:
-                rel_pred = 1
-            else:
-                rel_pred = 0
-            # rel_pred = 1 if score > 3 else 0 # 评分为1-5，大于3则评估为相关，否则不相关
-        except:
-            self.logger.error("[rel-eval]:结果解析失败！")
-            rel_pred = -1
-        return rel_pred
-    
-    def relevance_parse(self, eval_res):
-        if "<|wrong data|>" in eval_res:
-            warnings.warn("注意：当前例子相关性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低", UserWarning)
-            print("注意：当前例子相关性评估不满足要求，为<wrong data>，请检查原因，是否Qwen部署或调用失败。可能导致结果偏低")
-            return [-2]
-        try:
-            eval_data = re.findall("【(\d*?)】",eval_res.replace("\n","").strip())
-            eval_score = [int(float(x)) for x in eval_data]
-            eval_result = [False if x<=3 else True for x in eval_score]
-            # print(eval_result)
-            if False in eval_result:
-                return 0
-            else:
-                return 1
+            eval_result = json.loads(response)
+            ele = eval_result['eval_results'][0]
+            ret = ele['pred_truth_score']
+            return ret
         except:
             return -1
 
@@ -104,48 +83,14 @@ class RelevanceEval(BaseModelEval):
         """
         if "<|wrong data|>" in response:
             return -2
-        try:
-            patterns = [r'原子信息：(.*?)是否为兜底回复：', r'是否为兜底回复：【(.*?)】']
-            match_backup = re.search(patterns[1], response.replace("\n", ""))
-            result = int(match_backup.group(1))
-        except:
-            return -2
-        return result
-    
-    def rel_parse_backup(self, response):
-        """
-        解析兜底数据
-        """
-        response = str(response)
-        if "<|wrong data|>" in response:
-            return -2
-        try:
-            patterns = [r'原子信息：(.*?)是否为兜底回复：', r'兜底评估：{{(.*?)}}']
-            match_backup = re.search(patterns[1], response.replace("\n", ""))
-            result = int(match_backup.group(1))
-        except:
-            return -2
-        return result
+        else:
+            return 0
         
 
-    def log_relevance_parse(self, eval_res):
-        """
-        解析log评估，评估的角度必须全部为5
-        """
-        try:
-            eval_data = re.findall("【(.*?)】",eval_res.replace("\n","").strip())
-            eval_score = [int(float(x)) for x in eval_data]
-            # print(eval_score)
-            eval_result = [False if x!=5 else True for x in eval_score]
-            # print(eval_result)
-            if False in eval_result:
-                return 0
-            else:
-                return 1
-        except:
-            return -1
-    
     def result_sorted(self, input_with_prompt, responses):
+        '''
+        根据原始输入文件的prompts列顺序，检查并纠正模型评估的response顺序
+        '''
         try:
             prompt_index = {v: k for k, v in enumerate(input_with_prompt)}
             query_list = [x['query'] for x in responses]
@@ -155,16 +100,16 @@ class RelevanceEval(BaseModelEval):
             response_sorted = sorted(response_dict.items(), key=lambda x: x[0], reverse=False)
             response_sorted_list = [x[1] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
         return response_sorted_list
-
+    
     def result_sorted_byindex(self, responses):
         try:
             prompt_index = {x["index"]: x for x in responses}
             response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
             response_sorted_list = [x["response"] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
         return response_sorted_list
     
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
@@ -181,10 +126,11 @@ class RelevanceEval(BaseModelEval):
                 query_column_name = eval_column_list[0] # 如果不拼已有的prompt默认取第一个做eval
             elif eval_mode=='model_13b_log':
                 df_with_prompts = self.add_log_prompt(df, eval_column_list, prompt_path)
-                query_column_name = "llm_prompts"
+                query_column_name = "query"  # "llm_prompts"
             else:
                 raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
             
+
             index_name = "eval_index-" +  ''.join(random.choice(string.ascii_lowercase) for _ in range(8)) 
             df_with_prompts[index_name] = [i+1 for i in range(df_with_prompts.shape[0])]
 
@@ -195,7 +141,7 @@ class RelevanceEval(BaseModelEval):
                     temperature = temperature, # llm输出温度，zny下的gpt4基本无效，因为是全球节点，还是会有随机性
                     max_retries = 5, # 调用gpt报错后最多重试 max_retries 次
                     qps = 5, # 多线程 or 异步多线程下，qps，不要超过5
-                    max_concurrent = 10, # 异步多线程参数，一般10或者20，太大会接口超过qps
+                    max_concurrent = 5, # 异步多线程参数，一般10或者20，太大会接口超过qps
                     asyncio_flag = False, # True=异步多线程，只能python调用；False=普通多线程，Jupyter或者python均可
                     query_column_name = query_column_name, # llm模型输入列名
                     response_column_name = 'assistant_89757' # llm模型输出列名
@@ -205,7 +151,7 @@ class RelevanceEval(BaseModelEval):
                 responses = call_zny.parser_model_response_index(merged_df, index_name)
             # 其余模型
             else:
-                config = VllmConfig(
+                config = TestAPIConfig(
                     model = model,
                     url = url, # 智能云GPT api
                     temperature = temperature,
@@ -214,33 +160,31 @@ class RelevanceEval(BaseModelEval):
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名
-                    response_column_name = 'assistant_89757'
+                    model_input_column_name='model_13b_input',
+                    predict_column_name='predict_output',
+                    response_column_name = 'assistant_89757',
+                    eval_task='qwen_authenticity_eval',
+                    input_text_type='default',
+                    test_api='http://172.24.139.92:31696/predict'
                 )
-                call_vllm = CallLLMByVllm(config)
+                call_vllm = CallLLMByTestAPI(config)
                 responses_tmp = call_vllm.model_request(df_with_prompts)
                 responses = call_vllm.parser_model_response_index(responses_tmp, index_name) # 格式转化
                 
             # 根据原始输入文件，检查responses是否顺序一致，不一致则按顺序对responses进行重排
+            # response_sorted_list = self.result_sorted(df_with_prompts[query_column_name].to_list(), responses)
             response_sorted_list = self.result_sorted_byindex(responses)
             df_with_prompts = df_with_prompts.drop(columns=[index_name])
-
-            # rel_result = [self.result_parse(resp) for resp in response_sorted_list]
-            rel_result = []
+            
+            truth_result = []
             for resp in response_sorted_list:
-                if eval_mode == 'model_13b_log':
-                    rel_score = self.relevance_parse(resp) # 解析模型回复
-                    rel_backup = self.rel_parse_backup(resp) # 兜底回复均为0
-                    rel_result_tmp = 0 if rel_score==0 or rel_score==-1 or rel_score==[-2] or rel_backup==1 else 1
-                    # rel_result_tmp = 0 if rel_score == 0 or rel_backup==1 else 1
-                    rel_result.append(rel_result_tmp)
-                else:
-                    rel_result_tmp = self.log_relevance_parse(resp) # 针对log评估的解析方法 # log_relevance_parse
-                    rel_result.append(rel_result_tmp)
-            rel_reason = response_sorted_list
+                truth_score = self.result_parse(resp) # 解析模型回复
+                truth_result.append(truth_score)
+            truth_reason = response_sorted_list
         except Exception as e:
-            rel_result = [-1 for _ in range(len(df))]
-            rel_reason = ['nan' for _ in range(len(df))]
-            self.logger.error("error while relevance eval:{}".format(e))
-        return rel_result,rel_reason
+            truth_result = [-1 for _ in range(len(df))]
+            truth_reason = ['nan' for _ in range(len(df))]
+            print("error while authenticity eval:{}".format(e))
+        return truth_result, truth_reason
 
-relResponseEval = RelevanceEval("relevance_eval")
+authenticityTestAPIEval = AuthenticityTestAPIEval("authenticity_test_api_eval")
