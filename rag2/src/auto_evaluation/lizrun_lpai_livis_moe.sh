@@ -14,15 +14,7 @@
 
 
 
-lizrun lpai start -c "bash /lpai/volumes/ssai-nlu-bd/nlu/app/gongwuxuan/_init_server_.sh; bash /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/livis_moe_run_inference_api_mp1.sh" \
-    -j eval-0903-sft \
-    -i reg-ai.chehejia.com/ssai/lizr/cu118/py310/pytorch:2.1.0-multinode-flashattn-2.3.2-fsdp  \
-    -p base-bd  \
-    -n 1 \
-    -w pytorch
-
-
-lizrun lpai start -c "bash /lpai/volumes/ssai-nlu-bd/nlu/app/gongwuxuan/_init_server_.sh; bash /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/livis_moe_run_inference_api_mp2.sh" \
+lizrun lpai start -c "bash /lpai/volumes/ssai-nlu-bd/nlu/app/gongwuxuan/_init_server_.sh; bash /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/livis_moe_run_inference_api.sh" \
     -j eval-0903-sft \
     -i reg-ai.chehejia.com/ssai/lizr/cu118/py310/pytorch:2.1.0-multinode-flashattn-2.3.2-fsdp  \
     -p base-bd  \

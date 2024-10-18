@@ -2,18 +2,15 @@ pip install git+https://github.com/huggingface/accelerate
 pip install https://test-space-internal-cache.s3.bj.bcebos.com/cache/ssai-training/litiktoken/litiktoken-0.0.1-py3-none-any.whl
 pip install aiohttp
 pip install pyltp
-pip install vllm==0.5.3.post1
+# pip install vllm==0.5.3.post1
+pip install vllm==0.6.2
 pip install blobfile
+
 
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 cd $CURRENT_DIR
 
-# EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240814_165w_v7moe_32k_liptm_model_1/checkpoint-4935/hf_model"
-# EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/luhengtong/li-safe-rlhf/output/sft-mind-gpt-v7moe-0814_dpo_dpo-0809-adh_2560_n16b3e2_0816-seed42/ckpt-2176/"
-# EVAL_MODEL="/mnt/pfs-guan-ssai/nlu/lizr/gongwuxuan/mindgppt/moe-32k-noapplog_0823_renhuimin/checkpoint-9726/hf_model"
-# EVAL_MODEL="/lpai/volumes/ssai-nlu-bd/lizr/wangheqing/lisft/model/16b_generator_mindgpt_20240814_165w_v7moe_32k_liptm_model_1/checkpoint-4935/hf_model"
-# EVAL_MODEL="/lpai/volumes/ssai-nlu-bd/lizr/renhuimin/mindgpt/v7moe_sft_0814_cft_0903_new/checkpoint-1380/hf_model"
-# tiktoken_model_path="none"
+
 tiktoken_model_path=/mnt/pfs-guan-ssai/nlu/lvjianwei/models/MindGPT-2.0-32K/tokenizer.model
 
 # if [ ! -f ${EVAL_MODEL}/tokenizer_config.json ]; then

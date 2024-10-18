@@ -1,0 +1,1010 @@
+[2024-09-26 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-24/prod/2024-09-24_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-09-26 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:364: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-24/prod/2024-09-24_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-24
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-24/prod/2024-09-24_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/raw/single_False_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-24/raw/single_False_rag_True/split_data/chunk_1.csv
+Regenerating missing GPT-4 file for split data file: chunk_1.csv
+Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt
+Reading oneshot prompt done.
+Building prompts for dataframe entries.
+Calling GPT-4 API
+剩余case 5 / 5
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:06<00:27,  6.98s/it] 40%|████      | 2/5 [00:08<00:10,  3.48s/it] 80%|████████  | 4/5 [00:11<00:02,  2.35s/it]100%|██████████| 5/5 [00:15<00:00,  2.86s/it]100%|██████████| 5/5 [00:15<00:00,  3.08s/it]
+Parsing GPT-4 response
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-09-26 21:02:41
+[INFO] duration: 2 min 
+[2024-09-27 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-25/prod/2024-09-25_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-09-27 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 49, in extract_datetime_from_input
+    return datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
+           ^^^^^^^^
+NameError: name 'datetime' is not defined
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-25/prod/2024-09-25_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-25
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-25/prod/2024-09-25_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-25/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-25/prod/2024-09-25_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-09-27 21:00:17
+[INFO] duration: 0 min 
+[2024-09-28 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-26/prod/2024-09-26_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-09-28 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 30, in extract_datetime_from_input
+    match = re.search(pattern, input_16b)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/re/__init__.py", line 176, in search
+    return _compile(pattern, flags).search(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'float'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-26/prod/2024-09-26_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-26
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-26/prod/2024-09-26_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-26/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-26/prod/2024-09-26_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-09-28 21:00:28
+[INFO] duration: 0 min 
+[2024-09-29 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-27/prod/2024-09-27_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-09-29 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 30, in extract_datetime_from_input
+    match = re.search(pattern, input_16b)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/re/__init__.py", line 176, in search
+    return _compile(pattern, flags).search(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'float'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-27/prod/2024-09-27_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-27
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-27/prod/2024-09-27_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-27/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-27/prod/2024-09-27_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-09-29 21:00:20
+[INFO] duration: 0 min 
+[2024-09-30 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-28/prod/2024-09-28_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-09-30 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 30, in extract_datetime_from_input
+    match = re.search(pattern, input_16b)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/re/__init__.py", line 176, in search
+    return _compile(pattern, flags).search(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'float'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-28/prod/2024-09-28_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-28
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-28/prod/2024-09-28_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-28/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-28/prod/2024-09-28_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-09-30 21:00:17
+[INFO] duration: 0 min 
+[2024-10-01 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-29/prod/2024-09-29_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-01 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 30, in extract_datetime_from_input
+    match = re.search(pattern, input_16b)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/re/__init__.py", line 176, in search
+    return _compile(pattern, flags).search(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'float'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-29/prod/2024-09-29_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-29
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-29/prod/2024-09-29_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-29/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-29/prod/2024-09-29_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-01 21:00:18
+[INFO] duration: 0 min 
+[2024-10-02 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-30/prod/2024-09-30_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-02 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 30, in extract_datetime_from_input
+    match = re.search(pattern, input_16b)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/re/__init__.py", line 176, in search
+    return _compile(pattern, flags).search(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'float'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-30/prod/2024-09-30_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-09-30
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-30/prod/2024-09-30_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-09-30/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-09-30/prod/2024-09-30_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-02 21:00:17
+[INFO] duration: 0 min 
+[2024-10-03 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-01/prod/2024-10-01_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-03 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/series.py", line 4630, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1025, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/apply.py", line 1076, in apply_standard
+    mapped = lib.map_infer(
+             ^^^^^^^^^^^^^^
+  File "pandas/_libs/lib.pyx", line 2834, in pandas._libs.lib.map_infer
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 30, in extract_datetime_from_input
+    match = re.search(pattern, input_16b)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/re/__init__.py", line 176, in search
+    return _compile(pattern, flags).search(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'float'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-01/prod/2024-10-01_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-01
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-01/prod/2024-10-01_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-01/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-01/prod/2024-10-01_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-03 21:00:18
+[INFO] duration: 0 min 
+[2024-10-04 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-02/prod/2024-10-02_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-04 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-02/prod/2024-10-02_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-02
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-02/prod/2024-10-02_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-02/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-02/prod/2024-10-02_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-04 21:00:21
+[INFO] duration: 0 min 
+[2024-10-05 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-03/prod/2024-10-03_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-05 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-03/prod/2024-10-03_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-03
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-03/prod/2024-10-03_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-03/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-03/prod/2024-10-03_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-05 21:00:23
+[INFO] duration: 0 min 
+[2024-10-06 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-04/prod/2024-10-04_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-06 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-04/prod/2024-10-04_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-04
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-04/prod/2024-10-04_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-04/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-04/prod/2024-10-04_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-06 21:00:19
+[INFO] duration: 0 min 
+[2024-10-07 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-05/prod/2024-10-05_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-07 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-05/prod/2024-10-05_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-05
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-05/prod/2024-10-05_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-05/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-05/prod/2024-10-05_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-07 21:00:21
+[INFO] duration: 0 min 
+[2024-10-08 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-06/prod/2024-10-06_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-08 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 46, in get_distillation_data
+    df = DataFilter.filter_bad_df(df, self.config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/data_processing.py", line 176, in filter_bad_df
+    df['datetime'] = df['taskformer-model-13b-input'].apply(extract_datetime_from_input) # 增加datetime字段
+                     ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-06/prod/2024-10-06_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-06
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-06/prod/2024-10-06_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-06/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-06/prod/2024-10-06_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-08 21:00:19
+[INFO] duration: 0 min 
+[2024-10-09 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-07/prod/2024-10-07_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-09 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0'), PosixPath('/usr/local/cuda/lib64/libcudart.so')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 44, in get_distillation_data
+    df = df[~df['taskformer-model-13b-input'].isna()]
+             ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-07/prod/2024-10-07_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-07
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-07/prod/2024-10-07_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-07/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-07/prod/2024-10-07_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-09 21:00:24
+[INFO] duration: 0 min 
+[2024-10-10 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-08/prod/2024-10-08_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-10 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:364: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-08/prod/2024-10-08_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-08
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-08/prod/2024-10-08_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_False_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-08/raw/single_False_rag_True/split_data/chunk_1.csv
+Regenerating missing GPT-4 file for split data file: chunk_1.csv
+Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt
+Reading oneshot prompt done.
+Building prompts for dataframe entries.
+Calling GPT-4 API
+剩余case 6 / 6
+  0%|          | 0/6 [00:00<?, ?it/s] 17%|█▋        | 1/6 [00:09<00:45,  9.18s/it] 50%|█████     | 3/6 [00:11<00:09,  3.18s/it] 67%|██████▋   | 4/6 [00:12<00:05,  2.55s/it] 83%|████████▎ | 5/6 [00:14<00:02,  2.26s/it]100%|██████████| 6/6 [00:15<00:00,  1.82s/it]100%|██████████| 6/6 [00:15<00:00,  2.54s/it]
+Parsing GPT-4 response
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-10 21:02:45
+[INFO] duration: 2 min 
+[2024-10-11 21:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-09/prod/2024-10-09_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-11 21:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: /opt/conda/envs/rhm_env did not contain ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] as expected! Searching further paths...
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/cuda_setup/main.py:149: UserWarning: Found duplicate ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] files: {PosixPath('/usr/local/cuda/lib64/libcudart.so'), PosixPath('/usr/local/cuda/lib64/libcudart.so.11.0')}.. We'll flip a coin and try one of these, in order to fail forward.
+Either way, this might cause trouble in the future:
+If you get `CUDA error: invalid device function` errors, the above might be the cause and the solution is to make sure only one ['libcudart.so', 'libcudart.so.11.0', 'libcudart.so.12.0'] in the paths that we search based on your env.
+  warn(msg)
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:364: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so
+CUDA_SETUP: WARNING! libcudart.so not found in any environmental path. Searching in backup paths...
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 116
+CUDA SETUP: Loading binary /opt/conda/envs/rhm_env/lib/python3.11/site-packages/bitsandbytes/libbitsandbytes_cuda116.so...
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-09/prod/2024-10-09_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-09
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-09/prod/2024-10-09_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_False_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-09/raw/single_False_rag_True/split_data/chunk_1.csv
+Regenerating missing GPT-4 file for split data file: chunk_1.csv
+Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt
+Reading oneshot prompt done.
+Building prompts for dataframe entries.
+Calling GPT-4 API
+剩余case 21 / 21
+  0%|          | 0/21 [00:00<?, ?it/s]  5%|▍         | 1/21 [00:09<03:08,  9.41s/it] 19%|█▉        | 4/21 [00:15<00:56,  3.33s/it] 43%|████▎     | 9/21 [00:16<00:16,  1.35s/it] 52%|█████▏    | 11/21 [00:17<00:10,  1.09s/it] 57%|█████▋    | 12/21 [00:19<00:10,  1.20s/it] 62%|██████▏   | 13/21 [00:19<00:07,  1.01it/s] 67%|██████▋   | 14/21 [00:19<00:05,  1.23it/s] 71%|███████▏  | 15/21 [00:21<00:06,  1.08s/it] 81%|████████  | 17/21 [00:22<00:03,  1.20it/s] 86%|████████▌ | 18/21 [00:27<00:05,  1.76s/it]100%|██████████| 21/21 [00:28<00:00,  1.01s/it]100%|██████████| 21/21 [00:28<00:00,  1.34s/it]
+Parsing GPT-4 response
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-11 21:03:27
+[INFO] duration: 3 min 
+[2024-10-12 13:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-10/prod/2024-10-10_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-12 13:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:302: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-10/prod/2024-10-10_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-10
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-10/prod/2024-10-10_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/raw/single_False_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-10/raw/single_False_rag_True/split_data/chunk_1.csv
+Regenerating missing GPT-4 file for split data file: chunk_1.csv
+Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt
+Reading oneshot prompt done.
+Building prompts for dataframe entries.
+Calling GPT-4 API
+剩余case 2 / 2
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:09<00:09,  9.16s/it]100%|██████████| 2/2 [00:14<00:00,  6.80s/it]100%|██████████| 2/2 [00:14<00:00,  7.16s/it]
+Parsing GPT-4 response
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-12 13:02:35
+[INFO] duration: 2 min 
+[2024-10-13 13:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-11/prod/2024-10-11_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-13 13:00:01
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/transformers/configuration_utils.py:302: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+/opt/conda/envs/rhm_env/lib/python3.11/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-11/prod/2024-10-11_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-11
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-11/prod/2024-10-11_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/raw/single_False_rag_True
+Saved chunk 1 to /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-11/raw/single_False_rag_True/split_data/chunk_1.csv
+Regenerating missing GPT-4 file for split data file: chunk_1.csv
+Reading oneshot prompt from: /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt
+Reading oneshot prompt done.
+Building prompts for dataframe entries.
+Calling GPT-4 API
+剩余case 10 / 10
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:09<01:28,  9.81s/it] 40%|████      | 4/10 [00:11<00:13,  2.20s/it] 50%|█████     | 5/10 [00:11<00:08,  1.78s/it] 60%|██████    | 6/10 [00:13<00:06,  1.63s/it] 70%|███████   | 7/10 [00:14<00:04,  1.54s/it] 80%|████████  | 8/10 [00:14<00:02,  1.26s/it] 90%|█████████ | 9/10 [00:15<00:00,  1.01it/s]100%|██████████| 10/10 [00:20<00:00,  2.23s/it]100%|██████████| 10/10 [00:20<00:00,  2.04s/it]
+Parsing GPT-4 response
+All GPT-4 files are generated and valid. Total files: 1
+[INFO] end_time: 2024-10-13 13:02:40
+[INFO] duration: 2 min 
+[2024-10-14 13:00:01] /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/shells/run_crontab_distillation_log_raw_multi_rag.sh:56  /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-12/prod/2024-10-12_rule_labeled.csv.gpt_labeled.csv is ready.
+[INFO] begin_time: 2024-10-14 13:00:01
+Traceback (most recent call last):
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3652, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'taskformer-model-13b-input'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 44, in get_distillation_data
+    df = df[~df['taskformer-model-13b-input'].isna()]
+             ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/rhm_env/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3654, in get_loc
+    raise KeyError(key) from err
+KeyError: 'taskformer-model-13b-input'
+Arguments: Namespace(is_single_flag=False, is_rag_flag=True, model_url='https://rhm-gpt4.fc.chj.cloud/gpt4o/conversation', model_name='gpt4o', prompt_path='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/conf/generation_prompts/generation_多轮日志蒸馏.txt', input_file='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-12/prod/2024-10-12_rule_labeled.csv.gpt_labeled.csv', base_output_path='/mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/', embedding_model_path='/mnt/pfs-guan-ssai/nlu/wangxiaoyuan/bge-base-zh')
+Processing distillation data for date: 2024-10-12
+Input file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-12/prod/2024-10-12_rule_labeled.csv.gpt_labeled.csv
+Output folder: /mnt/pfs-guan-ssai/nlu/renhuimin/data/log_distillation/2024-10-12/raw/single_False_rag_True
+Exception occurred while processing file: /mnt/pfs-guan-ssai/nlu/wangxiaoyuan/online-data/2024-10-12/prod/2024-10-12_rule_labeled.csv.gpt_labeled.csv
+Traceback (most recent call last):
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 104, in <module>
+    distillator.get_distillation_data(args.input_file)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/get_raw_log_distillation.py", line 62, in get_distillation_data
+    self.check_and_generate_gpt4_files(outfolder, prompt_path)
+  File "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/pipeline_periodic/base_distillation.py", line 81, in check_and_generate_gpt4_files
+    if not missing_files and (wrong_data_count / total_data_count) <= 0.5:
+                              ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+[INFO] end_time: 2024-10-14 13:00:12
+[INFO] duration: 0 min 
