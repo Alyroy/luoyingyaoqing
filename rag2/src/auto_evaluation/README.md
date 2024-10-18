@@ -1,5 +1,13 @@
 ## MOE LLM 推理
 #### 更新记录
+【2024.10.18更新】
+1. 优化一键推理+评测脚本，支持自动qwen2-72b API服务
+[rag评测（自动api版）](https://li.feishu.cn/docx/YgApdJzV4omd8jxRqFvcBSu4nJd)
+
+【2024.10.16更新】
+1. 对齐评测组RAG评测流程，对齐prompt和输出解析脚本
+2. 接入评测组评测API
+
 【2024.09.09更新】
 1. 更新livis_moe_inference_assistant_mp.py，支持文件夹推理
 2. 支持lpai自动推理+评估 参考 0-auto_lpai_infer_eval.sh
