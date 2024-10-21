@@ -3,6 +3,7 @@
 【2024.10.18更新】
 1. 优化一键推理+评测脚本，支持自动qwen2-72b API服务
 [rag评测（自动api版）](https://li.feishu.cn/docx/YgApdJzV4omd8jxRqFvcBSu4nJd)
+注意：评估文件中必须包含query列，model_13b_input列，predict_output列
 
 【2024.10.16更新】
 1. 对齐评测组RAG评测流程，对齐prompt和输出解析脚本

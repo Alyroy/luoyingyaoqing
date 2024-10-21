@@ -56,7 +56,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
     result_list = []
     for i in range(len(model_list)):
         model = model_list[i]
-        assert model in ['', 'qwen2-72b', 'llama3-70b', 'qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
+        assert model in ['qwen25-72b', 'qwen2-72b', 'llama3-70b', 'qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
         print("---------------------------------\n正在使用", model, "进行评估\n---------------------------------")
         url = url_list[i]
         assert metric in METRIC_DICT, "metric name is not right!!!"
