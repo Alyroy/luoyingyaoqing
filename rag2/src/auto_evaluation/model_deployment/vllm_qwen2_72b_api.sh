@@ -1,7 +1,7 @@
 #!/bin/bash
 CURRENT_DIR=$(cd $(dirname $0); pwd)
-cd $CURRENT_DIR
-
+# cd $CURRENT_DIR
+cd /mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/auto_evaluation/model_deployment/
 
 # CUDA INFO
 nvcc_version_output=$(nvcc --version)
@@ -34,6 +34,6 @@ python -m vllm.entrypoints.openai.api_server \
         --disable-log-stats \
         --enforce-eager \
         --gpu-memory-utilization 0.9 \
-        --tensor-parallel-size 4 &
+        --tensor-parallel-size 8 &
 
 wait
