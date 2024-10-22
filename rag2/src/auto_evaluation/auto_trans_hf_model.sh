@@ -1,8 +1,8 @@
 #!/bin/bash
-TRAIN_MODEL_DIR=$1
+CUR_DIR=$1
 MODEL_CKPT_DIR=$2
 HF_MODEL_CKPT_DIR=$3 
-CUR_DIR=$4
+
 
 cd $CUR_DIR
 
