@@ -8,7 +8,7 @@ IP=$5
 cd $CURRENT_DIR
 
 QWEN_URL=http://${IP}:8012/v1
-model_list=("qwen25-72b")
+model_list=("qwen")
 url_list=("${QWEN_URL}")
 
 # 评估列表，即query obs ans的自定义列名 or 日志列、输出列、输出列

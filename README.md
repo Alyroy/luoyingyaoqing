@@ -1,5 +1,9 @@
 # RAG
 ## 更新记录
+【2024.10.21更新】
+1. 支持一键推理、评估
+2. 评估脚本与评估组对齐，见rag2/src/auto_evaluation/0-auto_moe_infer_eval_qwen_api.sh
+
 【2024.10.15更新】
 1. 支持多轮对话调用API，具体使用方法参考rag2/src/tool_kg_search/example.ipynb
 2. 优化mindgpt推理脚本，更改镜像提升模型推理速度，支持文件夹推理

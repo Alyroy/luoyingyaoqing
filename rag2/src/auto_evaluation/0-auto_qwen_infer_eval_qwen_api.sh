@@ -35,9 +35,17 @@ for i in "${!MODEL_CKPT_DIR_LIST[@]}"; do
     JOB_NAME=${JOB_NAME_LIST[$i]}
     
     HF_MODEL_CKPT_DIR=${MODEL_CKPT_DIR}${HF_MODEL_CKPT_DIR_SUFFIX}
-
-    # 1. 启动推理脚本
     (
+        # 0. 判断模型是否训练完成
+        cnt=1
+        echo "${MODEL_CKPT_DIR}/config.json"
+        until [ -f "${MODEL_CKPT_DIR}/config.json" ]; do
+            echo "等待 ${MODEL_CKPT_DIR} 模型训练完毕...已等待 ${cnt} 小时"
+            sleep 3600
+            cnt=$(expr $cnt + 1)
+        done
+
+        # 1. 启动推理脚本
         echo "Starting inference for job: ${JOB_NAME}"
         echo sh auto_lizrun_guan_livis_qwen.sh ${CURRENT_DIR} ${JOB_NAME} ${QUEUE_NAME} 1 ${HF_MODEL_CKPT_DIR} ${JOB_NAME} ${INPUT_DIR} ${OUTPUT_DIR} ${EVAL_COL}
         sh auto_lizrun_guan_livis_qwen.sh ${CURRENT_DIR} ${JOB_NAME} ${QUEUE_NAME} 1 ${HF_MODEL_CKPT_DIR} ${JOB_NAME} ${INPUT_DIR} ${OUTPUT_DIR} ${EVAL_COL}
@@ -67,7 +75,10 @@ for i in "${!MODEL_CKPT_DIR_LIST[@]}"; do
             sleep 300
             cnt=$(expr $cnt + 1)
         done
-
+        echo "IP1的qwen-api任务已就位！！！"`date`
+        IP1=`echo ${IP1} | awk '{gsub("-", ".", $0); print $0}'`
+        echo "IP1:"${IP1}
+        
         # 4. 评估模型
         echo "开始评估已启动"
         INPUT_LOG_COL=model_13b_input
@@ -79,6 +90,12 @@ for i in "${!MODEL_CKPT_DIR_LIST[@]}"; do
 
         # 停止qwen api任务
         lizrun stop ${QWEN_JOBNAME1}-${USER_NAME}
+
+        # 5. 统计所有分数
+        echo "计算所有分数"
+        EVAL_INPUT_DIR=${OUTPUT_DIR}/${JOB_NAME}/  # 模型推理结果文件夹
+        echo sh auto_cal_e2e_score.sh ${CURRENT_DIR} ${EVAL_INPUT_DIR} ${JOB_NAME}
+        sh auto_cal_e2e_score.sh ${CURRENT_DIR} ${EVAL_INPUT_DIR} ${JOB_NAME}
     ) &  # 在后台执行
 
     # 保存PID
