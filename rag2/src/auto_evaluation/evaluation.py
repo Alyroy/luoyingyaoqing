@@ -49,31 +49,49 @@ METRIC_DICT = {
 }
 
 
-def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str='user_obs_ans_concat'):
+def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str='user_obs_ans_concat', input_text_type: str='default'):
     
     df = utils.get_df(input_file)
     df = df[~df[eval_column_list[-1]].isna()] # 回复为空不评估
+    if 'user-query' in df.columns and 'query' not in df.columns:
+        df['query'] = df['user-query']
+    # df = df.iloc[:20]
     result_list = []
     for i in range(len(model_list)):
         model = model_list[i]
-        assert model in ['', 'qwen2-72b', 'llama3-70b', 'qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
+        assert model in ['qwen', 'qwen25-72b', 'qwen2-72b', 'llama3-70b', 'qwen2_72b', 'qwen1.5_72b', 'qwen1.5_110b', 'autoj', 'deepseek', 'gpt4o', 'gpt4', 'mindgpt','wenxin'], "model name is not right!!!"
         print("---------------------------------\n正在使用", model, "进行评估\n---------------------------------")
         url = url_list[i]
         assert metric in METRIC_DICT, "metric name is not right!!!"
         func = METRIC_DICT[metric]['function']
         assert isinstance(func, BaseModelEval), "func type is wrong!!!"
-        result, reason = func.main_eval(
-            model = model,
-            url = url, 
-            eval_column_list = eval_column_list, 
-            df = df, 
-            output_dir = output_dir, 
-            prompt_path = prompt_path, 
-            thread_num = thread_num, 
-            chunk_num = chunk_num, 
-            temperature = temperature,
-            eval_mode = eval_mode
-        )
+        if metric in ['authenticity_test_api_eval', 'relevance_test_api_eval']:
+            result, reason = func.main_eval(
+                model = model,
+                url = url, 
+                eval_column_list = eval_column_list, 
+                df = df, 
+                output_dir = output_dir, 
+                prompt_path = prompt_path, 
+                thread_num = thread_num, 
+                chunk_num = chunk_num, 
+                temperature = temperature,
+                eval_mode = eval_mode,
+                input_text_type = input_text_type
+            )
+        else:
+            result, reason = func.main_eval(
+                model = model,
+                url = url, 
+                eval_column_list = eval_column_list, 
+                df = df, 
+                output_dir = output_dir, 
+                prompt_path = prompt_path, 
+                thread_num = thread_num, 
+                chunk_num = chunk_num, 
+                temperature = temperature,
+                eval_mode = eval_mode
+            )
         assert len(result) == len(df), "result length is wrong!"
         
         # 将每个模型的输出分数和打分原因存入df
@@ -125,6 +143,8 @@ parser.add_argument("--chunk_num", type = int, default = 2, help = "chunk num")
 parser.add_argument("--temperature", type = float, default = 0.7, help = "temperature")
 parser.add_argument("--eval_mode", type = str, 
                     default = "user_obs_ans_concat", help = "user_obs_ans_concat,model_13b_log,with_prompt")
+parser.add_argument("--input_text_type", type = str, 
+                    default = "default", help = "default,function_call")
 args  =  parser.parse_args()
 print(args)
 
@@ -149,7 +169,8 @@ if __name__ == "__main__":
                 thread_num = args.thread_num,
                 chunk_num = args.chunk_num,
                 temperature = args.temperature,
-                eval_mode = args.eval_mode
+                eval_mode = args.eval_mode,
+                input_text_type = args.input_text_type
             )
             print("--------------------------------------------\n", input_file, "评估完毕\n--------------------------------------------")
 
@@ -168,7 +189,8 @@ if __name__ == "__main__":
             thread_num = args.thread_num,
             chunk_num = args.chunk_num,
             temperature = args.temperature,
-            eval_mode = args.eval_mode
+            eval_mode = args.eval_mode,
+            input_text_type = args.input_text_type
         )
         print("-------------------------------------\n", file, "文件评估完毕\n-------------------------------------") 
     # except Exception as e:

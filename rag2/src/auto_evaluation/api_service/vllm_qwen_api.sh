@@ -20,7 +20,8 @@ pip install pyarrow pandas tiktoken
 
 
 
-MODEL_PATH=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2-72B-Instruct
+# MODEL_PATH=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2-72B-Instruct
+MODEL_PATH=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2.5-72B-Instruct
 
 SERVER_NAME=${HOSTNAME//-/.}  # b区服务器的主机结点
 SERVER_PORT=8012
@@ -29,7 +30,7 @@ echo "api服务启动地址 http://${SERVER_NAME}:${SERVER_PORT}"
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 python -m vllm.entrypoints.openai.api_server \
     --model $MODEL_PATH \
-    --served-model-name qwen2-72b \
+    --served-model-name qwen \
     --port ${SERVER_PORT} \
     --host ${SERVER_NAME} \
     --trust-remote-code \
