@@ -45,8 +45,8 @@ for i in "${!MODEL_CKPT_DIR_LIST[@]}"; do
         if [ ! -f "${HF_MODEL_CKPT_DIR}/config.json" ]; then
             # 如果不存在，执行命令
             echo "需要转换hf model"
-            echo "执行：sh auto_guan_trans_hf_model.sh $CURRENT_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR"
-            sh auto_guan_trans_hf_model.sh "$CURRENT_DIR" "$MODEL_CKPT_DIR" "$HF_MODEL_CKPT_DIR"
+            echo "执行：sh auto_trans_hf_model.sh $CURRENT_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR"
+            sh auto_trans_hf_model.sh "$CURRENT_DIR" "$MODEL_CKPT_DIR" "$HF_MODEL_CKPT_DIR"
             echo "hf model 转换完毕"
         else
             echo "hf model 已转换"
