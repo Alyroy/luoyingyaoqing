@@ -4,6 +4,8 @@ import re
 import sys
 import random
 import string
+import traceback
+
 sys.path.append('../')
 from base.base_eval import BaseModelEval
 sys.path.append('../../')
@@ -101,6 +103,7 @@ class AuthenticityTestAPIEval(BaseModelEval):
             response_sorted_list = [x[1] for x in response_sorted]
         except Exception as e:
             print("error while result sorted:",e)
+            traceback.print_exc()
         return response_sorted_list
     
     def result_sorted_byindex(self, responses):
@@ -110,6 +113,7 @@ class AuthenticityTestAPIEval(BaseModelEval):
             response_sorted_list = [x["response"] for x in response_sorted]
         except Exception as e:
             print("error while result sorted:",e)
+            traceback.print_exc()
         return response_sorted_list
     
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat', input_text_type='default'):
@@ -185,6 +189,7 @@ class AuthenticityTestAPIEval(BaseModelEval):
             truth_result = [-1 for _ in range(len(df))]
             truth_reason = ['nan' for _ in range(len(df))]
             print("error while authenticity eval:{}".format(e))
+            traceback.print_exc()
         return truth_result, truth_reason
 
 authenticityTestAPIEval = AuthenticityTestAPIEval("authenticity_test_api_eval")

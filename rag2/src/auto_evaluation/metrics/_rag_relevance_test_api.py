@@ -4,6 +4,8 @@ import re
 import sys
 import random
 import string
+import traceback
+
 sys.path.append('../')
 from base.base_eval import BaseModelEval
 
@@ -111,7 +113,9 @@ class RelevanceTestAPIEval(BaseModelEval):
             response_sorted = sorted(response_dict.items(), key=lambda x: x[0], reverse=False)
             response_sorted_list = [x[1] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
+            traceback.print_exc()
+            # self.logger.error("error while result sorted:",e)
         return response_sorted_list
 
     def result_sorted_byindex(self, responses):
@@ -120,7 +124,9 @@ class RelevanceTestAPIEval(BaseModelEval):
             response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
             response_sorted_list = [x["response"] for x in response_sorted]
         except Exception as e:
-            self.logger.error("error while result sorted:",e)
+            print("error while result sorted:",e)
+            traceback.print_exc()
+            # self.logger.error("error while result sorted:",e)
         return response_sorted_list
     
     def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat', input_text_type='default'):
@@ -194,7 +200,9 @@ class RelevanceTestAPIEval(BaseModelEval):
         except Exception as e:
             rel_result = [-1 for _ in range(len(df))]
             rel_reason = ['nan' for _ in range(len(df))]
-            self.logger.error("error while relevance eval:{}".format(e))
+            print("error while relevance eval:{}".format(e))
+            traceback.print_exc()
+            # self.logger.error("error while relevance eval:{}".format(e))
         return rel_result,rel_reason
 
 relResponseTestAPIEval = RelevanceTestAPIEval("relevance_test_api_eval")

@@ -22,7 +22,7 @@ for ((i=0;i<8;i++)); do
             --tokenizer $MODEL \
             --disable-log-stats \
             --chat-template template_mindgpt_task.jinja \
-            --tensor-parallel-size 4
+            --tensor-parallel-size 8
     break
 done
 
