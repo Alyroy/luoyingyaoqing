@@ -46,4 +46,5 @@ python evaluation.py  \
     --thread_num $thread_num \
     --chunk_num $chunk_num \
     --temperature $temperature \
-    --eval_mode $eval_mode
+    --eval_mode $eval_mode \
+    --input_text_type $input_text_type
