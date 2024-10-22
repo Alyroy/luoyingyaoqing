@@ -3,11 +3,12 @@ CURRENT_DIR=$1
 INPUT_LOG_COL=$2
 EVAL_INPUT_DIR=$3
 EVAL_OUTPUT_DIR_REL=$4 # 相关性输出文件夹
+IP=$5
 
 cd $CURRENT_DIR
 
-QWEN_URL=$(< /mnt/pfs-guan-ssai/nlu/chihuixuan/rag_tool/rag2/src/auto_evaluation/public/Qwen2_72B_running_url.log)/v1/
-model_list=("qwen2-72b")
+QWEN_URL=http://${IP}:8012/v1
+model_list=("qwen")
 url_list=("${QWEN_URL}")
 
 # 评估列表，即query obs ans的自定义列名 or 日志列、输出列、输出列
@@ -28,7 +29,7 @@ thread_num=20
 # chunk数
 chunk_num=5
 # 模型的temperature值
-temperature=0.1
+temperature=0
 
 
 python evaluation.py  \

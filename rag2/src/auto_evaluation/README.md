@@ -1,5 +1,11 @@
 ## MOE LLM 推理
 #### 更新记录
+【2024.10.21更新】
+1. 支持一键多个模型同时转hf、推理、评估moe 及 qwen 模型，见0-auto_moe_infer_eval_qwen_api.sh 0-auto_qwen_infer_eval_qwen_api.sh
+2. 增加自动计算livis 端到端评估结果，见calculate_all_e2e_metric.py
+3. 替换qwen2-72b API服务为qwen25-72b API服务，要求model_name必须是qwen
+4. 统一测试集关键列，必须包含query, model_13b_input, 推理会自动生成predict_output
+
 【2024.10.18更新】
 1. 优化一键推理+评测脚本，支持自动qwen2-72b API服务
 [rag评测（自动api版）](https://li.feishu.cn/docx/YgApdJzV4omd8jxRqFvcBSu4nJd)

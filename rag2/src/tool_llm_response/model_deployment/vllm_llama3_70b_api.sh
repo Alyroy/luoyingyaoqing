@@ -34,6 +34,6 @@ python -m vllm.entrypoints.openai.api_server \
         --disable-log-stats \
         --enforce-eager \
         --gpu-memory-utilization 0.9 \
-        --tensor-parallel-size 4 &
+        --tensor-parallel-size 8 &
 
 wait

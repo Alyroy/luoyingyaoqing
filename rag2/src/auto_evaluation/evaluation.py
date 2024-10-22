@@ -105,11 +105,18 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
         show_dic['reason'] = reason
         result_list.append(show_dic)
         print("---------------------------------\n", model, "评估完毕\n---------------------------------")
+        # 当前仅支持单个模型推理，多个模型vote待优化
+        cnt_1 = result.count(1)
+        cnt_0 = result.count(0)
+        print(f"{input_file}, 正例数量：{cnt_1}, 测试集数量：{len(df)}, 有效评估数量:{cnt_1+cnt_0}, {metric}, 正例占比：{cnt_1/(cnt_1+cnt_0)}")
+
     
     # 对多模型评估结果进行投票打分
+    
     final_scores = vote_strategy(df, result_list)
-    cnt_1 = final_scores.count(1)
-    print(f"{input_file}, 正例数量：{cnt_1}, 测试集数量：{len(df)}, {metric}, 正例占比：{cnt_1/len(df)}")
+    # cnt_1 = final_scores.count(1)
+    # print(f"{input_file}, 正例数量：{cnt_1}, 测试集数量：{len(df)}, {metric}, 正例占比：{cnt_1/len(df)}")
+    
     # 最终评估结果存入自定义列
     df[save_column] = final_scores
     

@@ -1,5 +1,15 @@
 # RAG
 ## 更新记录
+【2024.10.21更新】
+1. 支持一键推理、评估
+2. 评估脚本与评估组对齐，见rag2/src/auto_evaluation/0-auto_moe_infer_eval_qwen_api.sh
+
+【2024.10.15更新】
+1. 支持多轮对话调用API，具体使用方法参考rag2/src/tool_kg_search/example.ipynb
+2. 优化mindgpt推理脚本，更改镜像提升模型推理速度，支持文件夹推理
+3. 修复真实性评估解析脚本bug
+
+
 【2024.09.03更新】
 1. 优化数据格式转化脚本，支持转sft dpo 最终训练数据格式
 `DataFormat.gen_sft_unused_data, DataFormat.gen_dpo_unused_data`
@@ -10,7 +20,7 @@
 1. 增加 weekly_run/ 自动蒸馏[线上日志](https://gitlab.chehejia.com/wangxiaoyuan/online-data-label/-/tree/master/)及生成dpo送标数据和sft训练数据
 
 
-RAG数据构造流程参考rag2.0/src/auto_llm_distillation/example.ipynb
+RAG数据构造流程参考rag2/src/auto_llm_distillation/example.ipynb
 ## 全局代码结构
 ```commandline
 ├── common                     通用代码
