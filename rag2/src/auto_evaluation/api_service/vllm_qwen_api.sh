@@ -20,7 +20,8 @@ pip install pyarrow pandas tiktoken
 
 
 
-MODEL_PATH=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2-72B-Instruct
+# MODEL_PATH=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2-72B-Instruct
+MODEL_PATH=/mnt/pfs-guan-ssai/nlu/lizr/models/Qwen2.5-72B-Instruct
 
 SERVER_NAME=${HOSTNAME//-/.}  # b区服务器的主机结点
 SERVER_PORT=8012

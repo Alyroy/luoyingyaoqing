@@ -116,7 +116,7 @@ class AuthenticityTestAPIEval(BaseModelEval):
             traceback.print_exc()
         return response_sorted_list
     
-    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
+    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat', input_text_type='default'):
         '''
         主评估函数
         '''
@@ -168,7 +168,7 @@ class AuthenticityTestAPIEval(BaseModelEval):
                     predict_column_name='predict_output',
                     response_column_name = 'assistant_89757',
                     eval_task='qwen_authenticity_eval',
-                    input_text_type='default',
+                    input_text_type=input_text_type,
                     test_api='http://172.24.139.92:31696/predict'
                 )
                 call_vllm = CallLLMByTestAPI(config)
