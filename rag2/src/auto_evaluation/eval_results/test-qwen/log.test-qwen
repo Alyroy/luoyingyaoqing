@@ -1,0 +1,3 @@
+Starting inference for job: test-qwen
+sh auto_lizrun_guan_livis_qwen_swa.sh /mnt/pfs-guan-ssai/nlu/jiajuntong/code/src/auto_evaluation test-qwen security 1 /mnt/pfs-gv8sxa/nlu/team/renhuimin/checkpoints/mindgpt-pro-v2.5d_rag-72b_20250113_1_v2.5.7 test-qwen /mnt/pfs-guan-ssai/nlu/jiajuntong/code/src/auto_evaluation/eval_data/safety_0115 /mnt/pfs-guan-ssai/nlu/jiajuntong/code/src/auto_evaluation/eval_results model_13b_input 0.7 0.95 1
+JOB_NAME:test-qwen

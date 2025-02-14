@@ -17,9 +17,9 @@ declare -a JOB_NAME_LIST=("ragmoe0927yuqing1")  # 根据需要添加更多任务
 HF_MODEL_CKPT_DIR_SUFFIX="/hf_model"
 
 # 输入与输出目录设定
-INPUT_DIR='/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/rag_exp_test/input_data/'
-OUTPUT_DIR="/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/data/test_data/rag_exp_test/eval_results/1025_implementation/"
-EVAL_COL=model_13b_input  # 评估列名，16b模型input，同日志格式
+INPUT_DIR=${CURRENT_DIR}'/eval_data/livis_query_fc_1114/' # query扩展形式
+OUTPUT_DIR=${CURRENT_DIR}'/eval_results/'
+VAL_COL=model_13b_input  # 评估列名，16b模型input，同日志格式
 
 # 存储所有后台任务的PID
 pids=()
@@ -45,8 +45,9 @@ for i in "${!MODEL_CKPT_DIR_LIST[@]}"; do
         if [ ! -f "${HF_MODEL_CKPT_DIR}/config.json" ]; then
             # 如果不存在，执行命令
             echo "需要转换hf model"
-            echo "执行：sh auto_trans_hf_model.sh $CURRENT_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR"
-            sh auto_trans_hf_model.sh "$CURRENT_DIR" "$MODEL_CKPT_DIR" "$HF_MODEL_CKPT_DIR"
+            echo "执行：sh auto_guan_trans_hf_model.sh $CURRENT_DIR $MODEL_CKPT_DIR $HF_MODEL_CKPT_DIR"
+            sh auto_guan_trans_hf_model.sh "$CURRENT_DIR" "$MODEL_CKPT_DIR" "$HF_MODEL_CKPT_DIR"
+            sleep 600 # 需要预留模型转换时间
             echo "hf model 转换完毕"
         else
             echo "hf model 已转换"

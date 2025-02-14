@@ -33,7 +33,7 @@ def get_api_df(df,col_query, output_file, url='http://172.24.139.95:16073/ligpt_
     修改name to apiname，与obs接口对应
     """
     # 使用 lambda 表达式处理每一行，并检查 api_name 是否为空列表
-    df[['thought', 'api']] = df.progress_apply(
+    df[['thought', 'api', 'res_json', 'res_json_simple']] = df.progress_apply(
         lambda row: get_thought_api(
             row[col_query], 
             url

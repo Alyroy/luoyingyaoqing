@@ -10,9 +10,9 @@ stamp=$(date +%Y-%m-%d-%H-%M-%S)
 
 
 
-lizrunv2 start -c "/mnt/pfs-guan-ssai/nlu/renhuimin/rag_tool/src/tool_kg_search/1b_model_deployment/run_api_server.sh" \
-    -j v6-1b-api-server-${stamp} \
+lizrun start -c "/mnt/pfs-guan-ssai/nlu/jiajuntong/code/rag_tool/rag2/src/tool_kg_search/1b_model_deployment/run_api_server.sh" \
+    -j v6-1b-api-server \
     -i reg-ai.chehejia.com/ssai/lizr/cu118/py310/pytorch:2.0.0-multinode-flashattn \
-    -p app-4090 \
+    -p security \
     -n 1 \
     # -t nvidia-geforce-rtx-4090 

@@ -67,7 +67,7 @@ INPUT_LOG_COL=model_13b_input
 EVAL_INPUT_DIR=${OUTPUT_DIR} # /${EVAL_TIMESTAMP}/ # 模型推理结果文件夹
 EVAL_OUTPUT_DIR_REL=${OUTPUT_DIR}/相关性打分/ # /${JOB_NAME}/相关性打分/
 EVAL_OUTPUT_DIR_AUTH=${OUTPUT_DIR}/真实性打分/ # /${JOB_NAME}/真实性打分/
-echo sh auto_eval_rel_auth_qwen_api_test_api.sh ${CURRENT_DIR} ${INPUT_LOG_COL} ${EVAL_INPUT_DIR} ${EVAL_OUTPUT_DIR_REL} ${EVAL_OUTPUT_DIR_AUTH} ${IP1}
-sh auto_eval_rel_auth_qwen_api_test_api.sh ${CURRENT_DIR} ${INPUT_LOG_COL} ${EVAL_INPUT_DIR} ${EVAL_OUTPUT_DIR_REL} ${EVAL_OUTPUT_DIR_AUTH} ${IP1}
+echo sh auto_eval_rel_auth_test_api.sh ${CURRENT_DIR} ${INPUT_LOG_COL} ${EVAL_INPUT_DIR} ${EVAL_OUTPUT_DIR_REL} ${EVAL_OUTPUT_DIR_AUTH} ${IP1}
+sh auto_eval_rel_auth_test_api.sh ${CURRENT_DIR} ${INPUT_LOG_COL} ${EVAL_INPUT_DIR} ${EVAL_OUTPUT_DIR_REL} ${EVAL_OUTPUT_DIR_AUTH} ${IP1}
 
 lizrun stop ${QWEN_JOBNAME1}-${USER_NAME}

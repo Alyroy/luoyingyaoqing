@@ -18,19 +18,18 @@ from tool_rag_generation.data_format import DataFormat
 
 sys.path.append("../../") 
 from common import utils_log,utils
-# """
-# signs = {
-#     "<|lc_start|>": "[unused0]",
-#     "<|lc_end|>": "[unused1]",
-#     "<|kvs|>": "[unused2]",
-#     "<|kve|>": "[unused3]",
-#     "<|api_start|>": "[unused4]",
-#     "<|api_end|>": "[unused5]",
-#     "<|eoa|>": "[unused6]",
-#     "=>": "[unused7]"
-# }
-# """
-# empty_str = "[unused0]thought\n<None>[unused1]\n[unused0]api\n<None>[unused1]\n[unused0]observation\n<None>[unused1]\n"
+
+# 定义设置随机种子的函数
+def seed_everything(seed):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description='information')
     parser.add_argument('--gpus', dest='gpus', default="0,1,2,3,4,5,6,7", type=str, help='model path')
@@ -52,21 +51,13 @@ def parse_args():
     parser.add_argument('--repetition', dest='repetition', type=float, default=1, help='repetition penalty')
     parser.add_argument('--num_beams', dest='num_beams', type=float, default=1, help='repetition penalty')
     parser.add_argument('--eval_col', dest='eval_col', type=str, default="xx", help='column to be infered')
+    parser.add_argument('--random', dest='random', action='store_false', default=True, help='Column to be inferred')
+    parser.add_argument('--seed', dest='seed', type=int, default=9987, help='random seed')
     parser.set_defaults(dosample_flag=True)
     parser.set_defaults(api_flag=True)  # 默认为True
     args = parser.parse_args()
     print(args)
     return args
-
-# 定义设置随机种子的函数
-def seed_everything(seed=9987):
-    random.seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
 
 def get_version_transformers():
     import pkg_resources  
@@ -111,14 +102,16 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
             top_p=params.top_p,
             top_k=params.top_k, 
             repetition_penalty=params.repetition, 
-            max_tokens=8000, #注意：这是生成的最大长度，不是输入的最大长度
+            max_tokens=8000, #8000, #注意：这是生成的最大长度，不是输入的最大长度
             skip_special_tokens=True,
+            seed = params.seed
         )
     
     # if int(hf_version[1]) > 28: 
     #     model.llm_engine.tokenizer.padding_side = "left"
     # else:
-    #     model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)    
+    #     model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)   
+    print("input_f:", input_f) 
     if os.path.isdir(input_f):
         file_list = [os.path.join(input_f, x) for x in os.listdir(input_f) if x.endswith(".csv")]
     elif os.path.isfile(input_f):
@@ -126,14 +119,6 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
 
     for one_file in file_list:
         print("inference_file:{}".format(one_file))
-        sampling_params = SamplingParams(
-            temperature=params.temperature, 
-            top_p=params.top_p, 
-            top_k=params.top_k, 
-            repetition_penalty=params.repetition, 
-            max_tokens=8000, #注意：这是生成的最大长度，不是输入的最大长度
-            skip_special_tokens=True,
-        )
         
         df =utils.preprocess_df(one_file)
         if params.eval_col in df.columns:
@@ -198,20 +183,16 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                         continue
 
                     output_assist = output_text.split(input_text_list[i].strip())[-1]  # 生成的输出内容
-                    assistant = output_assist.split("[unused1]")[0].strip()
+                    assistant = output_assist.replace("[unused1]", "").strip()
                     assistant = assistant.replace("[unused8]", "\n").strip()
                     print("assistant:", assistant)
 
                     predict_text.append(assistant)
-                    # predict_api.append(api)
-                    # predict_thought.append(thought)
                     full_input.append(input_text_list[i])
                     full_output.append(input_text_list[i]+output_text)
 
             # 保存数据
             df.insert(loc=df.shape[1], column="predict_output", value=predict_text)
-            # df.insert(loc=df.shape[1], column="api", value=predict_api)
-            # df.insert(loc=df.shape[1], column="thought", value=predict_thought)
             df.insert(loc=df.shape[1], column="full_input", value=full_input)
             df.insert(loc=df.shape[1], column="full_output", value=full_output)
         df = df.rename(columns={'assistant':'correct_output'})
@@ -232,19 +213,14 @@ def func_api_single(params, input_f, api_flag=True, bsize=20, loop=5, mode="moe"
     # do_func_api_single(0, params, input_f, api_flag, bsize, loop, mode, args.model, output_pt, args.gpus.split(','), tiktoken_path)
     mp.spawn(do_func_api_single, nprocs=n_process, args=(params, input_f, api_flag, bsize, loop, mode, args.model, directory, args.gpus.split(','), tiktoken_path))
 
-    # test_dataset_file = args.input_file.strip('/').split('/')[-1].strip()
-    # result_file_prefix = test_dataset_file + "." + args.time_stamp
-    # output_pt = directory + "/" + result_file_prefix
-    # # merge files
-    # df = pd.concat([pd.read_csv(output_pt + '_' + str(i) + '.csv') for i in range(n_process)], ignore_index=True)
-    # [os.remove(output_pt + '_' + str(i) + '.csv') for i in range(n_process)]
-    # pd.DataFrame(df).to_csv(output_pt + ".csv", index=None, encoding='utf_8_sig')
     print('finished')
 
 if __name__ == "__main__":
     # 设置种子
-    seed_everything()
     args = parse_args()
+    if args.random:
+        args.seed = random.randint(0, 10000)
+    seed_everything(args.seed)
     start_time = time.time()
     if args.turn_mode in ["qwen"]:
         func_api_single(args, args.input_file, api_flag=args.api_flag, bsize=args.batch_size, loop=args.try_num, mode=args.turn_mode, tiktoken_path=args.tiktoken_path)

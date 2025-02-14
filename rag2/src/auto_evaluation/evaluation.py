@@ -1,17 +1,16 @@
 import sys
 import os
 import argparse
+import time
 from utils.vote_strategy import vote_strategy
 from base.base_eval import BaseModelEval
 from metrics import (
     authenticityEval,
-    authenticityEval2,
     relResponseEval,
-    unknowEval,
-    instructFollowEval,
-    avoidnegEval,
     authenticityTestAPIEval,
-    relResponseTestAPIEval
+    relResponseTestAPIEval,
+    richnessEval,
+    richnessTestAPIEval
 )
 
 sys.path.append("..")
@@ -28,28 +27,22 @@ METRIC_DICT = {
     "authenticity":{
         "function":authenticityEval,
     },
-    "authenticity2":{
-        "function":authenticityEval2,
-    },
     "authenticity_test_api_eval":{
         "function":authenticityTestAPIEval,
     },
     "relevance_test_api_eval":{
         "function":relResponseTestAPIEval,
     },
-    "unknow":{
-        "function":unknowEval
+    "richness": {
+        "function": richnessEval,
     },
-    "instruct_follow":{
-        'function':instructFollowEval
-    },
-    "follow_avoid_neg":{
-        'function':avoidnegEval
+    "richness_test_api_eval": {
+        "function": richnessTestAPIEval,
     }
 }
 
 
-def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str='user_obs_ans_concat', input_text_type: str='default'):
+def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_column_list: list[str], save_column: str, input_file: str, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str='user_obs_ans_concat', max_tokens=8000, input_text_type: str='default', eval_task='richness_eval_v1'):
     
     df = utils.get_df(input_file)
     df = df[~df[eval_column_list[-1]].isna()] # 回复为空不评估
@@ -65,7 +58,7 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
         assert metric in METRIC_DICT, "metric name is not right!!!"
         func = METRIC_DICT[metric]['function']
         assert isinstance(func, BaseModelEval), "func type is wrong!!!"
-        if metric in ['authenticity_test_api_eval', 'relevance_test_api_eval']:
+        if metric in ['authenticity_test_api_eval', 'relevance_test_api_eval', 'richness_test_api_eval']:
             result, reason = func.main_eval(
                 model = model,
                 url = url, 
@@ -77,7 +70,23 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
                 chunk_num = chunk_num, 
                 temperature = temperature,
                 eval_mode = eval_mode,
-                input_text_type = input_text_type
+                max_tokens = max_tokens,
+                input_text_type = input_text_type,
+                eval_task = eval_task
+            )
+        elif metric in ['authenticity', 'relevance']:
+            result, reason = func.main_eval(
+                model = model,
+                url = url, 
+                eval_column_list = eval_column_list, 
+                df = df, 
+                output_dir = output_dir, 
+                prompt_path = prompt_path, 
+                thread_num = thread_num, 
+                chunk_num = chunk_num, 
+                temperature = temperature,
+                eval_mode = eval_mode,
+                max_tokens = max_tokens            
             )
         else:
             result, reason = func.main_eval(
@@ -108,7 +117,17 @@ def evaluate(model_list: list[str], url_list: list[str], metric: str, eval_colum
         # 当前仅支持单个模型推理，多个模型vote待优化
         cnt_1 = result.count(1)
         cnt_0 = result.count(0)
-        print(f"{input_file}, 正例数量：{cnt_1}, 测试集数量：{len(df)}, 有效评估数量:{cnt_1+cnt_0}, {metric}, 正例占比：{cnt_1/(cnt_1+cnt_0)}")
+        # Calculate the total count of valid evaluations
+        total_valid_evaluations = cnt_1 + cnt_0
+        
+        # Check to avoid division by zero
+        if total_valid_evaluations == 0:
+            positive_ratio = 0
+        else:
+            positive_ratio = cnt_1 / total_valid_evaluations
+        
+        # Print the formatted output
+        print(f"{input_file}, 正例数量：{cnt_1}, 测试集数量：{len(df)}, 有效评估数量:{total_valid_evaluations}, {metric}, 正例占比：{positive_ratio}")
 
     
     # 对多模型评估结果进行投票打分
@@ -152,6 +171,8 @@ parser.add_argument("--eval_mode", type = str,
                     default = "user_obs_ans_concat", help = "user_obs_ans_concat,model_13b_log,with_prompt")
 parser.add_argument("--input_text_type", type = str, 
                     default = "default", help = "default,function_call")
+parser.add_argument("--max_tokens", type = int, default = 8000, help = "max_tokens")
+parser.add_argument("--eval_task", type = str, default = 'richness_eval_v1', help = "richness_eval_v1,richness_eval,repeat_eval")
 args  =  parser.parse_args()
 print(args)
 
@@ -177,10 +198,10 @@ if __name__ == "__main__":
                 chunk_num = args.chunk_num,
                 temperature = args.temperature,
                 eval_mode = args.eval_mode,
-                input_text_type = args.input_text_type
+                input_text_type = args.input_text_type,
+                eval_task = args.eval_task
             )
             print("--------------------------------------------\n", input_file, "评估完毕\n--------------------------------------------")
-
     # 如果是文件
     else:
         print("--------------------------------------------\n正在评估", file, "\n--------------------------------------------")
@@ -197,7 +218,8 @@ if __name__ == "__main__":
             chunk_num = args.chunk_num,
             temperature = args.temperature,
             eval_mode = args.eval_mode,
-            input_text_type = args.input_text_type
+            input_text_type = args.input_text_type,
+            eval_task = args.eval_task
         )
         print("-------------------------------------\n", file, "文件评估完毕\n-------------------------------------") 
     # except Exception as e:

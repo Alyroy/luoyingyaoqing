@@ -1,8 +1,9 @@
 # -*-coding:utf-8-*-
-from metrics.utils_log_parser import parser_date, parser_loc, parser_obs, get_query_result_from_16b_input, get_context_result_from_16b_input
+from metrics.utils_log_parser import parser_date, parser_loc, parser_obs, get_query_result_from_16b_input, get_context_result_from_16b_input, extract_history
 import re
 import sys
 import random
+import traceback
 import string
 sys.path.append('../')
 from base.base_eval import BaseModelEval
@@ -39,25 +40,25 @@ class RelevanceEval(BaseModelEval):
         2. 拼接prompt
         '''
         self.read_prompt(prompt_path)
-        log_input_col, ans_col, _ = eval_column_list
+        log_input_col, query_col, ans_col = eval_column_list
         prompts_ls = []
         for i in range(len(df)):
             request = df.iloc[i][log_input_col]
             date_info = parser_date(request) # 提取时间
             address_info = parser_loc(request) # 提取地点
             common_prompt_info = self.prompt.replace("$$$date$$$",date_info).replace("$$$pos$$$",address_info) # 替换时间地点
-            query = get_query_result_from_16b_input(request)
-            context = get_context_result_from_16b_input(request)
+            query = df.iloc[i][query_col] # get_query_result_from_16b_input(request)
+            context = extract_history(request) # get_context_result_from_16b_input(request)
             response = df.iloc[i][ans_col]
             instruction = "请对以上的用户问题和大模型答案进行相关性分析，并输出相关性评估结果。"
-            if len(context)>0:
+            if context != "":
                 prompt = f"{common_prompt_info}\n历史对话：{context}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
             else:
                 # prompt = f"{common_prompt_info}\n问题：{query}\n答案：\n{response.strip()}\n{instruction}"
                 prompt = "\n".join([common_prompt_info,"\n问题：",str(query).strip(),"答案：",str(response).strip(), instruction])
             prompts_ls.append(prompt)
-            if i == 1500:
-                pass
+            # if i == 1500:
+            #     pass
         df['llm_prompts'] = prompts_ls
         return df
 
@@ -75,8 +76,10 @@ class RelevanceEval(BaseModelEval):
             else:
                 rel_pred = 0
             # rel_pred = 1 if score > 3 else 0 # 评分为1-5，大于3则评估为相关，否则不相关
-        except:
-            self.logger.error("[rel-eval]:结果解析失败！")
+        except Exception as exc:
+            traceback.print_exc()
+            # self.logger.error("[rel-eval]:结果解析失败！")
+            print("[rel-eval]:结果解析失败！")
             rel_pred = -1
         return rel_pred
     
@@ -94,7 +97,8 @@ class RelevanceEval(BaseModelEval):
                 return 0
             else:
                 return 1
-        except:
+        except Exception as exc:
+            traceback.print_exc()
             return -1
 
 
@@ -108,7 +112,8 @@ class RelevanceEval(BaseModelEval):
             patterns = [r'原子信息：(.*?)是否为兜底回复：', r'是否为兜底回复：【(.*?)】']
             match_backup = re.search(patterns[1], response.replace("\n", ""))
             result = int(match_backup.group(1))
-        except:
+        except Exception as exc:
+            traceback.print_exc()
             return -2
         return result
     
@@ -123,7 +128,8 @@ class RelevanceEval(BaseModelEval):
             patterns = [r'原子信息：(.*?)是否为兜底回复：', r'兜底评估：{{(.*?)}}']
             match_backup = re.search(patterns[1], response.replace("\n", ""))
             result = int(match_backup.group(1))
-        except:
+        except Exception as exc:
+            traceback.print_exc()
             return -2
         return result
         
@@ -142,7 +148,8 @@ class RelevanceEval(BaseModelEval):
                 return 0
             else:
                 return 1
-        except:
+        except Exception as exc:
+            traceback.print_exc()
             return -1
     
     def result_sorted(self, input_with_prompt, responses):
@@ -154,8 +161,10 @@ class RelevanceEval(BaseModelEval):
             response_dict = dict(zip(responses_index, response_list))
             response_sorted = sorted(response_dict.items(), key=lambda x: x[0], reverse=False)
             response_sorted_list = [x[1] for x in response_sorted]
-        except Exception as e:
-            self.logger.error("error while result sorted:",e)
+        except Exception as exc:
+            traceback.print_exc()
+            print("error while result sorted:",e)
+            # self.logger.error("error while result sorted:",e)
         return response_sorted_list
 
     def result_sorted_byindex(self, responses):
@@ -163,11 +172,13 @@ class RelevanceEval(BaseModelEval):
             prompt_index = {x["index"]: x for x in responses}
             response_sorted = sorted(prompt_index.values(), key=lambda x: x["index"], reverse=False)
             response_sorted_list = [x["response"] for x in response_sorted]
-        except Exception as e:
-            self.logger.error("error while result sorted:",e)
+        except Exception as exc:
+            traceback.print_exc()
+            print("error while result sorted:",e)
+            # self.logger.error("error while result sorted:",e)
         return response_sorted_list
     
-    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat'):
+    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat', max_tokens=8000):
         '''
         主评估函数
         '''
@@ -210,7 +221,7 @@ class RelevanceEval(BaseModelEval):
                     url = url, # 智能云GPT api
                     temperature = temperature,
                     top_p = 0.9,
-                    max_tokens = 10000, # 最大输出长度
+                    max_tokens = max_tokens, # 最大输出长度
                     chunk_num = chunk_num,
                     thread_num = thread_num,
                     query_column_name = query_column_name, # llm模型输入列名
@@ -237,10 +248,10 @@ class RelevanceEval(BaseModelEval):
                     rel_result_tmp = self.log_relevance_parse(resp) # 针对log评估的解析方法 # log_relevance_parse
                     rel_result.append(rel_result_tmp)
             rel_reason = response_sorted_list
-        except Exception as e:
+        except Exception as exc:
+            traceback.print_exc()
             rel_result = [-1 for _ in range(len(df))]
             rel_reason = ['nan' for _ in range(len(df))]
-            self.logger.error("error while relevance eval:{}".format(e))
         return rel_result,rel_reason
 
 relResponseEval = RelevanceEval("relevance_eval")

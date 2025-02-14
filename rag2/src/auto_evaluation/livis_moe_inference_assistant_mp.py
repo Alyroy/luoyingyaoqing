@@ -127,8 +127,8 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                 repetition_penalty=params.repetition, 
                 max_tokens=4000, #注意：这是生成的最大长度，不是输入的最大长度
                 # stop=["<|endoftext|>", "<|im_end|>"]
-                stop=["</s>"],
-                stop_token_ids=[2],
+                stop=["<|end_of_text|>"],
+                stop_token_ids=[128001],
                 skip_special_tokens=True,
             )
         
@@ -176,7 +176,7 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
     #     model = LlamaForCausalLM.from_pretrained(checkpoint, torch_dtype=torch.bfloat16, device_map="auto", use_cache=True)    
     if os.path.isdir(input_f):
         file_list = [os.path.join(input_f, x) for x in os.listdir(input_f) if x.endswith(".csv")]
-    elif os.path.isfile():
+    elif os.path.isfile(input_f):
         file_list = [input_f]
     
     for one_file in file_list:
@@ -201,8 +201,8 @@ def do_func_api_single(gpu_no, params, input_f, api_flag=True, bsize=20, loop=5,
                 repetition_penalty=params.repetition, 
                 max_tokens=4000, #注意：这是生成的最大长度，不是输入的最大长度
                 # stop=["<|endoftext|>", "<|im_end|>"]
-                stop=["</s>"],
-                stop_token_ids=[2],
+                stop=["<|end_of_text|>"],
+                stop_token_ids=[128001],
                 skip_special_tokens=True,
             )
         df =utils.preprocess_df(one_file)

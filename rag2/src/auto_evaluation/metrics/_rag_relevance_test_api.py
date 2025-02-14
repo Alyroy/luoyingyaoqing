@@ -40,9 +40,10 @@ class RelevanceTestAPIEval(BaseModelEval):
         解析log to date_time, location, context(user), assistant
         1. 提取各个元素
         2. 拼接prompt
+        eval_column_list: log_col, query_col, ans_col
         '''
         self.read_prompt(prompt_path)
-        log_input_col, ans_col, _ = eval_column_list
+        log_input_col, query_col, ans_col = eval_column_list
         prompts_ls = []
         for i in range(len(df)):
             request = df.iloc[i][log_input_col]
@@ -129,7 +130,7 @@ class RelevanceTestAPIEval(BaseModelEval):
             # self.logger.error("error while result sorted:",e)
         return response_sorted_list
     
-    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat', input_text_type='default'):
+    def main_eval(self, model: str, url: str, eval_column_list: list[str], df, output_dir: str, prompt_path: str, thread_num: int, chunk_num: int, temperature: float, eval_mode:str = 'user_obs_ans_concat', max_tokens=8000, input_text_type='default'):
         '''
         主评估函数
         '''
@@ -137,13 +138,14 @@ class RelevanceTestAPIEval(BaseModelEval):
             if eval_mode=='user_obs_ans_concat':
                 # 读取待评估文件并与prompt进行拼接
                 df_with_prompts = self.concat_prompt(df, eval_column_list, prompt_path)
-                query_column_name = "llm_prompts"
+                query_column_name = "llm_prompts" # llm input
             elif eval_mode=='with_prompt':
                 df_with_prompts = df
                 query_column_name = eval_column_list[0] # 如果不拼已有的prompt默认取第一个做eval
             elif eval_mode=='model_13b_log':
                 df_with_prompts = self.add_log_prompt(df, eval_column_list, prompt_path)
-                query_column_name = "query"  # "llm_prompts"
+                # query_column_name = "query"  # "llm_prompts"
+                log_input_col, query_column_name, ans_col = eval_column_list
             else:
                 raise "目前仅支持user_obs_ans_concat(输入user-query, observation, assistant列后拼接prompt), model_13b_log(输入13b output 后处理拼接prompt), with_prompt(已拼接好prompt)"
             
@@ -172,12 +174,12 @@ class RelevanceTestAPIEval(BaseModelEval):
                     url = url, # 智能云GPT api
                     temperature = temperature,
                     top_p = 0.9,
-                    max_tokens = 10000, # 最大输出长度
+                    max_tokens = max_tokens, # 最大输出长度
                     chunk_num = chunk_num,
                     thread_num = thread_num,
-                    query_column_name = query_column_name, # llm模型输入列名
-                    model_input_column_name='model_13b_input',
-                    predict_column_name='predict_output',
+                     query_column_name = query_column_name, # query 输入列名
+                    model_input_column_name=log_input_col, #'model_13b_input',
+                    predict_column_name=ans_col, #'predict_output',
                     response_column_name = 'assistant_89757',
                     eval_task='qwen_relevance_eval',
                     input_text_type=input_text_type,

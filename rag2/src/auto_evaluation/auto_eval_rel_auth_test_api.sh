@@ -8,4 +8,4 @@ EVAL_OUTPUT_DIR_AUTH=$5 # 真实性输出文件夹
 IP=$6
 
 bash auto_eval_log_relevance_test_api.sh $CURRENT_DIR $INPUT_LOG_COL $EVAL_INPUT_DIR $EVAL_OUTPUT_DIR_REL $IP &
-bash auto_eval_log_authenticity_test_api.sh $CURRENT_DIR $INPUT_LOG_COL $EVAL_INPUT_DIR $EVAL_OUTPUT_DIR_AUTH  $IP
+bash auto_eval_log_authenticity_test_api.sh $CURRENT_DIR $INPUT_LOG_COL $EVAL_INPUT_DIR $EVAL_OUTPUT_DIR_AUTH $IP

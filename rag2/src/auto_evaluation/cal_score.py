@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-import os
+
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 def result_truth_parse(response):

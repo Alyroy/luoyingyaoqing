@@ -1,24 +1,18 @@
-## MOE LLM 推理
-#### 更新记录
-【2024.10.21更新】
-1. 支持一键多个模型同时转hf、推理、评估moe 及 qwen 模型，见0-auto_moe_infer_eval_qwen_api.sh 0-auto_qwen_infer_eval_qwen_api.sh
-2. 增加自动计算livis 端到端评估结果，见calculate_all_e2e_metric.py
-3. 替换qwen2-72b API服务为qwen25-72b API服务，要求model_name必须是qwen
-4. 统一测试集关键列，必须包含query, model_13b_input, 推理会自动生成predict_output
+### 更新记录
+【2025.1.10】
+1. 更新测试集eval_data/livis_query_fc_0110
+2. 更新指标统计计算
+3. 提供线下评估方式，优化评估速度1小时1200条 真实性+相关
+4. 启动参考0-auto_qwen_infer_eval_qwen_api_swa.sh
 
-【2024.10.18更新】
-1. 优化一键推理+评测脚本，支持自动qwen2-72b API服务
-[rag评测（自动api版）](https://li.feishu.cn/docx/YgApdJzV4omd8jxRqFvcBSu4nJd)
+【2024.12.30】
+1. 支持vllm swa推理
+2. 支持本地评估真实性、相关性
+3. 更新统计指标
+4. 使用参考 0-auto_qwen_infer_eval_qwen_api_swa.sh
+5. 支持模型通过vllm api server部署的url进行推理
 
-【2024.10.16更新】
-1. 对齐评测组RAG评测流程，对齐prompt和输出解析脚本
-2. 接入评测组评测API
-
-【2024.09.09更新】
-1. 更新livis_moe_inference_assistant_mp.py，支持文件夹推理
-2. 支持lpai自动推理+评估 参考 0-auto_lpai_infer_eval.sh
-
-
+### MOE LLM 推理
 #### 脚本运行
 ```
 ./lizrun_livis_moe.sh

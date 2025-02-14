@@ -22,6 +22,36 @@ def parser_obs(pro_input: str) -> list[list]:
     return obs
 
 
+def content_parser_functioncall(content):
+    '''
+    Functioncall格式
+    '''
+    if not isinstance(content, str):
+        content_clean = str(content).strip().replace("\n", "")
+    else:
+        content_clean = content.strip().replace("\n", "")
+    content_str = re.findall("\[unused0\]user```function_call_result(.*?)```\[unused1\]", content_clean, re.S)
+
+    if len(content_str) > 0:
+        content_list = []
+        try:
+            content_jsons = json.loads(content_str[0])
+        except:
+            try:
+                content_jsons = json.loads(content_str[0].replace('\'', '\"'))
+            except:
+                content_jsons = [{'content': []}]
+                print('json error')
+        
+        # print(content_jsons)
+        for content_item in content_jsons: # content_jsons[0]
+            content_list += content_item["content"]
+    else:
+        print("No match found")
+        content_list = ['']
+    return content_list
+
+
 def get_query_result_from_16b_input(input_16b):
     pattern = "user\n(.*?)\[unused1\]"
     results = re.findall(pattern, input_16b, re.DOTALL)
@@ -45,6 +75,25 @@ def get_context_result_from_16b_input(input_16b):
                 }
             )
     return context_list
+
+def extract_history(content):
+    pattern = r'\[unused0\]user(.*?)\[unused1\]'
+    all_matches = re.findall(pattern, content, re.S)
+    matches = [match for match in all_matches if '```' not in match]
+    if len(matches) == 1:        #单轮对话说明没有历史对话
+        return ""
+    elif len(matches) > 1:       #说明是多轮对话
+        pattern2 = r'\[unused0\]assistant(.*?)\[unused1\]'
+        all_matches2 = re.findall(pattern2, content, re.DOTALL)
+        matches2 = [match for match in all_matches2 if '```' not in match]
+        history = ""
+        for index, response in enumerate(matches2): #有response的说明是历史对话
+            question = matches[index]
+            history += '提问：{}\n'.format(question.strip().replace('\n', ' '))
+            history += '回答：{}\n'.format(response.strip().replace('\n', ' '))
+        return history
+    else:
+        return ""
 
 
 def clean_observation_pattern(pattern_list):

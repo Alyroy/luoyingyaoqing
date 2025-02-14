@@ -104,12 +104,14 @@ def get_thought_api(query, url):
         # 获取1b结果
         api_tool = ApiResult(category, query, url)
         response = api_tool.gen_api()
+        assistant = response['first_response']['assistant']
         parser_result = response.get('first_response', {}).get('assistant', None)
         
         if not parser_result:
             raise ValueError("No valid response from API")
         
         parser_result = ast.literal_eval(parser_result)
+
         thought_ls = []
         api_ls = []
 
@@ -118,7 +120,7 @@ def get_thought_api(query, url):
             api_dict = value['arguments']
             api_dict['name'] = value['name']
             api_ls.append(api_dict)
-        return thought_ls, api_ls
+        return thought_ls, api_ls, response, assistant
     except Exception as e:
         print(f"Error occurred: {e}")
-        return [], []
+        return [], [], [], []

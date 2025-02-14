@@ -73,10 +73,12 @@ prompt_map = {
 
 # model = '/mnt/pfs-ssai-nlu/chenyabo/sft_model_1b/20230824-1b-multi-prompt'
 # model = '/mnt/pfs-ssai-nlu/xinhongsheng/work_dir/1b_sft_model/v20240305_online_llm2llm_0412/'
-model = "/mnt/pfs-guan-ssai/nlu/xinhongsheng/stanford_alpaca_dynamics_2048_dev/output_model/v20240729_api_to_function_call_8_tool"
+model = "/mnt/pfs-guan-ssai/nlu/xinhongsheng/v6_16b_scripts_new/lisft_moe/output_model_path/v20250114_api_opt_liplan_6_tool_update_function_v2"
+
 # 按照以下方式导入模型和分词器也可以
 # tokenizer = AutoTokenizer.from_pretrained(model, max_length=1024)
 # model = AutoModelForCausalLM.from_pretrained(model, torch_dtype="auto", device_map="auto")
+#tokenizer = LlamaTokenizer.from_pretrained(model)
 tokenizer = LlamaTokenizer.from_pretrained(model)
 # unused_tokens = []
 # for i in range(100):
